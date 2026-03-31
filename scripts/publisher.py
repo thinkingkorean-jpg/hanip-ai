@@ -18,7 +18,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="한입 AI — {{ headline_title }}. 매일 한입 크기의 AI 뉴스.">
-  <meta name="keywords" content="AI 뉴스, 인공지능, {{ headline_title }}, 한입AI, 한닙">
+  <meta name="keywords" content="AI 뉴스, 인공지능, {{ headline_title }}, 한입AI, 한입이">
   <meta property="og:title" content="{{ headline_title }} — 한입 AI">
   <meta property="og:description" content="매일 아침, AI 세상에서 가장 중요한 이슈를 쉽고 위트있게 정리해드립니다.">
   <meta property="og:type" content="article">
@@ -33,7 +33,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
   <header class="header">
     <div class="header-inner">
       <a href="../index.html" class="logo">
-        <img src="../assets/hannip.png" alt="한닙" class="logo-icon">
+        <img src="../assets/hannip.png" alt="한입이" class="logo-icon">
         <div>
           <div class="logo-text">한입 AI</div>
           <div class="logo-sub">매일 한입, AI 세상을 떠먹여드립니다</div>
@@ -53,7 +53,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
         <span>{{ date_display }}</span>
       </div>
       <h1 class="hero-title">오늘의 AI 한입 🍪</h1>
-      <p class="hero-subtitle">한닙이가 오늘의 AI 뉴스를 맛있게 정리했어요</p>
+      <p class="hero-subtitle">한입이이가 오늘의 AI 뉴스를 맛있게 정리했어요</p>
     </section>
 
     <div class="ad-space">광고 영역 — AdSense 승인 후 활성화</div>
@@ -111,12 +111,12 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
     <section class="section animate-in animate-delay-4">
       <div class="section-header">
         <span class="section-icon">💬</span>
-        <h2 class="section-title">한닙의 한마디</h2>
+        <h2 class="section-title">한입이의 한마디</h2>
       </div>
       <div class="hannip-comment">
-        <img src="../assets/hannip.png" alt="한닙" class="hannip-avatar">
+        <img src="../assets/hannip.png" alt="한입이" class="hannip-avatar">
         <div class="hannip-bubble">
-          <div class="hannip-name">한닙 🐻</div>
+          <div class="hannip-name">한입이 🐻</div>
           <p class="hannip-text">"{{ hannip_comment }}"</p>
         </div>
       </div>
@@ -134,7 +134,7 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
     <section class="section animate-in animate-delay-5">
       <div class="subscribe">
         <h2>📬 매일 아침, 메일로 받아보세요</h2>
-        <p>한닙이가 정리한 AI 뉴스를 매일 오전 7시에 보내드려요. 무료!</p>
+        <p>한입이이가 정리한 AI 뉴스를 매일 오전 7시에 보내드려요. 무료!</p>
         <form class="subscribe-form" id="subscribeForm">
           <input type="email" class="subscribe-input" placeholder="이메일 주소를 입력하세요" required id="emailInput">
           <button type="submit" class="subscribe-btn">구독하기</button>
@@ -286,7 +286,7 @@ def update_index_page(newsletter):
         html
     )
     
-    # 한닙 코멘트
+    # 한입이 코멘트
     html = re.sub(
         r'(<p class="hannip-text">)(.*?)(</p>)',
         f'\\g<1>\n            "{newsletter["hannip_comment"]}"\n          \\3',
