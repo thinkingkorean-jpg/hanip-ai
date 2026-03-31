@@ -61,13 +61,17 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
     <section class="section animate-in animate-delay-1">
       <div class="section-header">
         <span class="section-icon">🔥</span>
-        <h2 class="section-title">오늘의 헤드라인</h2>
+        <h2 class="section-title">오늘의 심층 분석</h2>
       </div>
-      <article class="headline-card">
-        <div class="headline-tag">🔴 {{ headline_tag }}</div>
-        <h3 class="headline-title">{{ headline_title }}</h3>
-        <div class="headline-body">{{ headline_body }}</div>
-      </article>
+      <div class="deep-dives-list">
+        {% for dive in deep_dives %}
+        <article class="headline-card" style="margin-bottom: 2rem;">
+          <div class="headline-tag">🔴 {{ dive.tag }}</div>
+          <h3 class="headline-title">{{ dive.title }}</h3>
+          <div class="headline-body">{{ dive.body }}</div>
+        </article>
+        {% endfor %}
+      </div>
     </section>
 
     <section class="section animate-in animate-delay-2">
@@ -95,16 +99,20 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
         <span class="section-icon">🛠️</span>
         <h2 class="section-title">오늘의 추천 도구</h2>
       </div>
-      <div class="tool-card">
-        <div class="tool-icon">✨</div>
-        <div class="tool-info">
-          <div class="tool-category">{{ tool_category }}</div>
-          <h3>{{ tool_name }}</h3>
-          <p>{{ tool_description }}</p>
-          {% if tool_url %}
-          <a href="{{ tool_url }}" target="_blank" class="tool-link">사이트 방문하기 →</a>
-          {% endif %}
+      <div class="tools-list">
+        {% for tool in recommended_tools %}
+        <div class="tool-card" style="margin-bottom: 1.5rem;">
+          <div class="tool-icon">✨</div>
+          <div class="tool-info">
+            <div class="tool-category">{{ tool.category }}</div>
+            <h3>{{ tool.name }}</h3>
+            <p>{{ tool.description }}</p>
+            {% if tool.url %}
+            <a href="{{ tool.url }}" target="_blank" class="tool-link">사이트 방문하기 →</a>
+            {% endif %}
+          </div>
         </div>
+        {% endfor %}
       </div>
     </section>
 
@@ -187,22 +195,18 @@ def build_article_page(newsletter):
     
     template = Template(ARTICLE_TEMPLATE)
     
-    # headline body: 텍스트를 <p> 태그로 감싸기 (이미 감싸져 있지 않다면)
-    headline_body = newsletter['headline']['body']
-    if not headline_body.strip().startswith('<p>'):
-        paragraphs = headline_body.split('\n\n')
-        headline_body = ''.join(f'<p>{p.strip()}</p>' for p in paragraphs if p.strip())
+    # body 처리
+    for dive in newsletter['deep_dives']:
+        body = dive['body']
+        if not body.strip().startswith('<p>'):
+            dive['body'] = ''.join(f'<p>{p.strip()}</p>' for p in body.split('\n\n') if p.strip())
     
     html = template.render(
         date_display=date_display,
-        headline_tag=newsletter['headline'].get('tag', 'HOT ISSUE'),
-        headline_title=newsletter['headline']['title'],
-        headline_body=headline_body,
+        headline_title=newsletter['deep_dives'][0]['title'],
+        deep_dives=newsletter['deep_dives'],
         quick_news=newsletter['quick_news'],
-        tool_category=newsletter['tool'].get('category', '생산성'),
-        tool_name=newsletter['tool']['name'],
-        tool_description=newsletter['tool']['description'],
-        tool_url=newsletter['tool'].get('url', ''),
+        recommended_tools=newsletter['recommended_tools'],
         hannip_comment=newsletter['hannip_comment'],
     )
     
@@ -224,13 +228,19 @@ def update_index_page(newsletter):
     days_ko = ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', '일요일']
     date_display = f"{today.year}년 {today.month}월 {today.day}일 {days_ko[today.weekday()]}"
     
-    # headline body 처리
-    headline_body = newsletter['headline']['body']
-    if not headline_body.strip().startswith('<p>'):
-        paragraphs = headline_body.split('\n\n')
-        headline_body = ''.join(f'<p>{p.strip()}</p>' for p in paragraphs if p.strip())
-    
-    # 빠른 뉴스 HTML 생성
+    # 헤드라인 본문
+    deep_dives_html = ""
+    for dive in newsletter['deep_dives']:
+        body = dive['body']
+        if not body.strip().startswith('<p>'):
+            body = ''.join(f'<p>{p.strip()}</p>' for p in body.split('\n\n') if p.strip())
+        deep_dives_html += f'''
+        <article class="headline-card" style="margin-bottom: 2rem;">
+          <div class="headline-tag">🔴 {dive.get("tag", "HOT ISSUE")}</div>
+          <h3 class="headline-title">{dive["title"]}</h3>
+          <div class="headline-body">{body}</div>
+        </article>'''
+
     news_html = ""
     for i, news in enumerate(newsletter['quick_news'], 1):
         news_html += f"""
@@ -241,53 +251,46 @@ def update_index_page(newsletter):
             <p>{news['summary']}</p>
           </div>
         </div>"""
+
+    tools_html = ""
+    for tool in newsletter['recommended_tools']:
+        tools_html += f'''
+        <div class="tool-card" style="margin-bottom: 1.5rem;">
+          <div class="tool-icon">✨</div>
+          <div class="tool-info">
+            <div class="tool-category">{tool.get("category", "추천 도구")}</div>
+            <h3>{tool["name"]}</h3>
+            <p>{tool["description"]}</p>
+            <a href="{tool.get("url", "#")}" target="_blank" class="tool-link">사이트 방문하기 →</a>
+          </div>
+        </div>'''
     
     # index.html 읽기
     index_path = os.path.join(PROJECT_ROOT, "index.html")
     with open(index_path, "r", encoding="utf-8") as f:
         html = f.read()
     
-    # 동적 콘텐츠 교체 (정규식 기반)
     import re
     
-    # 헤드라인 제목
+    # 심층 분석 섹션 통째로 교체
     html = re.sub(
-        r'(<h3 class="headline-title">)(.*?)(</h3>)',
-        f'\\1{newsletter["headline"]["title"]}\\3',
-        html, flags=re.DOTALL
-    )
-    
-    # 헤드라인 본문
-    html = re.sub(
-        r'(<div class="headline-body">)(.*?)(</div>\s*</article>)',
-        f'\\g<1>\n          {headline_body}\n        \\3',
-        html, flags=re.DOTALL
-    )
-    
-    # 헤드라인 태그
-    html = re.sub(
-        r'(<div class="headline-tag">🔴 )(.*?)(</div>)',
-        f'\\g<1>{newsletter["headline"].get("tag", "HOT ISSUE")}\\3',
-        html
+        r'(<section class="section animate-in animate-delay-1"[^>]*>)(.*?)(</section>)',
+        f'\\1\n      <div class="section-header">\n        <span class="section-icon">🔥</span>\n        <h2 class="section-title">오늘의 심층 분석</h2>\n      </div>\n      <div class="deep-dives-list">\n{deep_dives_html}      </div>\n    \\3',
+        html, flags=re.DOTALL, count=1
     )
     
     # 빠른 뉴스
     html = re.sub(
         r'(<div class="news-list"[^>]*>)(.*?)(</div>\s*</section>)',
-        f'\\g<1>{news_html}\n      \\3',
+        f'\\g<1>\n{news_html}      \\3',
         html, flags=re.DOTALL, count=1
     )
     
     # 추천 도구
     html = re.sub(
-        r'(<div class="tool-category">)(.*?)(</div>)',
-        f'\\g<1>{newsletter["tool"].get("category", "생산성")}\\3',
-        html
-    )
-    html = re.sub(
-        r'(<div class="tool-card"[\s\S]*?<h3>)(.*?)(</h3>)',
-        f'\\g<1>{newsletter["tool"]["name"]}\\3',
-        html
+        r'(<section class="section animate-in animate-delay-3"[^>]*>)(.*?)(</section>)',
+        f'\\1\n      <div class="section-header">\n        <span class="section-icon">🛠️</span>\n        <h2 class="section-title">오늘의 추천 도구</h2>\n      </div>\n      <div class="tools-list">\n{tools_html}      </div>\n    \\3',
+        html, flags=re.DOTALL, count=1
     )
     
     # 한입이 코멘트
@@ -318,7 +321,7 @@ def update_archive_page(newsletter, date_slug):
           <div class="month">{month_names[today.month - 1]}</div>
         </div>
         <div class="archive-info">
-          <h3>{newsletter['headline']['title']}</h3>
+          <h3>{newsletter['deep_dives'][0]['title']}</h3>
           <p>{' · '.join(n['title'] for n in newsletter['quick_news'][:3])}</p>
         </div>
       </a>"""
