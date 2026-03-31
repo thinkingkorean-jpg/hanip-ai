@@ -1,0 +1,7 @@
+# 한입 AI — 콘텐츠 자동 생성 엔진 의존성
+feedparser==6.0.11
+google-generativeai==0.8.5
+requests==2.32.3
+beautifulsoup4==4.12.3
+python-dotenv==1.0.1
+jinja2==3.1.6

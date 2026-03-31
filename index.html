@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="한입 AI — 매일 한입, AI 세상을 떠먹여드립니다. 매일 아침 가장 중요한 AI 뉴스를 쉽고 재미있게 정리해드립니다.">
+  <meta name="keywords" content="AI 뉴스, 인공지능, GPT, Gemini, Claude, AI 트렌드, 한입AI, 한닙">
+  <meta property="og:title" content="한입 AI — 매일 한입 크기의 AI 뉴스">
+  <meta property="og:description" content="매일 아침, AI 세상에서 가장 중요한 이슈를 쉽고 위트있게 정리해드립니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/hannip.png">
+  <title>한입 AI — 매일 한입, AI 세상을 떠먹여드립니다</title>
+  <link rel="icon" type="image/png" href="assets/hannip.png">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="bg-gradient"></div>
+
+  <!-- Header -->
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/hannip.png" alt="한닙" class="logo-icon">
+        <div>
+          <div class="logo-text">한입 AI</div>
+          <div class="logo-sub">매일 한입, AI 세상을 떠먹여드립니다</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="archive.html" style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">아카이브</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main">
+
+    <!-- Hero -->
+    <section class="hero animate-in">
+      <div class="hero-date">
+        <span>📅</span>
+        <span id="todayDate">2026년 3월 31일 월요일</span>
+      </div>
+      <h1 class="hero-title">오늘의 AI 한입 🍪</h1>
+      <p class="hero-subtitle">한닙이가 오늘의 AI 뉴스를 맛있게 정리했어요</p>
+    </section>
+
+    <!-- Ad Space (Top) -->
+    <div class="ad-space" id="ad-top">
+      광고 영역 — AdSense 승인 후 활성화
+    </div>
+
+    <!-- Headline -->
+    <section class="section animate-in animate-delay-1">
+      <div class="section-header">
+        <span class="section-icon">🔥</span>
+        <h2 class="section-title">오늘의 헤드라인</h2>
+      </div>
+      <article class="headline-card" id="headline">
+        <div class="headline-tag">🔴 HOT ISSUE</div>
+        <h3 class="headline-title">Google, Gemini 2.5 Pro 전격 공개 — "AI가 진짜 '생각'하기 시작했다"</h3>
+        <div class="headline-body">
+          <p>
+            구글이 차세대 AI 모델 <strong>Gemini 2.5 Pro</strong>를 공개했습니다. 이번 모델의 핵심은 
+            <strong>"사고 모델(Thinking Model)"</strong>이라는 새로운 패러다임인데요, 쉽게 말하면 AI가 답변하기 전에 
+            혼자서 "음... 이건 이렇고, 저건 저렇고..." 하면서 <strong>생각하는 과정</strong>을 거친다는 겁니다.
+          </p>
+          <p>
+            기존 AI가 "질문 → 즉시 답변" 방식이었다면, Gemini 2.5 Pro는 "질문 → 내부 추론 → 검증 → 답변" 
+            단계를 거칩니다. 덕분에 수학, 코딩, 과학 같은 복잡한 문제에서 <strong>정확도가 크게 향상</strong>됐다고 하네요.
+            벤치마크에서는 GPT-4.5를 넘어서는 결과도 나왔습니다.
+          </p>
+          <p>
+            특히 인상적인 건 <strong>100만 토큰 컨텍스트 윈도우</strong>. 소설 5~6권 분량의 텍스트를 한 번에 
+            이해할 수 있다는 뜻이에요. AI Studio에서 바로 사용 가능하다니, 한번 써보는 건 어떨까요? 🤔
+          </p>
+        </div>
+      </article>
+    </section>
+
+    <!-- Quick News -->
+    <section class="section animate-in animate-delay-2">
+      <div class="section-header">
+        <span class="section-icon">⚡</span>
+        <h2 class="section-title">빠른 뉴스</h2>
+      </div>
+      <div class="news-list" id="newsList">
+        <div class="news-item">
+          <div class="news-bullet">1</div>
+          <div class="news-content">
+            <h3>OpenAI, GPT-5 개발 완료 단계 진입</h3>
+            <p>올 여름 출시 예정. 멀티모달 성능 대폭 강화, 에이전트 기능 내장될 것으로 알려져. Sam Altman은 "이전과는 차원이 다른 모델"이라고 예고.</p>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-bullet">2</div>
+          <div class="news-content">
+            <h3>Anthropic, Claude 4 출시 임박</h3>
+            <p>Claude 3.5를 넘어서는 차세대 모델. 기업용 보안 기능 강화와 200K 토큰 컨텍스트가 핵심 포인트. 구독 가격 인하 검토 중이라는 소문도.</p>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-bullet">3</div>
+          <div class="news-content">
+            <h3>삼성전자, 갤럭시 AI 2.0 발표</h3>
+            <p>온디바이스 AI 성능 2배 향상. 실시간 통역이 이제 전화 통화에서도 가능해졌고, 사진 편집 AI도 대폭 업그레이드.</p>
+          </div>
+        </div>
+        <div class="news-item">
+          <div class="news-bullet">4</div>
+          <div class="news-content">
+            <h3>EU, AI Act 본격 시행 시작</h3>
+            <p>세계 최초 포괄적 AI 규제법 발효. 고위험 AI 시스템 등록 의무화. 위반 시 전세계 매출의 7%까지 과징금 부과 가능.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Ad Space (Middle) -->
+    <div class="ad-space" id="ad-middle">
+      광고 영역 — AdSense 승인 후 활성화
+    </div>
+
+    <!-- Tool Recommendation -->
+    <section class="section animate-in animate-delay-3">
+      <div class="section-header">
+        <span class="section-icon">🛠️</span>
+        <h2 class="section-title">오늘의 추천 도구</h2>
+      </div>
+      <div class="tool-card" id="toolCard">
+        <div class="tool-icon">✨</div>
+        <div class="tool-info">
+          <div class="tool-category">디자인 · 프레젠테이션</div>
+          <h3>Gamma — AI로 PPT를 3분 만에 만드는 마법</h3>
+          <p>
+            아직도 PPT 만드느라 밤새세요? Gamma는 텍스트 몇 줄만 입력하면 
+            깔끔한 프레젠테이션을 자동으로 만들어줍니다. 디자인 센스 없어도 OK. 
+            무료 플랜으로도 충분히 쓸 만해요.
+          </p>
+          <a href="https://gamma.app" target="_blank" class="tool-link">
+            사이트 방문하기 →
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- Hannip's Comment -->
+    <section class="section animate-in animate-delay-4">
+      <div class="section-header">
+        <span class="section-icon">💬</span>
+        <h2 class="section-title">한닙의 한마디</h2>
+      </div>
+      <div class="hannip-comment" id="hannipComment">
+        <img src="assets/hannip.png" alt="한닙" class="hannip-avatar">
+        <div class="hannip-bubble">
+          <div class="hannip-name">한닙 🐻</div>
+          <p class="hannip-text">
+            "구글, OpenAI, Anthropic이 동시에 새 모델을 준비하고 있다니... 
+            2026년 AI 전쟁은 이제부터가 진짜인 것 같아요. 
+            여러분, 벨트 꽉 매세요! 🎢 내일도 맛있는 AI 소식으로 찾아올게요!"
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Share Bar -->
+    <div class="share-bar">
+      <span class="share-label">공유하기</span>
+      <button class="share-btn" id="shareTwitter" aria-label="트위터 공유" title="X(트위터)에 공유">𝕏</button>
+      <button class="share-btn" id="shareKakao" aria-label="카카오톡 공유" title="카카오톡으로 공유">💬</button>
+      <button class="share-btn" id="shareCopy" aria-label="링크 복사" title="링크 복사">🔗</button>
+    </div>
+
+    <!-- Ad Space (Bottom) -->
+    <div class="ad-space" id="ad-bottom">
+      광고 영역 — AdSense 승인 후 활성화
+    </div>
+
+    <!-- Subscribe -->
+    <section class="section animate-in animate-delay-5">
+      <div class="subscribe" id="subscribe">
+        <h2>📬 매일 아침, 메일로 받아보세요</h2>
+        <p>한닙이가 정리한 AI 뉴스를 매일 오전 7시에 보내드려요. 무료!</p>
+        <form class="subscribe-form" id="subscribeForm">
+          <input type="email" class="subscribe-input" placeholder="이메일 주소를 입력하세요" required id="emailInput">
+          <button type="submit" class="subscribe-btn">구독하기</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-logo">한입 AI</div>
+    <p class="footer-desc">매일 한입, AI 세상을 떠먹여드립니다 🐻</p>
+    <nav class="footer-links">
+      <a href="index.html">오늘의 뉴스</a>
+      <a href="archive.html">아카이브</a>
+      <a href="#subscribe">이메일 구독</a>
+    </nav>
+    <p class="footer-copy">© 2026 한입 AI (Hannip). All rights reserved.</p>
+  </footer>
+
+  <script src="app.js"></script>
+</body>
+</html>
