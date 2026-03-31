@@ -146,6 +146,10 @@ ARTICLE_TEMPLATE = """<!DOCTYPE html>
   <footer class="footer">
     <div class="footer-logo">한입 AI</div>
     <p class="footer-desc">매일 한입, AI 세상을 떠먹여드립니다 🐻</p>
+    <div style="margin: 10px 0;">
+      <!-- 방문자수 카운터 배지 -->
+      <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fthinkingkorean-jpg.github.io%2Fhanip-ai&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=VISITORS&edge_flat=false"/></a>
+    </div>
     <nav class="footer-links">
       <a href="../index.html">오늘의 뉴스</a>
       <a href="../archive.html">아카이브</a>
