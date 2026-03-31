@@ -83,9 +83,10 @@ function initSubscribe() {
       return;
     }
 
-    // Google Apps Script로 데이터 전송
+    // Google Apps Script로 데이터 전송 (CORS 우회를 위해 mode: 'no-cors' 필수)
     fetch(WEBHOOK_URL, {
         method: 'POST',
+        mode: 'no-cors',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({ email: email })
     })
