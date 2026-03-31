@@ -61,8 +61,8 @@ function initSubscribe() {
   const form = document.getElementById('subscribeForm');
   if (!form) return;
 
-  // TODO: 구글 Apps Script 연동 후 발급받은 '웹앱 URL'을 여기에 넣으세요!
-  const WEBHOOK_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
+  // 구글 Apps Script 연동 완료!
+  const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyLsg9gTnHcJylKD33pbJk_rIrnB1jocqKnSTy1RHikxe9fC1yhxNJxjpQzIt0MsRmX1A/exec";
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
