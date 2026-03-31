@@ -61,27 +61,53 @@ function initSubscribe() {
   const form = document.getElementById('subscribeForm');
   if (!form) return;
 
+  // TODO: 구글 Apps Script 연동 후 발급받은 '웹앱 URL'을 여기에 넣으세요!
+  const WEBHOOK_URL = "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL";
+
   form.addEventListener('submit', (e) => {
     e.preventDefault();
-    const email = document.getElementById('emailInput').value;
-    
-    // Store locally for now (will connect to Mailchimp later)
-    const subs = JSON.parse(localStorage.getItem('hannip-subscribers') || '[]');
-    if (!subs.includes(email)) {
-      subs.push(email);
-      localStorage.setItem('hannip-subscribers', JSON.stringify(subs));
+    const input = document.getElementById('emailInput');
+    const email = input.value.trim();
+    if (!email) return;
+
+    const btn = form.querySelector('.subscribe-btn');
+    const originalText = btn.textContent;
+    btn.textContent = '구독 중...';
+    btn.style.background = '#94a3b8';
+    btn.disabled = true;
+
+    // 만약 URL을 아직 설정하지 않았다면 테스트용 알림만 표시
+    if (WEBHOOK_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
+      alert(`[테스트 완료]\n입력하신 이메일(${email})이 정상적으로 전달되었습니다.\n(구글 시트 연동을 완료하고 WEBHOOK_URL을 수정해주세요!)`);
+      resetBtn();
+      return;
     }
 
-    // Show success
-    const btn = form.querySelector('.subscribe-btn');
-    btn.textContent = '✅ 구독 완료!';
-    btn.style.background = 'var(--success)';
-    document.getElementById('emailInput').value = '';
+    // Google Apps Script로 데이터 전송
+    fetch(WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ email: email })
+    })
+    .then(response => {
+        btn.textContent = '✅ 구독 완료!';
+        btn.style.background = 'var(--success)';
+        input.value = '';
+    })
+    .catch(error => {
+        alert("일시적인 오류가 발생했습니다. 나중에 다시 시도해주세요.");
+        console.error('Subscription Error:', error);
+    })
+    .finally(() => {
+        setTimeout(resetBtn, 3000);
+    });
 
-    setTimeout(() => {
-      btn.textContent = '구독하기';
-      btn.style.background = '';
-    }, 3000);
+    function resetBtn() {
+        btn.textContent = originalText;
+        btn.style.background = '';
+        btn.disabled = false;
+        input.value = '';
+    }
   });
 }
 
