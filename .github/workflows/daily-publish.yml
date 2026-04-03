@@ -37,11 +37,10 @@ jobs:
         run: |
           python scripts/run_daily.py
 
-      - name: 🚀 생성된 HTML 파일 GitHub에 자동 푸시
-        run: |
-          git config --local user.email "github-actions[bot]@users.noreply.github.com"
-          git config --local user.name "github-actions[bot]"
-          git add index.html archive.html articles/ scripts/data/
-          # 변경사항이 있을 때만 커밋 (에러 방지)
-          git commit -m "🚀 Auto-published daily newsletter [$(date +'%Y-%m-%d')]" || echo "No changes to commit"
-          git push
+      - name: 🚀 생성된 파일 GitHub에 자동 커밋 및 푸시
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "🚀 Auto-published daily newsletter [Automation]"
+          commit_user_name: "github-actions[bot]"
+          commit_user_email: "github-actions[bot]@users.noreply.github.com"
+          commit_author: "github-actions[bot] <github-actions[bot]@users.noreply.github.com>"
