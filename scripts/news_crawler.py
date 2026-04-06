@@ -1,170 +1,121 @@
 """
-한입 AI — 뉴스 크롤러
-RSS 피드에서 AI/테크 뉴스를 수집하고 중요도 기반으로 선별합니다.
+한입 AI — 다중 카테고리 뉴스 크롤러
+구글 뉴스 RSS를 활용해 4가지 주제의 최신 뉴스를 수집합니다.
 """
 
 import feedparser
-import requests
 from bs4 import BeautifulSoup
 from datetime import datetime, timedelta
 import json
 import re
 import os
+import urllib.parse
 
-# RSS 피드 소스 목록
-RSS_FEEDS = {
-    # 해외 주요 소스
-    "TechCrunch AI": "https://techcrunch.com/category/artificial-intelligence/feed/",
-    "The Verge AI": "https://www.theverge.com/rss/ai-artificial-intelligence/index.xml",
-    "VentureBeat AI": "https://venturebeat.com/category/ai/feed/",
-    "Ars Technica AI": "https://feeds.arstechnica.com/arstechnica/technology-lab",
-    "MIT Tech Review": "https://www.technologyreview.com/feed/",
-    "Wired AI": "https://www.wired.com/feed/tag/ai/latest/rss",
-    
-    # AI 기업 블로그
-    "OpenAI Blog": "https://openai.com/blog/rss.xml",
-    "Google AI Blog": "https://blog.google/technology/ai/rss/",
-    "Anthropic": "https://www.anthropic.com/feed.xml",
-    
-    # 한국 소스
-    "AI타임스": "https://www.aitimes.com/rss/allArticle.xml",
-    "ZDNet Korea": "https://zdnet.co.kr/rss/all_news.xml",
+# 4개의 카테고리와 검색 쿼리 정의
+CATEGORIES = {
+    "ai_tech": {
+        "name": "AI & 테크",
+        "queries": ['"인공지능" OR "챗GPT" OR "AI" OR "오픈AI" OR "생성형 AI"']
+    },
+    "economy": {
+        "name": "경제 & 국제정세",
+        "queries": ['"경제" OR "금리" OR "환율" OR "국제정세" OR "거시경제"']
+    },
+    "mobility": {
+        "name": "모빌리티 & 우주",
+        "queries": ['"전기차" OR "자율주행" OR "스페이스X" OR "항공우주"']
+    },
+    "startup": {
+        "name": "스타트업 & 혁신",
+        "queries": ['"스타트업" OR "실리콘밸리" OR "벤처투자" OR "유니콘기업"']
+    }
 }
 
-# AI 관련 키워드 (관련도 필터링용)
-AI_KEYWORDS = [
-    "ai", "artificial intelligence", "machine learning", "deep learning",
-    "gpt", "gemini", "claude", "llm", "chatbot", "neural network",
-    "openai", "google ai", "anthropic", "meta ai", "microsoft ai",
-    "인공지능", "머신러닝", "딥러닝", "생성형", "챗봇", "대규모 언어 모델",
-    "자율주행", "로봇", "반도체", "ai 칩", "nvidia", "transformer",
-    "stable diffusion", "midjourney", "dall-e", "sora", "copilot",
-    "agent", "에이전트", "rag", "fine-tuning", "파인튜닝",
-]
-
-
-def fetch_rss_feed(name, url, hours=48):
-    """단일 RSS 피드에서 기사를 수집합니다."""
+def fetch_category_news(category_id, info, hours=48):
+    """특정 카테고리의 기사를 구글 뉴스에서 수집합니다."""
     articles = []
-    try:
-        feed = feedparser.parse(url)
-        cutoff = datetime.now() - timedelta(hours=hours)
+    cutoff = datetime.now() - timedelta(hours=hours)
+    seen_titles = set()
+    
+    for query in info["queries"]:
+        encoded_query = urllib.parse.quote(query)
+        url = f"https://news.google.com/rss/search?q={encoded_query}&hl=ko&gl=KR&ceid=KR:ko"
         
-        for entry in feed.entries[:15]:  # 피드당 최대 15개
-            # 날짜 파싱
-            published = None
-            if hasattr(entry, 'published_parsed') and entry.published_parsed:
-                published = datetime(*entry.published_parsed[:6])
-            elif hasattr(entry, 'updated_parsed') and entry.updated_parsed:
-                published = datetime(*entry.updated_parsed[:6])
-            else:
-                published = datetime.now()
+        try:
+            feed = feedparser.parse(url)
             
-            # 최근 기사만
-            if published < cutoff:
-                continue
+            for entry in feed.entries[:20]:  # 쿼리당 최대 20개
+                # 날짜 파싱
+                published = None
+                if hasattr(entry, 'published_parsed') and entry.published_parsed:
+                    published = datetime(*entry.published_parsed[:6])
+                else:
+                    published = datetime.now()
+                
+                # 최근 기사만
+                if published < cutoff:
+                    continue
+                
+                title = entry.title
+                # 구글 뉴스 제목 뒤에 붙는 '- 출처' 제거
+                if " - " in title:
+                    title = " - ".join(title.split(" - ")[:-1])
+                    
+                # 중복 확인
+                normalized = re.sub(r'[^\w\s]', '', title.lower())
+                if normalized in seen_titles:
+                    continue
+                seen_titles.add(normalized)
+                
+                articles.append({
+                    "source": "Google News",
+                    "title": title,
+                    "link": entry.link,
+                    "summary": "구글 뉴스 원문 참조",
+                    "published": published.isoformat(),
+                })
+        except Exception as e:
+            print(f"  ⚠️ {info['name']} 수집 실패: {e}")
             
-            # 요약 텍스트 추출
-            summary = ""
-            if hasattr(entry, 'summary'):
-                summary = BeautifulSoup(entry.summary, 'html.parser').get_text()[:500]
-            elif hasattr(entry, 'description'):
-                summary = BeautifulSoup(entry.description, 'html.parser').get_text()[:500]
-            
-            articles.append({
-                "source": name,
-                "title": entry.title,
-                "link": entry.link,
-                "summary": summary,
-                "published": published.isoformat(),
-            })
-    except Exception as e:
-        print(f"  ⚠️ {name} 피드 수집 실패: {e}")
-    
-    return articles
-
-
-def calculate_relevance(article):
-    """기사의 AI 관련도 점수를 계산합니다."""
-    text = f"{article['title']} {article['summary']}".lower()
-    score = 0
-    
-    for keyword in AI_KEYWORDS:
-        if keyword.lower() in text:
-            score += 1
-    
-    # 제목에 키워드가 있으면 가중치
-    title_lower = article['title'].lower()
-    for keyword in AI_KEYWORDS:
-        if keyword.lower() in title_lower:
-            score += 2
-    
-    return score
-
+    # 최근 시간순 정렬 후 상위 10-12개만 리턴
+    articles.sort(key=lambda x: x['published'], reverse=True)
+    return articles[:12]
 
 def crawl_all_feeds(hours=48):
-    """모든 RSS 피드에서 기사를 수집하고 관련도순으로 정렬합니다."""
-    print("🔍 뉴스 크롤링 시작...")
-    all_articles = []
+    """모든 카테고리의 뉴스를 수집합니다."""
+    print("🔍 다중 카테고리 뉴스 크롤링 시작...")
     
-    for name, url in RSS_FEEDS.items():
-        print(f"  📡 {name} 수집 중...")
-        articles = fetch_rss_feed(name, url, hours)
-        all_articles.extend(articles)
-        print(f"    → {len(articles)}건 수집")
+    results = {}
     
-    print(f"\n📊 총 {len(all_articles)}건 수집 완료")
+    for cat_id, info in CATEGORIES.items():
+        print(f"  📡 [{info['name']}] 수집 중...")
+        articles = fetch_category_news(cat_id, info, hours)
+        results[cat_id] = articles
+        print(f"    → {len(articles)}건 수집 완료")
     
-    # 중복 제거 (제목 유사도 기반)
-    unique = []
-    seen_titles = set()
-    for article in all_articles:
-        # 제목 정규화
-        normalized = re.sub(r'[^\w\s]', '', article['title'].lower())
-        if normalized not in seen_titles:
-            seen_titles.add(normalized)
-            unique.append(article)
-    
-    print(f"🔄 중복 제거 후: {len(unique)}건")
-    
-    # 관련도 점수 계산 및 정렬
-    for article in unique:
-        article['relevance'] = calculate_relevance(article)
-    
-    unique.sort(key=lambda x: x['relevance'], reverse=True)
-    
-    # 상위 기사 선별
-    top_articles = [a for a in unique if a['relevance'] > 0][:10]
-    print(f"🎯 AI 관련 주요 기사: {len(top_articles)}건\n")
-    
-    for i, article in enumerate(top_articles, 1):
-        print(f"  {i}. [{article['source']}] {article['title']} (점수: {article['relevance']})")
-    
-    return top_articles
+    return results
 
-
-def save_crawled_data(articles, output_dir="data"):
-    """크롤링된 기사를 JSON으로 저장합니다."""
+def save_crawled_data(categorized_articles, output_dir=os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")):
+    """수집된 카테고리별 기사를 JSON으로 저장합니다."""
     os.makedirs(output_dir, exist_ok=True)
     
     today = datetime.now().strftime("%Y-%m-%d")
     filepath = os.path.join(output_dir, f"news_{today}.json")
     
+    # 총 기사 수 계산
+    total_articles = sum(len(arts) for arts in categorized_articles.values())
+    
     with open(filepath, "w", encoding="utf-8") as f:
         json.dump({
             "date": today,
             "crawled_at": datetime.now().isoformat(),
-            "article_count": len(articles),
-            "articles": articles,
+            "article_count": total_articles,
+            "categories": categorized_articles,
         }, f, ensure_ascii=False, indent=2)
     
-    print(f"\n💾 저장 완료: {filepath}")
+    print(f"\n💾 카테고리 데이터 저장 완료: {filepath}")
     return filepath
 
-
 if __name__ == "__main__":
-    articles = crawl_all_feeds()
-    if articles:
-        save_crawled_data(articles)
-    else:
-        print("❌ 수집된 기사가 없습니다.")
+    data = crawl_all_feeds()
+    save_crawled_data(data)

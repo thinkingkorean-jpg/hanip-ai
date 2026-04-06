@@ -1,207 +1,155 @@
 """
-한입 AI — AI 콘텐츠 생성기
-Gemini API를 사용하여 수집된 뉴스를 기반으로 뉴스레터 콘텐츠를 생성합니다.
+한입 AI — 에디터 (콘텐츠 생성기) 다중 카테고리 지원
+Gemini API를 활용해 수집된 뉴스를 한입 크기로 가공합니다.
 """
 
-import google.generativeai as genai
 import json
 import os
+import google.generativeai as genai
 from datetime import datetime
-from dotenv import load_dotenv
+from pydantic import BaseModel, Field
 
-load_dotenv()
+# -----------------
+# 1. Pydantic 스키마 (결과물 구조 강제 지정)
+# -----------------
+class DeepDive(BaseModel):
+    tag: str = Field(description="예: [HOT ISSUE], [DEEP DIVE], [TREND] 등 짧은 태그")
+    title: str = Field(description="독자의 시선을 끄는 매력적인 제목")
+    body: str = Field(description="<p> 태그들로 감싸진 2~3문단의 상세한 분석 내용")
 
-# Gemini 설정
-GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+class QuickNews(BaseModel):
+    title: str = Field(description="간결하고 흥미로운 단신 기사 제목")
+    content: str = Field(description="어떤 일이 있었고 왜 중요한지 설명하는 2문장 요약")
 
-SYSTEM_PROMPT = """당신은 "한입이(Hannip)"이라는 캐릭터입니다. 한입이은 귀여운 로봇 곰으로, 한국어 AI 뉴스레터 "한입 AI"의 진행자입니다.
+class RecommendedTool(BaseModel):
+    category: str = Field(description="도구 분류 (예: 생산성, 정보 검색, 코딩 등)")
+    name: str = Field(description="도구 이름")
+    description: str = Field(description="이 도구를 왜 써야 하는지 설명하는 2~3문장 소개")
+    url: str = Field(description="도구의 실제 공식 웹사이트 접속 URL")
 
-## 한입이의 성격과 톤
-- 친근하고 캐주얼한 말투 (반말 X, 존댓말 사용하되 딱딱하지 않게)
-- 복잡한 기술을 쉬운 비유로 설명
-- 가끔 유머와 이모지를 섞어서 위트있게
-- "~입니다", "~해요", "~거든요" 같은 부드러운 어미 사용
-- 독자를 "여러분"이라고 부름
-- AI 뉴스에 대한 열정이 느껴지는 톤
+class CategoryNewsletter(BaseModel):
+    deep_dives: list[DeepDive] = Field(description="해당 분야의 가장 크고 중요한 이슈 3개를 심층 분석한 기사들")
+    quick_news: list[QuickNews] = Field(description="알아두면 좋을 핵심 단신 뉴스 5개")
 
-## 주의사항
-- 정확한 정보 전달이 최우선
-- 과장하지 않되, 흥미롭게 전달
-- 어려운 기술 용어는 괄호 안에 쉬운 설명 추가
-- 각 기사의 "왜 중요한지"를 반드시 포함
+class GlobalExtras(BaseModel):
+    recommended_tools: list[RecommendedTool] = Field(description="실제로 유용하게 쓸 수 있는 도구 2개 추천")
+    hannip_comment: str = Field(description="에디터 '한입이'의 친근하고 위트있는 오늘의 전체적인 코멘트")
+
+# -----------------
+# 2. 메인 생성 로직 
+# -----------------
+def generate_category_content(category_name, articles, model):
+    """단일 카테고리에 대한 뉴스레터 섹션을 작성합니다."""
+    if not articles:
+         return {"deep_dives": [], "quick_news": []}
+         
+    news_text = ""
+    for i, a in enumerate(articles, 1):
+        news_text += f"[{i}] 제목: {a['title']}\n"
+    
+    prompt = f"""
+당신은 '{category_name}' 분야의 전문 IT/비즈니스 에디터입니다.
+오늘의 최신 뉴스 기사 리스트를 보고 독자들이 읽기 쉽고 흥미롭게 '한입 크기'로 가공해주세요.
+
+[오늘의 {category_name} 수집 기사]
+{news_text}
+
+[작성 지침]
+1. 위 기사들 중 가장 중요하고 파괴력이 큰 이슈 3개를 골라 'deep_dives' (심층 분석)로 작성하세요. 원문 내용만 살리지 말고, 이 사건이 왜 중요한지, 대중에게 어떤 영향을 미치는지 인사이트를 더해주세요. body는 반드시 <p>HTML 단락 태그</p> 구조로 2~3문단 작성하세요. 친근하고 위트있는 '해요체(했어요, 합니다)'를 사용하세요.
+2. 나머지 기사나 자잘하게 알아야 할 뉴스 5개를 골라 'quick_news' (단신)로 작성하세요.
+3. 주의: 작성 시 없는 이야기를 지어내지 말고, 제공된 기사 제목을 기반으로 아는 사실만 정리하세요.
+
+응답은 반드시 JSON 형식으로만 해야 합니다.
 """
 
-NEWSLETTER_PROMPT = """아래 수집된 AI 뉴스 기사들을 바탕으로 오늘의 "한입 AI" 뉴스레터를 대폭 확장하여 아주 상세하게 작성해주세요.
-
-## 수집된 기사:
-{articles_text}
-
-## 작성 형식 (반드시 아래 JSON 형식으로 출력해주세요):
-
-```json
-{{
-  "date": "{today}",
-  "deep_dives": [
-    {{
-      "tag": "HOT ISSUE 또는 BREAKING 또는 DEEP DIVE",
-      "title": "가장 중요한 뉴스의 매력적인 제목 (한국어)",
-      "body": "최소 3~5 문단으로 아주 깊이 있는 해설 (각 기사당 500~800자 이상). HTML <p> 태그로 문단을 완벽하게 나누기. 중요 키워드는 <strong>으로 강조. 해당 기술의 원리, 시장 영향, 시사점을 모두 포함하세요."
-    }},
-    // 반드시 중요도 순으로 3개를 작성하세요. (가장 핫한 뉴스 3개)
-  ],
-  "quick_news": [
-    {{
-      "title": "뉴스 제목 (한국어)",
-      "summary": "핵심만 짚어주는 2~3줄 요약"
-    }},
-    // 최소 5개 이상의 단신 뉴스를 작성하세요.
-  ],
-  "recommended_tools": [
-    {{
-      "category": "카테고리 (예: 생산성, 디자인, 개발, 마케팅)",
-      "name": "실제 존재하는 유명 AI 도구 이름",
-      "description": "왜 좋은지, 어떻게 쓸 수 있는지 구체적인 예시와 함께 설명 (3~4문장)",
-      "url": "실제 도구의 공식 URL (https://... 형태)"
-    }},
-    // 업무나 일상에 도움되는 '실제로 완전히 현존하는' AI 도구 2개를 소개하세요. (예: ChatGPT, Midjourney, Perplexity, Notion AI 등).
-    // 주의: '한입 요약기', '한입 이미지 생성기' 등 가상의 도구를 절대로 지어내지 마세요!
-  ],
-  "hannip_comment": "한입이의 재치있는 마무리 한마디 (2~3문장, 이모지 듬뿍 포함, 오늘의 메인 테마를 요약하며 인사)"
-}}
-```
-
-중요: 반드시 유효한 JSON으로 작성하세요. 마크다운 코드 블록 없이 순수 JSON만 출력하세요. 
-치명적인 오류 방지: **절대** JSON 값(문자열 내부)에 큰따옴표(")를 포함하지 마세요! 만약 인용구나 단어 강조가 필요하다면 작은따옴표(')를 사용하세요. 각 `deep_dives` 본문은 반드시 500자 이상 800자 이하의 장문이어야 합니다.
-"""
-
-
-def init_gemini():
-    """Gemini API를 초기화합니다."""
-    if not GEMINI_API_KEY:
-        raise ValueError("GEMINI_API_KEY가 설정되지 않았습니다. .env 파일을 확인하세요.")
-    genai.configure(api_key=GEMINI_API_KEY)
-    return genai.GenerativeModel(
-        model_name="gemini-2.5-flash",
-        system_instruction=SYSTEM_PROMPT,
-    )
-
-
-def load_crawled_news(data_dir=None):
-    """가장 최근 크롤링된 뉴스 데이터를 로드합니다."""
-    if data_dir is None:
-        data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
-    
-    today = datetime.now().strftime("%Y-%m-%d")
-    filepath = os.path.join(data_dir, f"news_{today}.json")
-    
-    if not os.path.exists(filepath):
-        # 가장 최근 파일 찾기
-        files = sorted([f for f in os.listdir(data_dir) if f.startswith("news_")], reverse=True)
-        if not files:
-            raise FileNotFoundError("크롤링된 뉴스 데이터가 없습니다. news_crawler.py를 먼저 실행하세요.")
-        filepath = os.path.join(data_dir, files[0])
-    
-    with open(filepath, "r", encoding="utf-8") as f:
-        data = json.load(f)
-    
-    return data["articles"]
-
-
-def format_articles_for_prompt(articles):
-    """기사 목록을 프롬프트용 텍스트로 변환합니다."""
-    lines = []
-    for i, article in enumerate(articles, 1):
-        lines.append(f"### 기사 {i}: [{article['source']}]")
-        lines.append(f"제목: {article['title']}")
-        lines.append(f"요약: {article['summary']}")
-        lines.append(f"링크: {article['link']}")
-        lines.append("")
-    return "\n".join(lines)
-
-
-def generate_newsletter(articles):
-    """Gemini API로 뉴스레터 콘텐츠를 생성합니다."""
-    model = init_gemini()
-    
-    articles_text = format_articles_for_prompt(articles)
-    today = datetime.now().strftime("%Y년 %m월 %d일")
-    
-    prompt = NEWSLETTER_PROMPT.format(
-        articles_text=articles_text,
-        today=today,
-    )
-    
-    print("🤖 한입이이 뉴스레터를 작성하고 있어요...")
-    
     response = model.generate_content(
         prompt,
-        generation_config={
-            "temperature": 0.5,
-            "max_output_tokens": 8192,
-            "response_mime_type": "application/json",
-        }
+        generation_config=genai.GenerationConfig(
+            response_mime_type="application/json",
+            response_schema=CategoryNewsletter,
+            temperature=0.4,
+        )
     )
-    
-    # JSON 파싱
-    text = response.text.strip()
-    
-    # 마크다운 코드 블록 제거
-    if text.startswith("```"):
-        text = text.split("\n", 1)[1]
-    if text.endswith("```"):
-        text = text.rsplit("```", 1)[0]
-    text = text.strip()
-    
+    return json.loads(response.text)
+
+def generate_global_extras(model):
+    """전체적인 코멘트 및 도구 추천을 작성합니다."""
+    prompt = """
+당신은 친근하고 센스있는 AI 에디터 '한입이'입니다.
+1. 'recommended_tools'에는 실제 존재하는 검증된 유용한 글로벌 도구 도메인 2개를 추천해주세요. (예: chatgpt, perplexity, github 등 절대로 가짜 도메인이나 없는 스타트업을 꾸며내지 마세요. url은 반드시 https 링크로 작성)
+2. 'hannip_comment'에는 뉴스레터를 마치며 던지는, 다정하고 활기찬 인사말을 2~3문장으로 적어주세요.
+
+응답은 반드시 JSON 형식으로만 해야 합니다.
+"""
+    response = model.generate_content(
+        prompt,
+        generation_config=genai.GenerationConfig(
+            response_mime_type="application/json",
+            response_schema=GlobalExtras,
+            temperature=0.3,
+        )
+    )
+    return json.loads(response.text)
+
+
+def generate_newsletter():
+    """모든 카테고리를 순회하며 완성된 뉴스레터 데이터를 조립합니다."""
     try:
-        newsletter = json.loads(text)
-        print("✅ 뉴스레터 생성 완료!")
-        return newsletter
-    except json.JSONDecodeError as e:
-        print(f"⚠️ JSON 파싱 실패: {e}")
-        # 전체 텍스트를 파일로 저장해서 디버깅
-        with open("error_output.txt", "w", encoding="utf-8") as f:
-            f.write(text)
-        print("디버깅을 위해 error_output.txt에 원본을 저장했습니다.")
+        from dotenv import load_dotenv
+        load_dotenv(os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), '.env'))
+    except ImportError:
+        pass
+
+    if not os.environ.get("GEMINI_API_KEY"):
+        raise ValueError("GEMINI_API_KEY 환경변수가 설정되지 않았습니다.")
         
-        # 재시도: JSON 부분만 추출
-        import re
-        json_match = re.search(r'\{[\s\S]*\}', text)
-        if json_match:
-            try:
-                newsletter = json.loads(json_match.group())
-                print("✅ JSON 재파싱 성공!")
-                return newsletter
-            except:
-                pass
+    genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
+    model = genai.GenerativeModel('gemini-2.5-flash')
+    
+    # 1. 크롤링 데이터 로드
+    data_dir = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
+    files = sorted([f for f in os.listdir(data_dir) if f.startswith("news_")], reverse=True)
+    if not files:
+        raise FileNotFoundError("크롤링된 뉴스 데이터 (news_YYYY-MM-DD.json) 가 없습니다.")
         
-        raise ValueError("뉴스레터 콘텐츠 생성에 실패했습니다.")
-
-
-def save_newsletter(newsletter, output_dir="data"):
-    """생성된 뉴스레터를 JSON으로 저장합니다."""
-    os.makedirs(output_dir, exist_ok=True)
+    filepath = os.path.join(data_dir, files[0])
+    with open(filepath, "r", encoding="utf-8") as f:
+        crawled_data = json.load(f)
+        
+    categories_data = crawled_data.get("categories", {})
+    if not categories_data:
+        raise ValueError("올바른 다중 카테고리 크롤링 데이터가 아닙니다.")
+        
+    print("🤖 다중 카테고리 콘텐츠 생성 시작...")
     
-    today = datetime.now().strftime("%Y-%m-%d")
-    filepath = os.path.join(output_dir, f"newsletter_{today}.json")
+    final_newsletter = {}
     
-    with open(filepath, "w", encoding="utf-8") as f:
-        json.dump(newsletter, f, ensure_ascii=False, indent=2)
+    # 카테고리별 병렬 또는 순차 생성
+    category_names = {
+        "ai_tech": "AI & 테크",
+        "economy": "경제 & 국제정세",
+        "mobility": "모빌리티 & 우주",
+        "startup": "스타트업 & 혁신"
+    }
     
-    print(f"💾 뉴스레터 저장: {filepath}")
-    return filepath
-
+    for cat_id, cat_name in category_names.items():
+        print(f"  ✍️ [{cat_name}] 원고 작성 중...")
+        articles = categories_data.get(cat_id, [])
+        cat_result = generate_category_content(cat_name, articles, model)
+        final_newsletter[cat_id] = cat_result
+    
+    print("  🛠️ [도구 및 마무릿말] 작성 중...")
+    extras = generate_global_extras(model)
+    final_newsletter["recommended_tools"] = extras["recommended_tools"]
+    final_newsletter["hannip_comment"] = extras["hannip_comment"]
+    
+    # 결과 저장
+    out_path = os.path.join(data_dir, f"newsletter_{crawled_data['date']}.json")
+    with open(out_path, "w", encoding="utf-8") as f:
+        json.dump(final_newsletter, f, ensure_ascii=False, indent=2)
+        
+    print(f"✅ 뉴스레터 마스터본 생성 완료: {out_path}")
+    return out_path
 
 if __name__ == "__main__":
-    try:
-        articles = load_crawled_news()
-        newsletter = generate_newsletter(articles)
-        save_newsletter(newsletter)
-        
-        print("\n📋 생성된 뉴스레터 미리보기:")
-        print(f"  심층 분석: {len(newsletter['deep_dives'])}건 (예: {newsletter['deep_dives'][0]['title']})")
-        print(f"  빠른 뉴스: {len(newsletter['quick_news'])}건")
-        print(f"  추천 도구: {len(newsletter['recommended_tools'])}건 (예: {newsletter['recommended_tools'][0]['name']})")
-        print(f"  한입이의 한마디: {newsletter['hannip_comment']}")
-        
-    except Exception as e:
-        print(f"❌ 오류 발생: {e}")
+    generate_newsletter()

@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="한입 AI — 매일 한입, 4가지 필수 지식을 떠먹여드립니다.">
+  <meta name="keywords" content="AI, 경제, 글로벌 뉴스, 모빌리티, 스타트업, 뉴스레터">
+  <meta property="og:title" content="한입 AI — 매일 한입 크기의 지식 뉴스">
+  <meta property="og:description" content="AI, 경제부터 우주 테크까지 가장 중요한 이슈를 쉽고 위트있게 정리해드립니다.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="assets/hannip.png">
+  <title>한입 AI — 매일 한입, 지식을 떠먹여드립니다</title>
+  <link rel="icon" type="image/png" href="assets/hannip.png">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    /* 탭 메뉴 스타일 */
+    .tabs-nav {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 2rem;
+      overflow-x: auto;
+      border-bottom: 2px solid var(--card-border);
+      padding-bottom: 0px;
+      scrollbar-width: none; /* Firefox */
+    }
+    .tabs-nav::-webkit-scrollbar {
+      display: none; /* Safari and Chrome */
+    }
+    .tab-btn {
+      background: none;
+      border: none;
+      padding: 0.8rem 1.2rem;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      cursor: pointer;
+      white-space: nowrap;
+      border-bottom: 3px solid transparent;
+      transition: all 0.3s ease;
+      margin-bottom: -2px; /* Pull down to overlap border */
+    }
+    .tab-btn:hover {
+      color: var(--primary-color);
+    }
+    .tab-btn.active {
+      color: var(--primary-color);
+      border-bottom: 3px solid var(--primary-color);
+    }
+    /* 탭 콘텐츠 스타일 */
+    .tab-pane {
+      display: none;
+      animation: fadeIn 0.4s ease;
+    }
+    .tab-pane.active {
+      display: block;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+<body>
+  <div class="bg-gradient"></div>
+
+  <header class="header" id="header">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <img src="assets/hannip.png" alt="한입이" class="logo-icon">
+        <div>
+          <div class="logo-text">한입 지식 매거진</div>
+          <div class="logo-sub">매일 한입, 세상을 떠먹여드립니다</div>
+        </div>
+      </a>
+      <div class="header-actions">
+        <a href="archive.html" style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">아카이브</a>
+        <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">🌙</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="main">
+    <section class="hero animate-in">
+      <div class="hero-date">
+        <span>📅</span>
+        <span id="todayDate">{{ date_display }}</span>
+      </div>
+      <h1 class="hero-title">오늘의 한입 🍪</h1>
+      <p class="hero-subtitle">한입이이가 오늘의 세상 이야기를 맛있게 정리했어요</p>
+    </section>
+
+    <div class="ad-space" id="ad-top">
+      광고 영역 — AdSense 승인 후 활성화
+    </div>
+
+    <!-- 탭 내비게이션 -->
+    <nav class="tabs-nav animate-in animate-delay-1">
+      <button class="tab-btn active" data-target="tab-ai">🤖 AI & 테크</button>
+      <button class="tab-btn" data-target="tab-economy">📰 경제 & 국제</button>
+      <button class="tab-btn" data-target="tab-mobility">🚀 우주 & 모빌리티</button>
+      <button class="tab-btn" data-target="tab-startup">💡 스타트업 & 혁신</button>
+    </nav>
+
+    <!-- 탭 콘텐츠: AI & 테크 -->
+    <div id="tab-ai" class="tab-pane active">
+      <section class="section animate-in">
+        <div class="section-header">
+          <span class="section-icon">🔥</span><h2 class="section-title">오늘의 심층 분석</h2>
+        </div>
+        <div class="deep-dives-list">
+          {{ tabs.ai_tech.deep_dives }}
+        </div>
+      </section>
+      <section class="section animate-in">
+        <div class="section-header">
+          <span class="section-icon">⚡</span><h2 class="section-title">빠른 뉴스</h2>
+        </div>
+        <div class="news-list">{{ tabs.ai_tech.quick_news }}</div>
+      </section>
+    </div>
+
+    <!-- 탭 콘텐츠: 경제 & 국제 -->
+    <div id="tab-economy" class="tab-pane">
+      <section class="section">
+        <div class="section-header">
+          <span class="section-icon">🔥</span><h2 class="section-title">오늘의 심층 분석</h2>
+        </div>
+        <div class="deep-dives-list">
+          {{ tabs.economy.deep_dives }}
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-header">
+          <span class="section-icon">⚡</span><h2 class="section-title">빠른 뉴스</h2>
+        </div>
+        <div class="news-list">{{ tabs.economy.quick_news }}</div>
+      </section>
+    </div>
+
+    <!-- 탭 콘텐츠: 우주 & 모빌리티 -->
+    <div id="tab-mobility" class="tab-pane">
+      <section class="section">
+        <div class="section-header">
+          <span class="section-icon">🔥</span><h2 class="section-title">오늘의 심층 분석</h2>
+        </div>
+        <div class="deep-dives-list">
+          {{ tabs.mobility.deep_dives }}
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-header">
+          <span class="section-icon">⚡</span><h2 class="section-title">빠른 뉴스</h2>
+        </div>
+        <div class="news-list">{{ tabs.mobility.quick_news }}</div>
+      </section>
+    </div>
+
+    <!-- 탭 콘텐츠: 스타트업 & 혁신 -->
+    <div id="tab-startup" class="tab-pane">
+      <section class="section">
+        <div class="section-header">
+          <span class="section-icon">🔥</span><h2 class="section-title">오늘의 심층 분석</h2>
+        </div>
+        <div class="deep-dives-list">
+          {{ tabs.startup.deep_dives }}
+        </div>
+      </section>
+      <section class="section">
+        <div class="section-header">
+          <span class="section-icon">⚡</span><h2 class="section-title">빠른 뉴스</h2>
+        </div>
+        <div class="news-list">{{ tabs.startup.quick_news }}</div>
+      </section>
+    </div>
+
+    <div class="ad-space" id="ad-middle">
+      광고 영역 — AdSense 승인 후 활성화
+    </div>
+
+    <section class="section animate-in animate-delay-3">
+      <div class="section-header">
+        <span class="section-icon">🛠️</span>
+        <h2 class="section-title">오늘의 추천 도구</h2>
+      </div>
+      <div class="tools-list">
+        {{ recommended_tools }}
+      </div>
+    </section>
+
+    <section class="section animate-in animate-delay-4">
+      <div class="section-header">
+        <span class="section-icon">💬</span>
+        <h2 class="section-title">한입이의 한마디</h2>
+      </div>
+      <div class="hannip-comment">
+        <img src="assets/hannip.png" alt="한입이" class="hannip-avatar">
+        <div class="hannip-bubble">
+          <div class="hannip-name">한입이 🐻</div>
+          <p class="hannip-text">
+            "{{ hannip_comment }}"
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Subscribe -->
+    <section class="section animate-in animate-delay-5">
+      <div class="subscribe" id="subscribe">
+        <h2>📬 매일 아침, 메일로 받아보세요</h2>
+        <p>한입이이가 4가지 탭의 지식 뉴스를 매일 보내드려요. 무료!</p>
+        <form class="subscribe-form" id="subscribeForm">
+          <input type="email" class="subscribe-input" placeholder="이메일 주소를 입력하세요" required id="emailInput">
+          <button type="submit" class="subscribe-btn">구독하기</button>
+        </form>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+    <div class="footer-logo">한입 지식 매거진</div>
+    <p class="footer-desc">매일 한입, 세상을 떠먹여드립니다 🐻</p>
+    <div style="margin: 10px 0;">
+      <a href="https://hits.seeyoufarm.com"><img src="https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fthinkingkorean-jpg.github.io%2Fhanip-ai&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=VISITORS&edge_flat=false"/></a>
+    </div>
+    <p class="footer-copy">© 2026 한입 지식 매거진 (Hannip). All rights reserved.</p>
+  </footer>
+
+  <script src="app.js"></script>
+  <script>
+    // Tab switching logic
+    document.querySelectorAll('.tab-btn').forEach(button => {
+      button.addEventListener('click', () => {
+        // Remove active class from all buttons and panes
+        document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+        document.querySelectorAll('.tab-pane').forEach(pane => pane.classList.remove('active'));
+        
+        // Add active class to clicked button and target pane
+        button.classList.add('active');
+        document.getElementById(button.dataset.target).classList.add('active');
+      });
+    });
+  </script>
+</body>
+</html>
