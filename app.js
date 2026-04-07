@@ -71,7 +71,7 @@ function initSubscribe() {
   honeypot.style.cssText = 'position:absolute;left:-9999px;opacity:0;height:0;width:0;';
   form.prepend(honeypot);
 
-  const _s = [72,116,116,112,115,58,47,47,115,99,114,105,112,116,46,103,111,111,103,108,101,46,99,111,109,47,109,97,99,114,111,115,47,115,47,65,75,102,121,99,98,121,76,115,103,57,103,84,110,72,99,74,121,108,75,68,51,51,112,98,74,107,95,114,73,114,110,66,49,106,111,99,113,75,110,83,84,121,49,82,72,105,107,120,101,57,102,67,49,121,104,120,78,74,120,106,112,81,122,73,116,48,77,115,82,109,88,49,65,47,101,120,101,99];
+  const _s = [104,116,116,112,115,58,47,47,115,99,114,105,112,116,46,103,111,111,103,108,101,46,99,111,109,47,109,97,99,114,111,115,47,115,47,65,75,102,121,99,98,119,97,84,45,102,88,88,67,109,108,86,75,70,78,75,45,113,99,85,120,107,90,57,102,72,116,78,88,113,53,48,90,83,89,107,71,117,112,95,82,82,110,106,101,101,112,87,45,119,95,120,86,86,109,109,109,121,109,108,79,68,68,101,97,66,103,48,103,47,101,120,101,99];
   const WEBHOOK_URL = _s.map(c => String.fromCharCode(c)).join('');
 
   form.addEventListener('submit', (e) => {
@@ -113,39 +113,21 @@ function initSubscribe() {
     btn.style.background = '#94a3b8';
     btn.disabled = true;
 
-    // 🛡️ 숨겨진 iframe을 통한 폼 전송 (CORS 완전 우회)
-    const iframeName = 'hannip_sub_' + Date.now();
-    const iframe = document.createElement('iframe');
-    iframe.name = iframeName;
-    iframe.style.display = 'none';
-    document.body.appendChild(iframe);
-
-    const hiddenForm = document.createElement('form');
-    hiddenForm.method = 'POST';
-    hiddenForm.action = WEBHOOK_URL;
-    hiddenForm.target = iframeName;
-    const emailField = document.createElement('input');
-    emailField.type = 'hidden';
-    emailField.name = 'email';
-    emailField.value = email;
-    hiddenForm.appendChild(emailField);
-    document.body.appendChild(hiddenForm);
-    hiddenForm.submit();
-
-    // 전송 후 정리 및 성공 처리
-    setTimeout(() => {
+    // 🚀 GET 이미지 비콘 방식 (CORS 완전 우회, 가장 안정적)
+    const img = new Image();
+    const requestUrl = WEBHOOK_URL + '?email=' + encodeURIComponent(email);
+    
+    img.onload = img.onerror = () => {
         btn.textContent = '✅ 구독 완료!';
         btn.style.background = 'var(--success)';
         input.value = '';
         localStorage.setItem('hannip_last_sub', Date.now().toString());
         subbed.push(email);
         localStorage.setItem('hannip_subscribed', JSON.stringify(subbed));
-        // 정리
-        document.body.removeChild(iframe);
-        document.body.removeChild(hiddenForm);
-
         setTimeout(resetBtn, 3000);
-    }, 2000);
+    };
+    
+    img.src = requestUrl;
 
     function resetBtn() {
         btn.textContent = originalText;
