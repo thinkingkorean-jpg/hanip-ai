@@ -113,28 +113,39 @@ function initSubscribe() {
     btn.style.background = '#94a3b8';
     btn.disabled = true;
 
-    fetch(WEBHOOK_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: new URLSearchParams({ email: email })
-    })
-    .then(() => {
+    // 🛡️ 숨겨진 iframe을 통한 폼 전송 (CORS 완전 우회)
+    const iframeName = 'hannip_sub_' + Date.now();
+    const iframe = document.createElement('iframe');
+    iframe.name = iframeName;
+    iframe.style.display = 'none';
+    document.body.appendChild(iframe);
+
+    const hiddenForm = document.createElement('form');
+    hiddenForm.method = 'POST';
+    hiddenForm.action = WEBHOOK_URL;
+    hiddenForm.target = iframeName;
+    const emailField = document.createElement('input');
+    emailField.type = 'hidden';
+    emailField.name = 'email';
+    emailField.value = email;
+    hiddenForm.appendChild(emailField);
+    document.body.appendChild(hiddenForm);
+    hiddenForm.submit();
+
+    // 전송 후 정리 및 성공 처리
+    setTimeout(() => {
         btn.textContent = '✅ 구독 완료!';
         btn.style.background = 'var(--success)';
         input.value = '';
-        // 구독 기록 저장
         localStorage.setItem('hannip_last_sub', Date.now().toString());
         subbed.push(email);
         localStorage.setItem('hannip_subscribed', JSON.stringify(subbed));
-    })
-    .catch(error => {
-        alert('일시적인 오류가 발생했습니다. 나중에 다시 시도해주세요.');
-        console.error('Subscription Error:', error);
-    })
-    .finally(() => {
+        // 정리
+        document.body.removeChild(iframe);
+        document.body.removeChild(hiddenForm);
+
         setTimeout(resetBtn, 3000);
-    });
+    }, 2000);
 
     function resetBtn() {
         btn.textContent = originalText;
