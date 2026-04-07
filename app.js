@@ -56,19 +56,56 @@ function initAnimations() {
   });
 }
 
-/* === Email Subscribe === */
+/* === Email Subscribe (보안 강화 버전) === */
 function initSubscribe() {
   const form = document.getElementById('subscribeForm');
   if (!form) return;
 
-  // 구글 Apps Script 연동 완료!
-  const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbyLsg9gTnHcJylKD33pbJk_rIrnB1jocqKnSTy1RHikxe9fC1yhxNJxjpQzIt0MsRmX1A/exec";
+  // 🛡️ 허니팟 안티봇 필드 동적 삽입 (봇만 이 숨겨진 필드를 채움)
+  const honeypot = document.createElement('input');
+  honeypot.type = 'text';
+  honeypot.name = 'website';
+  honeypot.id = 'hp_field';
+  honeypot.tabIndex = -1;
+  honeypot.autocomplete = 'off';
+  honeypot.style.cssText = 'position:absolute;left:-9999px;opacity:0;height:0;width:0;';
+  form.prepend(honeypot);
+
+  const _s = [72,116,116,112,115,58,47,47,115,99,114,105,112,116,46,103,111,111,103,108,101,46,99,111,109,47,109,97,99,114,111,115,47,115,47,65,75,102,121,99,98,121,76,115,103,57,103,84,110,72,99,74,121,108,75,68,51,51,112,98,74,107,95,114,73,114,110,66,49,106,111,99,113,75,110,83,84,121,49,82,72,105,107,120,101,57,102,67,49,121,104,120,78,74,120,106,112,81,122,73,116,48,77,115,82,109,88,49,65,47,101,120,101,99];
+  const WEBHOOK_URL = _s.map(c => String.fromCharCode(c)).join('');
 
   form.addEventListener('submit', (e) => {
     e.preventDefault();
+
+    // 🛡️ 1. 허니팟 검사 — 봇이 숨겨진 필드를 채웠으면 차단
+    if (honeypot.value) {
+      console.warn('Bot detected');
+      return;
+    }
+
+    // 🛡️ 2. 속도 제한 — 30초 내 재시도 차단
+    const lastSub = localStorage.getItem('hannip_last_sub');
+    if (lastSub && (Date.now() - parseInt(lastSub)) < 30000) {
+      alert('잠시 후 다시 시도해주세요.');
+      return;
+    }
+
     const input = document.getElementById('emailInput');
     const email = input.value.trim();
-    if (!email) return;
+
+    // 🛡️ 3. 이메일 형식 정밀 검증
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!email || !emailRegex.test(email)) {
+      alert('올바른 이메일 주소를 입력해주세요.');
+      return;
+    }
+
+    // 🛡️ 4. 중복 구독 방지
+    const subbed = JSON.parse(localStorage.getItem('hannip_subscribed') || '[]');
+    if (subbed.includes(email)) {
+      alert('이미 구독 중인 이메일입니다! 😊');
+      return;
+    }
 
     const btn = form.querySelector('.subscribe-btn');
     const originalText = btn.textContent;
@@ -76,27 +113,23 @@ function initSubscribe() {
     btn.style.background = '#94a3b8';
     btn.disabled = true;
 
-    // 만약 URL을 아직 설정하지 않았다면 테스트용 알림만 표시
-    if (WEBHOOK_URL === "YOUR_GOOGLE_APPS_SCRIPT_WEB_APP_URL") {
-      alert(`[테스트 완료]\n입력하신 이메일(${email})이 정상적으로 전달되었습니다.\n(구글 시트 연동을 완료하고 WEBHOOK_URL을 수정해주세요!)`);
-      resetBtn();
-      return;
-    }
-
-    // Google Apps Script로 데이터 전송 (CORS 우회를 위해 mode: 'no-cors' 필수)
     fetch(WEBHOOK_URL, {
         method: 'POST',
         mode: 'no-cors',
         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
         body: new URLSearchParams({ email: email })
     })
-    .then(response => {
+    .then(() => {
         btn.textContent = '✅ 구독 완료!';
         btn.style.background = 'var(--success)';
         input.value = '';
+        // 구독 기록 저장
+        localStorage.setItem('hannip_last_sub', Date.now().toString());
+        subbed.push(email);
+        localStorage.setItem('hannip_subscribed', JSON.stringify(subbed));
     })
     .catch(error => {
-        alert("일시적인 오류가 발생했습니다. 나중에 다시 시도해주세요.");
+        alert('일시적인 오류가 발생했습니다. 나중에 다시 시도해주세요.');
         console.error('Subscription Error:', error);
     })
     .finally(() => {
