@@ -100,12 +100,7 @@ function initSubscribe() {
       return;
     }
 
-    // 🛡️ 4. 중복 구독 방지
-    const subbed = JSON.parse(localStorage.getItem('hannip_subscribed') || '[]');
-    if (subbed.includes(email)) {
-      alert('이미 구독 중인 이메일입니다! 😊');
-      return;
-    }
+    // (중복 체크 비활성화 — 전송 안정화 후 재활성화 예정)
 
     const btn = form.querySelector('.subscribe-btn');
     const originalText = btn.textContent;
@@ -126,8 +121,6 @@ function initSubscribe() {
         btn.style.background = 'var(--success)';
         input.value = '';
         localStorage.setItem('hannip_last_sub', Date.now().toString());
-        subbed.push(email);
-        localStorage.setItem('hannip_subscribed', JSON.stringify(subbed));
         try { document.body.removeChild(iframe); } catch(e) {}
         setTimeout(resetBtn, 3000);
     }, 2500);
