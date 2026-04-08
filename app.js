@@ -113,21 +113,24 @@ function initSubscribe() {
     btn.style.background = '#94a3b8';
     btn.disabled = true;
 
-    // 🚀 GET 이미지 비콘 방식 (CORS 완전 우회, 가장 안정적)
-    const img = new Image();
-    const requestUrl = WEBHOOK_URL + '?email=' + encodeURIComponent(email);
-    
-    img.onload = img.onerror = () => {
+    // 🚀 숨겨진 iframe GET 방식 (구글 리다이렉트 완벽 대응)
+    const iframe = document.createElement('iframe');
+    iframe.style.display = 'none';
+    iframe.name = 'hannip_sub_' + Date.now();
+    document.body.appendChild(iframe);
+    iframe.src = WEBHOOK_URL + '?email=' + encodeURIComponent(email);
+
+    // 2초 후 성공 처리 및 정리
+    setTimeout(() => {
         btn.textContent = '✅ 구독 완료!';
         btn.style.background = 'var(--success)';
         input.value = '';
         localStorage.setItem('hannip_last_sub', Date.now().toString());
         subbed.push(email);
         localStorage.setItem('hannip_subscribed', JSON.stringify(subbed));
+        try { document.body.removeChild(iframe); } catch(e) {}
         setTimeout(resetBtn, 3000);
-    };
-    
-    img.src = requestUrl;
+    }, 2500);
 
     function resetBtn() {
         btn.textContent = originalText;
