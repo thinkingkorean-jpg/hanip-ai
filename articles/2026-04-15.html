@@ -3,89 +3,39 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="한입 AI — 매일 한입, 4가지 필수 지식을 떠먹여드립니다.">
-  <meta name="keywords" content="AI, 경제, 글로벌 뉴스, 모빌리티, 스타트업, 뉴스레터">
-  <meta property="og:title" content="한입 AI — 매일 한입 크기의 지식 뉴스">
-  <meta property="og:description" content="AI, 경제부터 우주 테크까지 가장 중요한 이슈를 쉽고 위트있게 정리해드립니다.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/hannip.png">
-  <title>한입 AI — 매일 한입, 지식을 떠먹여드립니다</title>
-  <link rel="icon" type="image/png" href="assets/hannip.png">
-  <link rel="canonical" href="https://thinkingkorean-jpg.github.io/hanip-ai/">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .tabs-nav {
-      display: flex;
-      gap: 10px;
-      margin-bottom: 2rem;
-      overflow-x: auto;
-      border-bottom: 2px solid var(--card-border);
-      padding-bottom: 0px;
-      scrollbar-width: none;
-    }
-    .tabs-nav::-webkit-scrollbar {
-      display: none;
-    }
-    .tab-btn {
-      background: none;
-      border: none;
-      padding: 0.8rem 1.2rem;
-      font-size: 1.05rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      cursor: pointer;
-      white-space: nowrap;
-      border-bottom: 3px solid transparent;
-      transition: all 0.3s ease;
-      margin-bottom: -2px;
-    }
-    .tab-btn:hover {
-      color: var(--primary-color);
-    }
-    .tab-btn.active {
-      color: var(--primary-color);
-      border-bottom: 3px solid var(--primary-color);
-    }
-    .tab-pane {
-      display: none;
-      animation: fadeIn 0.4s ease;
-    }
-    .tab-pane.active {
-      display: block;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+  <meta name="description" content="한입 AI — AI 개발자 집에 화염병이?…격화되는 AI 반감과 미·중 패권 전쟁. 매일 한입 크기의 핵심 뉴스레터.">
+  <meta property="og:title" content="AI 개발자 집에 화염병이?…격화되는 AI 반감과 미·중 패권 전쟁 — 한입 AI">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="../assets/hannip.png">
+  <title>AI 개발자 집에 화염병이?…격화되는 AI 반감과 미·중 패권 전쟁 — 한입 AI</title>
+  <link rel="icon" type="image/png" href="../assets/hannip.png">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <div class="bg-gradient"></div>
-
-  <header class="header" id="header">
+  <header class="header">
     <div class="header-inner">
-      <a href="index.html" class="logo">
-        <img src="assets/hannip.png" alt="한입이" class="logo-icon">
+      <a href="../index.html" class="logo">
+        <img src="../assets/hannip.png" alt="한입이" class="logo-icon">
         <div>
           <div class="logo-text">한입 AI</div>
           <div class="logo-sub">매일 한입, 세상을 떠먹여드립니다</div>
         </div>
       </a>
       <div class="header-actions">
-        <a href="archive.html" style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">아카이브</a>
+        <a href="../archive.html" style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">아카이브</a>
         <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">🌙</button>
       </div>
     </div>
   </header>
-
   <main class="main">
     <section class="hero animate-in">
       <div class="hero-date">
         <span>📅</span>
-        <span id="todayDate" data-static-date="true">2026년 4월 15일 수요일</span>
+        <span>2026년 4월 15일 수요일</span>
       </div>
-      <h1 class="hero-title">오늘의 한입 🍪</h1>
-      <p class="hero-subtitle">한입이가 오늘의 세상 이야기를 맛있게 정리했어요</p>
+      <h1 class="hero-title">AI 개발자 집에 화염병이?…격화되는 AI 반감과 미·중 패권 전쟁</h1>
+      <p class="hero-subtitle">하루치 핵심 뉴스를 카테고리별로 다시 읽어보세요.</p>
     </section>
 
     <nav class="tabs-nav animate-in animate-delay-1">
@@ -376,13 +326,12 @@
       </section>
     </div>
 
-    <section class="section animate-in animate-delay-3">
+    <section class="section animate-in">
       <div class="section-header">
         <span class="section-icon">🛠️</span>
         <h2 class="section-title">오늘의 추천 도구</h2>
       </div>
       <div class="tools-list">
-        
         <div class="tool-card" style="margin-bottom: 1.5rem;">
           <div class="tool-icon">✨</div>
           <div class="tool-info">
@@ -400,30 +349,27 @@
             <p>&quot;스타트업 깔딱고개 4~5년차&quot;라는 기사처럼, 스타트업에게 투자 유치는 늘 큰 숙제죠. 크런치베이스는 전 세계 스타트업, 투자자, 펀딩 정보를 한눈에 볼 수 있는 플랫폼이에요. 투자 유치를 준비하는 스타트업은 물론, 유망한 스타트업을 찾는 투자자들에게도 필수적인 도구로, 오늘의 경제 및 스타트업 뉴스 맥락에서 큰 도움이 될 거예요.</p>
             <a href="https://www.crunchbase.com/" target="_blank" rel="noopener noreferrer" class="tool-link">사이트 방문하기 →</a>
           </div>
-        </div>
-      </div>
+        </div></div>
     </section>
 
-    <section class="section animate-in animate-delay-4">
+    <section class="section animate-in">
       <div class="section-header">
         <span class="section-icon">⏭️</span>
         <h2 class="section-title">다음 발행 예고</h2>
       </div>
       <article class="headline-card">
-        <h3 class="headline-title">내일 아침 7시 발행 예정</h3>
-        <div class="headline-body">
-          <p>내일 아침 7시에는 AI &amp; 테크 12건, 경제 12건, 우주 &amp; 모빌리티 12건, 스타트업 &amp; 혁신 12건을 바탕으로 가장 중요한 흐름만 다시 한입 크기로 정리해드릴게요.</p>
-        </div>
+        <h3 class="headline-title">내일 아침 발행 준비 중</h3>
+        <div class="headline-body"><p>내일 아침 7시에는 AI &amp; 테크 12건, 경제 12건, 우주 &amp; 모빌리티 12건, 스타트업 &amp; 혁신 12건을 바탕으로 가장 중요한 흐름만 다시 한입 크기로 정리해드릴게요.</p></div>
       </article>
     </section>
 
-    <section class="section animate-in animate-delay-4">
+    <section class="section animate-in">
       <div class="section-header">
         <span class="section-icon">💬</span>
         <h2 class="section-title">한입이의 한마디</h2>
       </div>
       <div class="hannip-comment">
-        <img src="assets/hannip.png" alt="한입이" class="hannip-avatar">
+        <img src="../assets/hannip.png" alt="한입이" class="hannip-avatar">
         <div class="hannip-bubble">
           <div class="hannip-name">한입이 🐻</div>
           <p class="hannip-text">"오늘도 한입이와 함께 AI의 똑똑한 활약부터 스타트업의 뜨거운 도전, 그리고 미래 모빌리티의 설레는 소식까지 알차게 맛보셨네요! 세상은 빠르게 변하지만, 이럴 때일수록 똑똑한 도구들과 함께라면 어떤 변화도 두렵지 않을 거예요. 다음 주에도 더 흥미로운 이야기 보따리 들고 찾아올게요, 그때까지 모두 파이팅!"</p>
@@ -438,10 +384,10 @@
       <button class="share-btn" id="shareCopy" aria-label="링크 복사">🔗</button>
     </div>
 
-    <section class="section animate-in animate-delay-5">
+    <section class="section animate-in">
       <div class="subscribe" id="subscribe">
         <h2>📬 매일 아침, 메일로 받아보세요</h2>
-        <p>한입이가 4가지 탭의 지식 뉴스를 매일 보내드려요. 무료!</p>
+        <p>한입이가 매일 중요한 흐름만 골라 보내드려요. 무료!</p>
         <form class="subscribe-form" id="subscribeForm">
           <input type="email" class="subscribe-input" placeholder="이메일 주소를 입력하세요" required id="emailInput">
           <button type="submit" class="subscribe-btn">구독하기</button>
@@ -454,20 +400,15 @@
   <footer class="footer">
     <div class="footer-logo">한입 AI</div>
     <p class="footer-desc">매일 한입, 세상을 떠먹여드립니다 🐻</p>
-    <div style="margin: 10px 0; display:flex; gap:16px; justify-content:center; font-size:0.85rem;">
-      <a href="about.html" style="color:var(--primary); text-decoration:none;">소개</a>
-      <span style="color:var(--text-secondary);">|</span>
-      <a href="privacy.html" style="color:var(--primary); text-decoration:none;">개인정보처리방침</a>
-      <span style="color:var(--text-secondary);">|</span>
-      <a href="archive.html" style="color:var(--primary); text-decoration:none;">아카이브</a>
-    </div>
-    <div style="margin: 10px 0;">
-      <img src="https://visitor-badge.laobi.icu/badge?page_id=thinkingkorean-jpg.hanip-ai&left_color=%23555555&right_color=%2379C83D&left_text=VISITORS" alt="방문자 수">
-    </div>
+    <nav class="footer-links">
+      <a href="../index.html">오늘의 뉴스</a>
+      <a href="../archive.html">아카이브</a>
+      <a href="../index.html#subscribe">이메일 구독</a>
+    </nav>
     <p class="footer-copy">© 2026 한입 AI (Hannip). All rights reserved.</p>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="../app.js"></script>
   <script>
     document.querySelectorAll('.tab-btn').forEach((button) => {
       button.addEventListener('click', () => {
