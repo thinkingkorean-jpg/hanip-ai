@@ -97,6 +97,7 @@ function initSubscribe() {
   const form = document.getElementById("subscribeForm");
   if (!form) return;
 
+  // 🛡️ 허니팟 안티봇
   const honeypot = document.createElement("input");
   honeypot.type = "text";
   honeypot.name = "website";
@@ -109,24 +110,30 @@ function initSubscribe() {
   const statusEl =
     document.getElementById("subscribeStatus") ||
     (() => {
-      const element = document.createElement("p");
-      element.id = "subscribeStatus";
-      element.style.marginTop = "0.75rem";
-      element.style.fontSize = "0.9rem";
-      element.style.color = "var(--text-secondary)";
-      form.insertAdjacentElement("afterend", element);
-      return element;
+      const el = document.createElement("p");
+      el.id = "subscribeStatus";
+      el.style.marginTop = "0.75rem";
+      el.style.fontSize = "0.9rem";
+      form.insertAdjacentElement("afterend", el);
+      return el;
     })();
 
-  // Brevo API 키는 빌드 시 publisher.py가 index.html에 주입
-  const BREVO_API_KEY = window.HANNIP_BREVO_KEY || "";
-  const BREVO_LIST_ID = window.HANNIP_BREVO_LIST || 2;
+  // 🛡️ URL 난독화 (Google Apps Script JSONP)
+  const _s = [104,116,116,112,115,58,47,47,115,99,114,105,112,116,46,103,111,111,103,108,101,46,99,111,109,47,109,97,99,114,111,115,47,115,47,65,75,102,121,99,98,122,122,115,77,79,57,55,120,73,52,69,97,97,53,52,111,82,51,55,107,106,117,82,69,72,105,102,118,56,122,117,112,55,68,51,45,55,78,67,79,112,121,70,95,105,117,80,88,84,57,68,95,119,89,80,98,108,86,65,57,102,80,85,56,67,104,66,119,47,101,120,101,99];
+  const WEBHOOK_URL = _s.map(c => String.fromCharCode(c)).join('');
 
-  form.addEventListener("submit", async (event) => {
-    event.preventDefault();
+  // JSONP 콜백
+  window.hannipCb = function(status) {
+    console.log('구독 처리:', status);
+  };
 
-    if (honeypot.value) return;
+  form.addEventListener("submit", function(e) {
+    e.preventDefault();
 
+    // 🛡️ 허니팟 검사
+    if (honeypot.value) { console.warn("Bot detected"); return; }
+
+    // 🛡️ 속도 제한
     const lastSub = localStorage.getItem("hannip_last_sub");
     if (lastSub && Date.now() - parseInt(lastSub, 10) < 30000) {
       statusEl.textContent = "잠시 후 다시 시도해 주세요.";
@@ -149,44 +156,29 @@ function initSubscribe() {
     statusEl.textContent = "잠시만 기다려 주세요...";
     statusEl.style.color = "var(--text-secondary)";
 
-    try {
-      const response = await fetch("https://api.brevo.com/v3/contacts", {
-        method: "POST",
-        headers: {
-          "api-key": BREVO_API_KEY,
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email, listIds: [BREVO_LIST_ID], updateEnabled: true }),
-      });
-      const payload = await response.json().catch(() => null);
-      const success = response.ok || response.status === 204;
-      const alreadyExists = payload?.code === "duplicate_parameter";
-      const message = alreadyExists
-        ? "이미 구독 중인 이메일이에요 😊"
-        : success
-        ? "구독이 완료되었습니다! 🎉"
-        : "구독에 실패했어요. 잠시 후 다시 시도해 주세요.";
+    // 🚀 JSONP 방식 (서버에 API 키 노출 없이 안전하게 전송)
+    const script = document.createElement("script");
+    script.src = WEBHOOK_URL + "?email=" + encodeURIComponent(email) + "&callback=hannipCb&t=" + Date.now();
 
-      if (success) {
-        setSubscribeState(button, "✅ 구독 완료", "var(--success)");
-        statusEl.textContent = message;
-        statusEl.style.color = "var(--success)";
-        input.value = "";
-        localStorage.setItem("hannip_last_sub", Date.now().toString());
-      } else {
-        setSubscribeState(button, "구독 실패", "#ef4444");
-        statusEl.textContent = message;
-        statusEl.style.color = "#ef4444";
-      }
-    } catch (error) {
-      setSubscribeState(button, "구독 실패", "#ef4444");
+    script.onload = function() {
+      setSubscribeState(button, "✅ 구독 완료", "var(--success)");
+      statusEl.textContent = "구독이 완료되었습니다! 🎉";
+      statusEl.style.color = "var(--success)";
+      input.value = "";
+      localStorage.setItem("hannip_last_sub", Date.now().toString());
+      try { document.head.removeChild(script); } catch(err) {}
+      setTimeout(function() { setSubscribeState(button, "구독하기", "", false); }, 3000);
+    };
+
+    script.onerror = function() {
+      setSubscribeState(button, "⚠️ 네트워크 오류", "#ef4444");
       statusEl.textContent = "구독 처리 중 오류가 발생했어요. 잠시 후 다시 시도해 주세요.";
       statusEl.style.color = "#ef4444";
-    } finally {
-      window.setTimeout(() => {
-        setSubscribeState(button, "구독하기", "", false);
-      }, 3000);
-    }
+      try { document.head.removeChild(script); } catch(err) {}
+      setTimeout(function() { setSubscribeState(button, "구독하기", "", false); }, 3000);
+    };
+
+    document.head.appendChild(script);
   });
 }
 

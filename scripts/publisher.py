@@ -423,7 +423,6 @@ def _build_article_page(newsletter, categories, date_display, article_title):
   <meta property="og:title" content="{html.escape(article_title)} — 한입 AI">
   <meta property="og:type" content="article">
   <meta property="og:image" content="../assets/hannip.png">
-  <meta name="stibee-list-id" content="{html.escape(os.getenv('STIBEE_LIST_ID', ''), quote=True)}">
   <title>{html.escape(article_title)} — 한입 AI</title>
   <link rel="icon" type="image/png" href="../assets/hannip.png">
   <link rel="stylesheet" href="../style.css">
@@ -574,9 +573,6 @@ def update_index_page(newsletter):
         recommended_tools=render_tools(newsletter.get("recommended_tools", [])),
         hannip_comment=_safe_text(newsletter.get("hannip_comment", "오늘도 수고 많으셨어요!")),
         next_issue_preview=_safe_text(build_next_issue_preview(newsletter)),
-        stibee_list_id=os.getenv("STIBEE_LIST_ID", "").strip(),
-        BREVO_API_KEY=os.getenv("BREVO_API_KEY", ""),
-        BREVO_LIST_ID=2,
     )
 
     index_path = os.path.join(PROJECT_ROOT, "index.html")
