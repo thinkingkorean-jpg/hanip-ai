@@ -118,16 +118,8 @@ function initSubscribe() {
       return element;
     })();
 
-  const stibeeListId =
-    document.querySelector('meta[name="stibee-list-id"]')?.content?.trim() ||
-    window.HANNIP_STIBEE_LIST_ID ||
-    "";
-
-  if (!stibeeListId) {
-    statusEl.textContent = "구독 설정이 아직 연결되지 않았습니다.";
-    statusEl.style.color = "var(--text-secondary)";
-    return;
-  }
+  // Brevo 프록시 서버 주소 (로컬 admin 서버)
+  const SUBSCRIBE_URL = window.HANNIP_SUBSCRIBE_URL || "http://localhost:8765/api/subscribe";
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -157,25 +149,24 @@ function initSubscribe() {
     statusEl.style.color = "var(--text-secondary)";
 
     try {
-      const response = await fetch(`https://api.stibee.com/v1/lists/${encodeURIComponent(stibeeListId)}/subscribers`, {
+      const response = await fetch(SUBSCRIBE_URL, {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify({ email })
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
       });
       const payload = await response.json().catch(() => null);
-      const normalized = normalizeSubscribeResponse(payload);
+      const success = payload?.success ?? response.ok;
+      const message = payload?.message || (success ? "구독이 완료되었습니다!" : "구독에 실패했어요. 다시 시도해 주세요.");
 
-      if (response.ok || normalized.ok) {
-        setSubscribeState(button, "구독 완료", "var(--success)");
-        statusEl.textContent = normalized.message;
+      if (success) {
+        setSubscribeState(button, "✅ 구독 완료", "var(--success)");
+        statusEl.textContent = message;
         statusEl.style.color = "var(--success)";
         input.value = "";
         localStorage.setItem("hannip_last_sub", Date.now().toString());
       } else {
         setSubscribeState(button, "구독 실패", "#ef4444");
-        statusEl.textContent = normalized.message;
+        statusEl.textContent = message;
         statusEl.style.color = "#ef4444";
       }
     } catch (error) {

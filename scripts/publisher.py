@@ -305,6 +305,81 @@ def _build_stibee_letter_payload(newsletter, article_path):
     }
 
 
+def send_brevo_campaign(newsletter, article_path):
+    """Brevo API로 이메일 캠페인을 생성하고 즉시 발송합니다."""
+    api_key = os.getenv("BREVO_API_KEY", "").strip()
+    if not api_key:
+        print("Brevo send skipped: missing BREVO_API_KEY.")
+        return False
+
+    date_value = _resolve_date(newsletter)
+    article_title = build_article_summary(newsletter) or "오늘의 한입 AI"
+    relative_path = os.path.relpath(article_path, PROJECT_ROOT).replace("\\", "/")
+    article_url = f"{SITE_URL}/{relative_path}"
+
+    # 이메일 HTML 본문 구성
+    sections = [
+        f"<h1>{html.escape(article_title)}</h1>",
+        f"<p>한입 AI {html.escape(date_value)} 발행본입니다.</p>",
+    ]
+    for category_id, config in CATEGORY_CONFIG.items():
+        category_data = newsletter.get(category_id, {})
+        deep_dives = category_data.get("deep_dives", [])
+        quick_news = category_data.get("quick_news", [])
+        if not deep_dives and not quick_news:
+            continue
+        sections.append(f"<h2>{html.escape(config['name'])}</h2>")
+        for dive in deep_dives[:2]:
+            sections.append(f"<h3>{html.escape(dive.get('title', ''))}</h3>")
+            sections.append(f"<p>{html.escape(_strip_html(dive.get('body', ''))[:300])}</p>")
+        if quick_news:
+            items = "".join(f"<li>{html.escape(n.get('title', ''))}</li>" for n in quick_news[:5])
+            sections.append(f"<ul>{items}</ul>")
+    sections.append(f'<p><a href="{html.escape(article_url, quote=True)}">웹에서 전체 보기 →</a></p>')
+    html_content = "".join(sections)
+
+    headers = {
+        "api-key": api_key,
+        "Content-Type": "application/json",
+    }
+
+    # 캠페인 생성
+    campaign_payload = {
+        "name": f"한입 AI {date_value}",
+        "subject": f"[한입 AI] {article_title}",
+        "sender": {"name": "한입 AI", "email": "contact@hanip.kr"},
+        "type": "classic",
+        "htmlContent": html_content,
+        "recipients": {"listIds": [2]},
+    }
+
+    try:
+        resp = requests.post(
+            "https://api.brevo.com/v3/emailCampaigns",
+            headers=headers,
+            json=campaign_payload,
+            timeout=15,
+        )
+        resp.raise_for_status()
+        campaign_id = resp.json().get("id")
+        if not campaign_id:
+            print("Brevo campaign created but no id returned.")
+            return False
+
+        # 즉시 발송
+        send_resp = requests.post(
+            f"https://api.brevo.com/v3/emailCampaigns/{campaign_id}/sendNow",
+            headers=headers,
+            timeout=15,
+        )
+        send_resp.raise_for_status()
+        print(f"Brevo campaign {campaign_id} sent successfully.")
+        return True
+    except requests.RequestException as exc:
+        print(f"Brevo send failed: {exc}")
+        return False
+
+
 def send_stibee_letter(newsletter, article_path):
     api_key = os.getenv("STIBEE_API_KEY", "").strip()
     address_book_id = os.getenv("STIBEE_ADDRESS_BOOK_ID", "").strip()
@@ -509,7 +584,8 @@ def update_index_page(newsletter):
     article_path = create_article_page(newsletter)
     archive_entries = update_archive_index(newsletter, article_path)
     update_archive_page(archive_entries)
-    send_stibee_letter(newsletter, article_path)
+    send_brevo_campaign(newsletter, article_path)
+    send_stibee_letter(newsletter, article_path)  # Stibee API Key 있을 때만 실행됨
 
     print(f"메인 페이지 업데이트 완료: {index_path}")
     print(f"개별 아티클 페이지 생성 완료: {article_path}")

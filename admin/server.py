@@ -34,6 +34,10 @@ class AuthRequest(BaseModel):
     password: str
 
 
+class SubscribeRequest(BaseModel):
+    email: str
+
+
 def _warning_payload(message: str = DEFAULT_WARNING) -> dict[str, Any]:
     return {"warning": message}
 
@@ -48,6 +52,57 @@ def _safe_read_json(path: Path) -> Any:
 def _latest_newsletter_file() -> Path | None:
     files = sorted(SCRIPTS_DATA_DIR.glob("newsletter_*.json"), reverse=True)
     return files[0] if files else None
+
+
+async def _fetch_brevo_subscribers() -> dict[str, Any]:
+    api_key = os.getenv("BREVO_API_KEY", "").strip()
+    if not api_key:
+        return {"count": 0, "subscribers": [], **_warning_payload("Missing BREVO_API_KEY.")}
+
+    try:
+        async with httpx.AsyncClient(timeout=15) as client:
+            resp = await client.get(
+                "https://api.brevo.com/v3/contacts",
+                headers={"api-key": api_key},
+                params={"limit": 50, "offset": 0, "sort": "desc"},
+            )
+            resp.raise_for_status()
+            payload = resp.json()
+    except Exception as exc:
+        return {"count": 0, "subscribers": [], **_warning_payload(f"Brevo request failed: {exc}")}
+
+    raw_items = payload.get("contacts", [])
+    subscribers = [
+        {
+            "email": item.get("email", ""),
+            "created_at": item.get("createdAt", ""),
+        }
+        for item in raw_items
+    ]
+    count = payload.get("count", len(subscribers))
+    return {"count": count, "subscribers": subscribers}
+
+
+async def _add_brevo_subscriber(email: str) -> dict[str, Any]:
+    api_key = os.getenv("BREVO_API_KEY", "").strip()
+    if not api_key:
+        return {"success": False, "message": "서버 설정 오류"}
+
+    try:
+        async with httpx.AsyncClient(timeout=15) as client:
+            resp = await client.post(
+                "https://api.brevo.com/v3/contacts",
+                headers={"api-key": api_key, "Content-Type": "application/json"},
+                json={"email": email, "listIds": [2], "updateEnabled": True},
+            )
+            if resp.status_code in (200, 201, 204):
+                return {"success": True, "message": "구독이 완료되었습니다!"}
+            # 이미 존재하는 연락처
+            if resp.status_code == 400 and "Contact already exist" in resp.text:
+                return {"success": True, "message": "이미 구독 중인 이메일입니다."}
+            return {"success": False, "message": f"구독 실패: {resp.text[:100]}"}
+    except Exception as exc:
+        return {"success": False, "message": f"오류: {exc}"}
 
 
 async def _fetch_stibee_subscribers() -> dict[str, Any]:
@@ -192,9 +247,20 @@ async def auth(body: AuthRequest) -> JSONResponse:
     return JSONResponse({"success": success})
 
 
+@app.post("/api/subscribe")
+async def subscribe(body: SubscribeRequest) -> JSONResponse:
+    result = await _add_brevo_subscriber(body.email)
+    return JSONResponse(result)
+
+
 @app.get("/api/subscribers")
 async def subscribers() -> JSONResponse:
-    return JSONResponse(await _fetch_stibee_subscribers())
+    brevo = await _fetch_brevo_subscribers()
+    if brevo.get("count", 0) > 0 or not os.getenv("STIBEE_API_KEY"):
+        return JSONResponse(brevo)
+    # Brevo 비어있고 Stibee 키 있으면 Stibee도 조회
+    stibee = await _fetch_stibee_subscribers()
+    return JSONResponse(stibee)
 
 
 @app.get("/api/analytics")
