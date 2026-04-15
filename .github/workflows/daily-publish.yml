@@ -30,13 +30,39 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r scripts/requirements.txt
 
+      - name: 🔑 시크릿 설정 확인
+        env:
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
+        run: |
+          if [ -z "$BREVO_API_KEY" ]; then
+            echo "::warning::BREVO_API_KEY 시크릿이 설정되지 않았습니다. 이메일 발송이 생략됩니다."
+          else
+            echo "✅ BREVO_API_KEY 확인됨"
+          fi
+
       - name: 🤖 뉴스레터 자동 생성 엔진 가동
+        id: pipeline
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
           BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
           PYTHONIOENCODING: utf-8
         run: |
           python scripts/run_daily.py
+          echo "result=success" >> $GITHUB_OUTPUT
+
+      - name: ❌ 파이프라인 실패 요약
+        if: failure() && steps.pipeline.outcome == 'failure'
+        run: |
+          echo "## ❌ 파이프라인 실패" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          if [ -f scripts/data/pipeline_log.json ]; then
+            echo "### 마지막 로그" >> $GITHUB_STEP_SUMMARY
+            echo '```json' >> $GITHUB_STEP_SUMMARY
+            tail -c 2000 scripts/data/pipeline_log.json >> $GITHUB_STEP_SUMMARY
+            echo '```' >> $GITHUB_STEP_SUMMARY
+          else
+            echo "pipeline_log.json 없음" >> $GITHUB_STEP_SUMMARY
+          fi
 
       - name: 🚀 생성된 파일 GitHub에 자동 커밋 및 푸시
         uses: stefanzweifel/git-auto-commit-action@v5
