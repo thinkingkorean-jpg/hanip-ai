@@ -1,0 +1,5 @@
+fastapi
+uvicorn
+httpx
+google-analytics-data
+google-auth

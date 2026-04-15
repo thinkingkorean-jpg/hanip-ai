@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Hanip AI Admin</title>
+  <style>
+    :root {
+      --bg: #f5f7fb;
+      --card: #ffffff;
+      --border: #d8e0ef;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --accent: #0f766e;
+      --danger: #b91c1c;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background: linear-gradient(180deg, #eef5ff 0%, var(--bg) 100%);
+      color: var(--text);
+    }
+
+    .wrap {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 32px 20px 56px;
+    }
+
+    h1, h2 {
+      margin: 0 0 12px;
+    }
+
+    .sub {
+      color: var(--muted);
+      margin-bottom: 24px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .card, .panel {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      box-shadow: 0 8px 24px rgba(15, 23, 42, 0.05);
+    }
+
+    .card {
+      padding: 20px;
+    }
+
+    .label {
+      color: var(--muted);
+      font-size: 13px;
+      margin-bottom: 10px;
+    }
+
+    .value {
+      font-size: 30px;
+      font-weight: 700;
+    }
+
+    .detail {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 13px;
+    }
+
+    .panel {
+      padding: 20px;
+      margin-bottom: 20px;
+      overflow: hidden;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+    }
+
+    th, td {
+      text-align: left;
+      padding: 12px 10px;
+      border-bottom: 1px solid #eef2f7;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--muted);
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .warning {
+      color: var(--danger);
+      font-size: 13px;
+      margin: 8px 0 0;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    .status {
+      margin-bottom: 20px;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap hidden" id="app">
+    <h1>Hanip AI Admin</h1>
+    <p class="sub">Subscribers, traffic, revenue, publish history, and pipeline status.</p>
+    <div class="status" id="status">Loading dashboard...</div>
+
+    <div class="grid">
+      <div class="card">
+        <div class="label">Subscriber Count</div>
+        <div class="value" id="subscriberCount">0</div>
+        <div class="detail" id="subscriberDetail">Waiting for data</div>
+      </div>
+      <div class="card">
+        <div class="label">Today Visitors</div>
+        <div class="value" id="todayVisitors">0</div>
+        <div class="detail" id="visitorDetail">GA today</div>
+      </div>
+      <div class="card">
+        <div class="label">This Month Revenue</div>
+        <div class="value" id="monthRevenue">0</div>
+        <div class="detail" id="revenueDetail">AdSense month</div>
+      </div>
+      <div class="card">
+        <div class="label">Last Publish Date</div>
+        <div class="value" id="lastPublishDate">-</div>
+        <div class="detail" id="pipelineDetail">Pipeline unknown</div>
+      </div>
+    </div>
+
+    <section class="panel">
+      <h2>Recent Subscribers</h2>
+      <p class="warning hidden" id="subscriberWarning"></p>
+      <table>
+        <thead>
+          <tr>
+            <th>Email</th>
+            <th>Name</th>
+            <th>Status</th>
+            <th>Created</th>
+          </tr>
+        </thead>
+        <tbody id="subscriberTable"></tbody>
+      </table>
+    </section>
+
+    <section class="panel">
+      <h2>Publish History</h2>
+      <table>
+        <thead>
+          <tr>
+            <th>File</th>
+            <th>Date</th>
+            <th>Published At</th>
+          </tr>
+        </thead>
+        <tbody id="articleTable"></tbody>
+      </table>
+    </section>
+  </div>
+
+  <script>
+    async function requestJson(path, options) {
+      const response = await fetch(path, options);
+      if (!response.ok) {
+        throw new Error(`${path} failed with ${response.status}`);
+      }
+      return response.json();
+    }
+
+    function showRows(targetId, rows, renderer, emptyText) {
+      const target = document.getElementById(targetId);
+      if (!rows.length) {
+        target.innerHTML = `<tr><td colspan="4">${emptyText}</td></tr>`;
+        return;
+      }
+      target.innerHTML = rows.map(renderer).join("");
+    }
+
+    async function authenticate() {
+      const password = window.prompt("Admin password");
+      if (!password) {
+        document.body.innerHTML = "<p style='padding:24px;font-family:Segoe UI,sans-serif;'>Access cancelled.</p>";
+        return false;
+      }
+
+      const auth = await requestJson("/api/auth", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password })
+      });
+
+      if (!auth.success) {
+        document.body.innerHTML = "<p style='padding:24px;font-family:Segoe UI,sans-serif;'>Access denied.</p>";
+        return false;
+      }
+
+      document.getElementById("app").classList.remove("hidden");
+      return true;
+    }
+
+    async function loadDashboard() {
+      const ok = await authenticate();
+      if (!ok) return;
+
+      const status = document.getElementById("status");
+
+      try {
+        const [subscribers, analytics, adsense, articles, pipeline] = await Promise.all([
+          requestJson("/api/subscribers"),
+          requestJson("/api/analytics"),
+          requestJson("/api/adsense"),
+          requestJson("/api/articles"),
+          requestJson("/api/pipeline/status")
+        ]);
+
+        document.getElementById("subscriberCount").textContent = subscribers.count ?? 0;
+        document.getElementById("subscriberDetail").textContent = `${(subscribers.subscribers || []).length} recent subscribers`;
+        document.getElementById("todayVisitors").textContent = analytics.today ?? 0;
+        document.getElementById("visitorDetail").textContent = `7d ${analytics.last_7_days ?? 0} / 30d ${analytics.last_30_days ?? 0}`;
+        document.getElementById("monthRevenue").textContent = adsense.month_revenue ?? 0;
+        document.getElementById("revenueDetail").textContent = `Today ${adsense.today_revenue ?? 0}`;
+        document.getElementById("lastPublishDate").textContent = articles.last_publish_date || "-";
+        document.getElementById("pipelineDetail").textContent = pipeline.last_run_time
+          ? `Pipeline ${pipeline.success ? "success" : "failed"} at ${pipeline.last_run_time}`
+          : "Pipeline data unavailable";
+
+        const subscriberWarning = document.getElementById("subscriberWarning");
+        if (subscribers.warning) {
+          subscriberWarning.textContent = subscribers.warning;
+          subscriberWarning.classList.remove("hidden");
+        }
+
+        showRows(
+          "subscriberTable",
+          subscribers.subscribers || [],
+          (item) => `
+            <tr>
+              <td>${item.email || "-"}</td>
+              <td>${item.name || "-"}</td>
+              <td>${item.status || "-"}</td>
+              <td>${item.created_at || "-"}</td>
+            </tr>
+          `,
+          "No subscribers available"
+        );
+
+        const articleRows = (articles.history || []).slice(0, 20).map(
+          (item) => `
+            <tr>
+              <td>${item.filename}</td>
+              <td>${item.date}</td>
+              <td>${item.published_at}</td>
+            </tr>
+          `
+        );
+        document.getElementById("articleTable").innerHTML =
+          articleRows.join("") || "<tr><td colspan='3'>No published articles found</td></tr>";
+
+        status.textContent = "Dashboard loaded.";
+      } catch (error) {
+        status.textContent = `Dashboard load failed: ${error.message}`;
+      }
+    }
+
+    loadDashboard();
+  </script>
+</body>
+</html>
