@@ -118,8 +118,9 @@ function initSubscribe() {
       return element;
     })();
 
-  // Brevo 프록시 서버 주소 (로컬 admin 서버)
-  const SUBSCRIBE_URL = window.HANNIP_SUBSCRIBE_URL || "http://localhost:8765/api/subscribe";
+  // Brevo API 키는 빌드 시 publisher.py가 index.html에 주입
+  const BREVO_API_KEY = window.HANNIP_BREVO_KEY || "";
+  const BREVO_LIST_ID = window.HANNIP_BREVO_LIST || 2;
 
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
@@ -145,18 +146,26 @@ function initSubscribe() {
     }
 
     setSubscribeState(button, "구독 중..", "#94a3b8");
-    statusEl.textContent = "서버 응답을 기다리는 중이에요...";
+    statusEl.textContent = "잠시만 기다려 주세요...";
     statusEl.style.color = "var(--text-secondary)";
 
     try {
-      const response = await fetch(SUBSCRIBE_URL, {
+      const response = await fetch("https://api.brevo.com/v3/contacts", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
+        headers: {
+          "api-key": BREVO_API_KEY,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ email, listIds: [BREVO_LIST_ID], updateEnabled: true }),
       });
       const payload = await response.json().catch(() => null);
-      const success = payload?.success ?? response.ok;
-      const message = payload?.message || (success ? "구독이 완료되었습니다!" : "구독에 실패했어요. 다시 시도해 주세요.");
+      const success = response.ok || response.status === 204;
+      const alreadyExists = payload?.code === "duplicate_parameter";
+      const message = alreadyExists
+        ? "이미 구독 중인 이메일이에요 😊"
+        : success
+        ? "구독이 완료되었습니다! 🎉"
+        : "구독에 실패했어요. 잠시 후 다시 시도해 주세요.";
 
       if (success) {
         setSubscribeState(button, "✅ 구독 완료", "var(--success)");

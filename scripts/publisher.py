@@ -575,6 +575,8 @@ def update_index_page(newsletter):
         hannip_comment=_safe_text(newsletter.get("hannip_comment", "오늘도 수고 많으셨어요!")),
         next_issue_preview=_safe_text(build_next_issue_preview(newsletter)),
         stibee_list_id=os.getenv("STIBEE_LIST_ID", "").strip(),
+        BREVO_API_KEY=os.getenv("BREVO_API_KEY", ""),
+        BREVO_LIST_ID=2,
     )
 
     index_path = os.path.join(PROJECT_ROOT, "index.html")

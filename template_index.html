@@ -168,6 +168,11 @@
     <p class="footer-copy">© 2026 한입 AI (Hannip). All rights reserved.</p>
   </footer>
 
+  <script>
+    /* Brevo 설정 - 빌드 시 publisher.py가 주입 */
+    window.HANNIP_BREVO_KEY = "{{BREVO_API_KEY}}";
+    window.HANNIP_BREVO_LIST = {{BREVO_LIST_ID}};
+  </script>
   <script src="app.js"></script>
   <script>
     document.querySelectorAll('.tab-btn').forEach((button) => {

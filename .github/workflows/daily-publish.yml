@@ -33,6 +33,7 @@ jobs:
       - name: 🤖 뉴스레터 자동 생성 엔진 가동
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          BREVO_API_KEY: ${{ secrets.BREVO_API_KEY }}
           PYTHONIOENCODING: utf-8
         run: |
           python scripts/run_daily.py
