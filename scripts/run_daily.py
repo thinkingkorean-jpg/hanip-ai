@@ -21,7 +21,9 @@ from publisher import load_latest_newsletter, update_index_page
 MAX_STAGE_RETRIES = 2
 MIN_TOTAL_ARTICLES = 3
 DATA_DIR = os.path.join(os.path.dirname(os.path.abspath(__file__)), "data")
-PIPELINE_LOG_PATH = os.path.join(DATA_DIR, "pipeline_log.json")
+# pipeline_log.json은 프로젝트 루트에 저장 (scripts/data/ 는 .gitignore 제외)
+PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+PIPELINE_LOG_PATH = os.path.join(PROJECT_ROOT, "pipeline_log.json")
 
 
 def configure_logging():
@@ -48,7 +50,6 @@ def configure_logging():
 
 def save_pipeline_log(entry: dict):
     """파이프라인 실행 결과를 pipeline_log.json에 누적 저장합니다."""
-    os.makedirs(DATA_DIR, exist_ok=True)
     logs = []
     if os.path.exists(PIPELINE_LOG_PATH):
         try:

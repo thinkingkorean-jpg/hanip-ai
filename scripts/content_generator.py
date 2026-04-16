@@ -17,13 +17,13 @@ class DeepDive(BaseModel):
     tag: str = Field(description="예: [HOT ISSUE], [DEEP DIVE], [TREND] 같은 태그")
     title: str = Field(description="독자의 시선을 끄는 매력적인 제목")
     body: str = Field(description="<p> 태그로 감싼 2~3문단 분량의 상세 분석")
-    source_url: str = Field(description="근거로 삼은 기사 원문 URL")
+    source_url: str = Field(default="", description="근거로 삼은 기사 원문 URL")
 
 
 class QuickNews(BaseModel):
     title: str = Field(description="간결하고 선명한 단신 기사 제목")
     content: str = Field(description="무슨 일이 있었고 왜 중요한지 설명하는 2문장 요약")
-    source_url: str = Field(description="근거로 삼은 기사 원문 URL")
+    source_url: str = Field(default="", description="근거로 삼은 기사 원문 URL")
 
 
 class RecommendedTool(BaseModel):
