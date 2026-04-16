@@ -16,21 +16,43 @@
   <style>
     .tabs-nav {
       display: flex;
-      gap: 10px;
+      gap: 6px;
       margin-bottom: 2rem;
       overflow-x: auto;
       border-bottom: 2px solid var(--card-border);
       padding-bottom: 0px;
       scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      position: relative;
     }
     .tabs-nav::-webkit-scrollbar {
       display: none;
     }
+    /* 모바일 우측 스크롤 힌트 그라데이션 */
+    .tabs-nav-wrap {
+      position: relative;
+    }
+    .tabs-nav-wrap::after {
+      content: '';
+      position: absolute;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      width: 40px;
+      background: linear-gradient(to right, transparent, var(--bg));
+      pointer-events: none;
+      z-index: 1;
+      opacity: 1;
+      transition: opacity 0.3s;
+    }
+    .tabs-nav-wrap.scrolled-end::after {
+      opacity: 0;
+    }
     .tab-btn {
       background: none;
       border: none;
-      padding: 0.8rem 1.2rem;
-      font-size: 1.05rem;
+      padding: 0.7rem 0.9rem;
+      font-size: 0.95rem;
       font-weight: 600;
       color: var(--text-secondary);
       cursor: pointer;
@@ -38,6 +60,7 @@
       border-bottom: 3px solid transparent;
       transition: all 0.3s ease;
       margin-bottom: -2px;
+      flex-shrink: 0;
     }
     .tab-btn:hover {
       color: var(--primary-color);
@@ -88,9 +111,11 @@
       <p class="hero-subtitle">한입이가 오늘의 세상 이야기를 맛있게 정리했어요</p>
     </section>
 
-    <nav class="tabs-nav animate-in animate-delay-1">
-      {{ tabs_nav }}
-    </nav>
+    <div class="tabs-nav-wrap animate-in animate-delay-1">
+      <nav class="tabs-nav" id="tabsNav">
+        {{ tabs_nav }}
+      </nav>
+    </div>
 
     {{ tab_panes }}
 
@@ -169,6 +194,7 @@
 
   <script src="app.js"></script>
   <script>
+    // 탭 전환
     document.querySelectorAll('.tab-btn').forEach((button) => {
       button.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach((btn) => btn.classList.remove('active'));
@@ -177,6 +203,16 @@
         document.getElementById(button.dataset.target).classList.add('active');
       });
     });
+
+    // 모바일 탭 스크롤 힌트 (끝까지 스크롤하면 그라데이션 숨김)
+    const tabsNav = document.getElementById('tabsNav');
+    const tabsWrap = document.querySelector('.tabs-nav-wrap');
+    if (tabsNav && tabsWrap) {
+      tabsNav.addEventListener('scroll', () => {
+        const atEnd = tabsNav.scrollLeft + tabsNav.clientWidth >= tabsNav.scrollWidth - 5;
+        tabsWrap.classList.toggle('scrolled-end', atEnd);
+      });
+    }
   </script>
 </body>
 </html>

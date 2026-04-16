@@ -25,6 +25,14 @@ CATEGORIES = {
         "name": "경제 & 국제정세",
         "queries": ['"경제" OR "금리" OR "환율" OR "국제정세" OR "거시경제"'],
     },
+    "money": {
+        "name": "머니 & 투자",
+        "queries": ['"주식시장" OR "부동산" OR "비트코인" OR "투자" OR "재테크" OR "ETF"'],
+    },
+    "global": {
+        "name": "글로벌 이슈",
+        "queries": ['"미중갈등" OR "트럼프" OR "NATO" OR "중동" OR "지정학" OR "국제뉴스"'],
+    },
     "mobility": {
         "name": "모빌리티 & 우주",
         "queries": ['"전기차" OR "자율주행" OR "스페이스X" OR "항공우주"'],

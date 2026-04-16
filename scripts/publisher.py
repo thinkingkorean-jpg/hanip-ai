@@ -25,6 +25,8 @@ load_dotenv(os.path.join(PROJECT_ROOT, ".env"))
 CATEGORY_CONFIG = {
     "ai_tech": {"name": "AI & 테크", "icon": "🤖", "tab_id": "tab-ai"},
     "economy": {"name": "경제", "icon": "📰", "tab_id": "tab-economy"},
+    "money": {"name": "머니 & 투자", "icon": "💰", "tab_id": "tab-money"},
+    "global": {"name": "글로벌 이슈", "icon": "🌍", "tab_id": "tab-global"},
     "mobility": {"name": "우주 & 모빌리티", "icon": "🚀", "tab_id": "tab-mobility"},
     "startup": {"name": "스타트업 & 혁신", "icon": "💡", "tab_id": "tab-startup"},
 }
