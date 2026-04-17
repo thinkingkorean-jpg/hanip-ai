@@ -1,0 +1,14 @@
+[
+  {
+    "date": "2026-04-17",
+    "success": true,
+    "stages": {
+      "crawler": 3.4,
+      "save": 0.0,
+      "generate": 168.86,
+      "publish": 0.46
+    },
+    "error": null,
+    "total_seconds": 172.72
+  }
+]
