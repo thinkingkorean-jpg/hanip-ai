@@ -67,20 +67,34 @@ def generate_category_content(category_name, articles, model):
 
     news_text = build_article_context(category_name, articles)
     prompt = f"""
-당신은 '{category_name}' 분야의 전문 IT/비즈니스 에디터입니다.
-아래 기사 목록을 보고 독자들이 쉽게 이해할 수 있는 '한입 크기' 뉴스레터 섹션을 작성하세요.
+당신은 '{category_name}' 분야의 전문 에디터이자, MZ세대가 열광하는 뉴스레터 작가입니다.
+아래 기사 목록을 보고 독자들이 "이건 꼭 읽어야 해!"라고 느끼는 콘텐츠를 만드세요.
 
 [오늘의 {category_name} 수집 기사]
 {news_text}
 
-[작성 지침]
-1. 기사 정보는 제목뿐 아니라 링크, 발행시각, 요약까지 함께 참고하세요.
-2. deep_dives는 가장 중요하고 파급력이 큰 이슈 3개를 골라 작성하세요.
-3. quick_news는 나머지 기사 중 핵심 단신 5개를 골라 작성하세요.
-4. deep_dives.body는 반드시 <p>...</p> 구조의 HTML 문단 2~3개로 작성하세요.
-5. deep_dives와 quick_news의 source_url은 반드시 위 기사 목록 중 가장 직접적으로 근거가 된 링크를 넣으세요.
-6. 사실을 꾸며내지 말고, 제공된 기사 정보 안에서만 정리하세요.
-7. 친근하고 위트 있는 해요체를 사용하세요.
+[핵심 원칙 — 반드시 지켜주세요]
+1. **요약만 하지 마세요!** 기사 내용을 넘어서 "+한발자국 더" 인사이트를 반드시 포함하세요.
+   - 예: "이게 왜 중요하냐면…", "다른 나라에선 이미…", "이 흐름이 계속되면…"
+   - 독자가 "아 그래서 이게 나한테 어떤 영향을 주는 거지?" 에 대한 답을 줘야 합니다.
+
+2. **말투는 에너지 넘치고 위트 있게!** 
+   - ❌ "~했다.", "~됐다." → 딱딱한 기사 느낌 절대 금지
+   - ✅ "~했어요!", "~라니까요?", "미쳤죠?", "장난 아니에요" → 친구한테 흥분해서 얘기하는 톤
+   - 감탄사, 이모지, 비유를 적극 활용 (예: "테슬라가 또 한방 먹였어요 🥊")
+
+3. **deep_dives는 3개, 각각 충분히 길게 작성하세요.**
+   - body는 <p>...</p> 구조의 HTML 문단 **3~4개** (최소 300자 이상)
+   - 첫 문단: 핵심 사실 (무슨 일이 있었는지)
+   - 중간 문단: 맥락과 배경 (왜 이런 일이 생겼는지)
+   - 마지막 문단: **+알파 인사이트** (앞으로 어떻게 될지, 독자에게 어떤 의미인지)
+
+4. **quick_news는 5개, 한 줄이 아니라 2~3문장으로 작성하세요.**
+   - "무슨 일이 있었고 → 왜 중요한지" 구조로 쓰세요.
+
+5. 기사 정보는 제목뿐 아니라 링크, 발행시각, 요약까지 함께 참고하세요.
+6. deep_dives와 quick_news의 source_url은 반드시 위 기사 목록 중 가장 직접적으로 근거가 된 링크를 넣으세요.
+7. 사실을 꾸며내지 말고, 제공된 기사 정보 안에서만 정리하되 인사이트는 추가하세요.
 
 응답은 반드시 JSON 형식이어야 합니다.
 """
@@ -90,7 +104,7 @@ def generate_category_content(category_name, articles, model):
         generation_config=genai.GenerationConfig(
             response_mime_type="application/json",
             response_schema=CategoryNewsletter,
-            temperature=0.4,
+            temperature=0.7,
         ),
     )
     return json.loads(response.text)

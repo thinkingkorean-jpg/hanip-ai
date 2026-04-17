@@ -343,8 +343,8 @@ img {
 
 .headline-body {
   color: var(--text-secondary);
-  font-size: 0.95rem;
-  line-height: 1.85;
+  font-size: 1.02rem;
+  line-height: 1.9;
 }
 
 .headline-body p {
@@ -396,16 +396,16 @@ img {
 }
 
 .news-content h3 {
-  font-size: 0.95rem;
+  font-size: 1.02rem;
   font-weight: 700;
   margin-bottom: 4px;
   line-height: 1.4;
 }
 
 .news-content p {
-  font-size: 0.85rem;
+  font-size: 0.95rem;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.7;
 }
 
 /* === Tool Recommendation === */
