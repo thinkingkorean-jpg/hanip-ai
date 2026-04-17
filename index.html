@@ -39,7 +39,7 @@
       top: 0;
       bottom: 0;
       width: 40px;
-      background: linear-gradient(to right, transparent, var(--bg));
+      background: linear-gradient(to right, transparent, var(--bg-primary));
       pointer-events: none;
       z-index: 1;
       opacity: 1;
@@ -47,6 +47,15 @@
     }
     .tabs-nav-wrap.scrolled-end::after {
       opacity: 0;
+    }
+    /* PC에서는 그라데이션 숨기고 줄바꿈 허용 */
+    @media (min-width: 641px) {
+      .tabs-nav {
+        flex-wrap: wrap;
+      }
+      .tabs-nav-wrap::after {
+        display: none;
+      }
     }
     .tab-btn {
       background: none;
@@ -130,19 +139,19 @@
         </div>
         <div class="deep-dives-list">
         <article class="headline-card" style="margin-bottom: 2rem;">
-          <div class="headline-tag">🔥 [DEEP DIVE]</div>
-          <h3 class="headline-title">신세계, 리플렉션 AI와 리테일 혁신 가속화…오픈AI 협력은 잠시 멈춤!</h3>
-          <div class="headline-body"><p>신세계그룹이 리플렉션 AI와 손잡고 리테일 혁신에 본격적으로 나선다는 소식이에요. 고객 경험을 한층 더 끌어올리기 위한 AI 기술 도입에 박차를 가하고 있답니다.</p><p>흥미로운 점은 기존에 논의 중이던 오픈AI와의 협력은 중단하기로 했다는 건데요. 이는 신세계가 자체적인 AI 전략과 파트너십에 더욱 집중하겠다는 의지로 풀이돼요. 앞으로 신세계가 AI를 활용해 어떤 새로운 쇼핑 경험을 만들어낼지 기대되네요!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE5FRUlaQlo2MDVETy1qRE5WeDUweWZkNTJnUmxYVkd5SWFfejVPVm04eW5CdzZXMVlET29mWFdOWlJHaWlpMVQyQ3k5N1hBZw?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+          <div class="headline-tag">🔥 [HOT ISSUE]</div>
+          <h3 class="headline-title">한글(HWP) 파일 바로 읽는 챗GPT 등장! 😲 이제 문서 작업 광속 가능?</h3>
+          <div class="headline-body"><p>여러분, 드디어 올 것이 왔습니다! 챗GPT가 이제 한글(HWP) 파일을 직접 읽고 분석할 수 있게 됐다는 소식이에요. 그동안 HWP 파일은 챗GPT에게는 암호문과 같아서 PDF나 텍스트로 변환해야 하는 번거로움이 있었잖아요? 이제 그럴 필요 없이 바로 업로드해서 요약하고, 질문하고, 심지어 새로운 문서까지 작성할 수 있다니, 대박이죠?</p><p>이게 왜 중요하냐면요, HWP는 국내 공공기관이나 기업에서 정말 많이 쓰는 파일 형식이에요. 그동안 해외 AI 모델들이 HWP를 지원하지 않아서 국내 업무 환경에서는 &#x27;반쪽짜리&#x27;라는 평가를 받기도 했거든요. 하지만 이제 챗GPT가 HWP를 직접 처리하게 되면서 국내 사용자들의 AI 활용도가 폭발적으로 늘어날 것으로 예상돼요. 마치 번역기 없이 외국인과 바로 대화하는 느낌이랄까요? 한국 시장을 향한 오픈AI의 본격적인 러브콜로도 해석될 수 있답니다.</p><p>이 흐름이 계속되면 우리의 업무 방식에도 혁명적인 변화가 올 거예요. 보고서 작성 시간은 확 줄어들고, 복잡한 법률 문서나 정책 자료 분석도 AI가 순식간에 해치울 수 있게 되겠죠. 나아가 국내 소프트웨어 기업들도 HWP 호환성을 넘어 AI 기반 문서 처리 솔루션 개발에 박차를 가할 테니, 앞으로 어떤 신박한 서비스들이 쏟아질지 기대되지 않나요? 이제 &#x27;한글과 컴퓨터&#x27; 뿐만 아니라 &#x27;한글과 챗GPT&#x27; 시대가 열리는 겁니다!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE5VYTFFTjhrNlhtU0tnMlZZRWlZSmpKQU9IVV9DWkZPaXNHUWUzc3luN0dlOUN1RzRSZXRNQVMtZHExQzAwcEptdGZyMGhIVF9DN3RaYmpyTWt5NlQ0ZHZXdGZxa20?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
         </article>
         <article class="headline-card" style="margin-bottom: 2rem;">
-          <div class="headline-tag">🔥 [HOT ISSUE]</div>
-          <h3 class="headline-title">삼성전자, &#x27;AI TV&#x27;로 홈 라이프스타일 혁신 선도…AI 대중화 시대 열어요!</h3>
-          <div class="headline-body"><p>삼성전자가 &#x27;더 퍼스트룩 서울&#x27; 행사에서 &#x27;진정한 AI TV의 완성&#x27;을 선언하며 AI TV 대중화 시대를 열었어요. 북미 가전 기술 세미나에서도 AI 홈 라이프스타일을 선보이며, AI가 단순한 기능이 아닌 생활의 중심이 될 것임을 강조했답니다.</p><p>이제 TV는 단순한 시청 기기를 넘어, AI를 통해 개인화된 콘텐츠 추천부터 스마트 홈 기기 제어까지 담당하는 &#x27;AI 홈의 허브&#x27;로 진화하고 있어요. 삼성전자의 이러한 움직임은 AI가 우리의 일상 속으로 더욱 깊숙이 들어오는 계기가 될 것으로 보여요.</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMinAJBVV95cUxOb3I0WFI2ZDZqemhITkhOZWlpVzk2eUgyLXdNa0U5aXVYSUVPVzlvQjlXdlZWZS1YYnplRFpsSExlMW95NFlXRlV5VEN5SkVHWXBUWHJhWDdRczlJdWJLUTM3TlRYMVhSS1JtTHFOMTVqX1VuWlJyTjdDUExVX1FVVzlpNjZfUWtETEpSQXZjRXJDZFNHNmlvNW5vVkR4a2tmTDFJRnVxem0waUl5cF94TDZhLW5FaEZhTUtURXJIeEhqV3c3TWp2Y1FoalB1aFpMRFpGUUxVT19EeFg0empkeVpENXA5VmJnN3F1eEJXVlpVRW5UZ2JhOEpJLVVfSENmTTJQS1FQQ2I4OFBJTS1yQTNzOTFuVjN5eVBMcg?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+          <div class="headline-tag">🔥 [DEEP DIVE]</div>
+          <h3 class="headline-title">오픈AI, 신약 개발에 &#x27;GPT-로잘린드&#x27; 투입! 🧪 질병 정복 가속화될까?</h3>
+          <div class="headline-body"><p>챗GPT로 세상을 뒤흔든 오픈AI가 이번에는 신약 개발 시장에 출사표를 던졌습니다! &#x27;GPT-로잘린드&#x27;라는 새로운 AI 모델을 선보이며, 복잡하고 시간 오래 걸리는 신약 개발 과정을 혁신하겠다고 나섰어요. 이 모델은 방대한 생체 데이터와 화학 정보를 학습해서 신약 후보 물질을 발굴하고, 임상 시험 성공률을 예측하는 데 활용될 예정이라니, 진짜 AI의 영역은 어디까지일까요?</p><p>신약 개발은 평균 10년 이상 걸리고 수조 원이 드는 고난이도 분야예요. 성공률도 10% 미만이라 &#x27;바늘구멍 찾기&#x27;에 비유될 정도죠. 오픈AI가 이곳에 뛰어든 건, AI의 압도적인 데이터 분석 능력과 패턴 인식 능력이 이 비효율적인 과정을 획기적으로 단축시킬 수 있다는 확신 때문일 거예요. 이미 몇몇 스타트업들이 AI를 활용해 신약 개발 기간을 줄이고 있지만, 오픈AI의 참전은 이 분야에 거대한 파장을 몰고 올 겁니다. 마치 거대한 태풍이 불어오는 것과 같아요!</p><p>이것은 단순히 &#x27;새로운 AI 모델&#x27;의 등장을 넘어섭니다. AI가 이제 특정 산업의 핵심 가치 사슬 깊숙이 파고들어 &#x27;게임 체인저&#x27; 역할을 하겠다는 선언과 같아요. 만약 GPT-로잘린드가 성공적으로 신약을 개발한다면, 우리는 더 빠르고 저렴하게 새로운 치료법을 만날 수 있게 될 거예요. 하지만 동시에 AI가 생명과 직결된 분야에서 오작동할 경우의 윤리적 문제나 책임 소재에 대한 논의도 더욱 활발해질 겁니다. 우리 모두의 건강과 미래에 직접적인 영향을 미칠 테니, 이 소식에 주목해야겠죠?</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1pVXJOUVI1dE4tY3YtX0xJT0wwa3hlWGZlVEtPSkZoWXJFV0FTYXlDaHN6SGd2bXlWQWNJS3R2cTNLLXBRZk9Ral8xOTFVd0ZHNzNDbU1PckROZ9IBVEFVX3lxTFBxc21zWWhPRGIwXzJ3Wm1QektzZFhzREJqemlvc1VuLU55TUY4bWtRZVFPNjBUUlcxMHJOV0RESXMzNVd4QkpTRFZjYS1TVHFyYW1DeQ?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
         </article>
         <article class="headline-card" style="margin-bottom: 2rem;">
           <div class="headline-tag">🔥 [TREND]</div>
-          <h3 class="headline-title">미국 내 AI·데이터센터 여론 악화…빅테크 상장에도 먹구름 끼나?</h3>
-          <div class="headline-body"><p>미국 내에서 AI와 데이터센터에 대한 여론이 악화되고 있다는 소식이에요. 이는 앤트로픽이나 오픈AI 같은 주요 AI 기업들의 상장 추진에 부담으로 작용할 수 있다고 하네요.</p><p>AI 기술의 급속한 발전과 함께 에너지 소비, 개인 정보 보호, 일자리 문제 등 사회적 우려가 커지면서 대중의 시선이 마냥 긍정적이지만은 않은 상황이에요. 이러한 여론 악화는 AI 산업의 성장 속도와 방향에도 영향을 미칠 수 있어, 기업들이 기술 개발뿐 아니라 사회적 책임에도 더욱 신경 써야 할 시점이에요.</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE9vVVE2VUhIc19hWjdlcS1pT09pZlFnV3hrd21kb01LbkFkV3lSVEU1cC15LWVLVjJaZUY2ZVAxbHQwelFCdTZjbk4zdDVKdHA0OXRXYkVKbUNVdGdpdHZkUS1JY2t4dDdmWVBuTTlaVnZzcFE?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+          <h3 class="headline-title">삼성SDS, &#x27;AI 풀스택&#x27;으로 기업 혁신 가속화 선언! 🚀 한국형 AX 시대의 리더?</h3>
+          <div class="headline-body"><p>삼성SDS가 &#x27;AI 풀스택&#x27; 전략을 공개하며 제조, 유통, 서비스 분야의 &#x27;AX(AI Transformation) 파트너&#x27;가 되겠다고 선언했어요! 단순히 AI 솔루션을 제공하는 것을 넘어, AI 모델부터 클라우드 인프라, 보안까지 AI 기술의 모든 스택을 한 번에 제공하겠다는 야심 찬 계획이죠. 마치 AI 시대의 &#x27;원스톱 쇼핑&#x27;을 제안하는 것 같지 않나요?</p><p>이 전략의 핵심은 기업들이 AI 도입에 겪는 어려움을 한 번에 해결해주겠다는 거예요. 많은 기업이 AI를 도입하고 싶어도 복잡한 기술 스택, 전문 인력 부족, 보안 문제 등으로 골머리를 앓고 있거든요. 삼성SDS는 자체 개발한 생성형 AI &#x27;브리티 코파일럿&#x27;과 클라우드 플랫폼을 기반으로 이러한 난관을 뚫어주겠다는 겁니다. 이는 삼성SDS가 국내 기업용 AI 시장에서 독보적인 위치를 차지하려는 강력한 의지를 보여주는 것이자, 국내 기업들의 디지털 전환을 가속화하겠다는 약속이기도 해요.</p><p>삼성SDS의 풀스택 전략은 국내 AI 시장의 판도를 바꿀 중요한 시그널이에요. 대기업들의 AI 도입이 더욱 활발해지면서 관련 생태계도 빠르게 성장할 것으로 기대됩니다. 우리 주변의 제조 공장이, 유통 시스템이, 그리고 서비스 산업 전반이 AI를 만나 얼마나 똑똑하게 변할지 상상해보세요! 다만, 삼성SDS가 얼마나 다양한 산업군에 최적화된 AI 솔루션을 제공하고, 중소기업들까지 아우를 수 있을지가 관건이 될 거예요. K-AI의 저력을 보여줄 기회가 될지, 앞으로 행보를 지켜봐야겠습니다!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE9PN0V4Ykc4VnF6blVUSDJhbk5jQ0RZa3hmWjQ4dDBhX1B6SmZKTDFfXzRRVmJOYVVYSUJseFpPWFNUbkFpYWRwSG44T2tRSEUwc2E3STNmSGJrUndPVzdIendHblE?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
         </article></div>
       </section>
       <section class="section">
@@ -153,41 +162,41 @@
         <div class="news-item">
           <div class="news-bullet">1</div>
           <div class="news-content">
-            <h3>관악구, AI 행정 서비스로 주민 편의 높여요!</h3>
-            <p>관악구가 AI 기반 스마트 행정을 본격화하며 주민 체감형 서비스를 확대하고 있어요. 이는 AI가 지방 정부 서비스의 효율성과 편의성을 높이는 데 중요한 역할을 하고 있음을 보여준답니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE5UdHUtM3VFS2ZhVWQ1VE80U05UQjN4YmNkbnlXNTZXQzB6WjN6Umg1czJBNUd4Ml9lU0JKNGZ2eGtOX05PQ1RCdzVPTmc0Mk81M2xWQW1xcWxKUG9YeXNFcUR3ZHp1Zw?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>AI가 만든 &#x27;가짜 파손 사진&#x27;으로 보험사기 급증! 😱</h3>
+            <p>사고도 안 났는데 AI로 파손 사진을 뚝딱 만들어 보험금을 타내는 사기가 급증하고 있어요. AI의 발전이 편리함을 주지만, 동시에 범죄에 악용될 수 있다는 경각심을 일깨워주는 소식입니다.</p>
+            <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE9vMllCczNZNGM4ME0tWHU3Ui1QVlk4MGtHS1pVQlpRS2dianFZdmpJMS1NNGVQVUQ2UDZrcWhXR3lCOGMtSHhoSEk3bGVVeExOdHFVb1RPakFmZVh5WXdKMHlsMTd5dU5rUWhwd2ttdG1WODTSAWZBVV95cUxPeURSZU9ZU2JmUVB6V2N1UHpwV0pCZjJMb3pTaFAwMXhOWExQVnE4a2tUeFJkZ0l4UHk2NVI1T0dxc1R3eUEzM3c2M1k3aVNRdklYa1NZd3ZhQlBBQ3VmdU1OUUE3VkE?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">2</div>
           <div class="news-content">
-            <h3>XYZ로보틱스-LX판토스, 물류 자동화에 피지컬 AI 도입!</h3>
-            <p>XYZ로보틱스와 LX판토스가 피지컬 AI 물류 자동화를 위한 MOU를 체결했어요. 이 협약은 물류 산업에 첨단 AI 로봇 기술을 도입하여 효율성을 극대화하고 운영 비용을 절감하는 데 기여할 것으로 기대돼요.</p>
-            <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTFBxS21vSGZLbzNVU3QyaF9GVGVrZ2p1WHFJWTRZNUM2X1VOVDc2Skd6aVlscmxOWlhuVHdTekZYWmpQQmtqeHJoRFRZeGRudTJXc1hNZG9tbzlGOVhWZlhJ?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>경북, AI로 &#x27;특수 모빌리티&#x27; 개발 시동! 🚜</h3>
+            <p>경상북도가 AI 기반의 특수 목적 모빌리티 개발에 나선다고 해요. 농업, 재난 구조 등 특정 분야에 최적화된 AI 모빌리티가 지역 산업의 혁신을 이끌고 우리 삶을 더 안전하고 편리하게 만들 수 있을지 기대됩니다!</p>
+            <a href="https://news.google.com/rss/articles/CBMiTEFVX3lxTE1qWVZfaFhxUWZRaEhOSDg5V050cnJZSW93Ui04TS1ja1FINXNjdnUwTXlTa2ZIUnVneDlHZGdOYllfeFJJUUNMX1VhOEc?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">3</div>
           <div class="news-content">
-            <h3>고객지원 챗봇 노린 &#x27;AI 토큰 무임승차&#x27; 확산…기업 예산 비상!</h3>
-            <p>고객지원 챗봇을 노린 &#x27;AI 토큰 무임승차&#x27;가 확산되면서 기업들의 AI 예산에 비상이 걸렸어요. 이는 AI 시스템을 악용하는 새로운 보안 위협이 등장하고 있음을 보여주며, 기업들의 더욱 강력한 보안 대책 마련이 시급함을 알리고 있어요.</p>
-            <a href="https://news.google.com/rss/articles/CBMiugJBVV95cUxQQzhQd0I4YjdFazZYdFNTNi1TdG43dmloblE1TkVZc0YxZXBkdEZWMmJlX3B1VnBGZkY3VU1yd3VmSlczTm9yVDVlYVdZeHJ3RS05Sm1vaGpIN3ZuUTVzQWpGYlNrUEVyMGZFUXNtWnFsZm1hajNoemtsc09RaVROcUR0YkUzNzZKa2JscFo1TVp0NlVYb1k4NHNlTWdIWU1aY2xaT1lsNUY1bnd6c3J5cW5oc1ZCZ2ZVSFhrTC1WVWJSVGhtd3NlQm15ZjEwOXF0WFJ4WTVnUUsxLVZkdVZRb2sxVWZiY0hrQ2pQckp1MDlicU9pVlN0bU1TX0ptVUN0UkxNSlBudjQ5MVlleTdKWC1OMU5KUjduTDJkY0RwdTROOHB5YmZBRmY4dDl3VXc2VHR1Zk40M3U0QQ?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>한국 화학계, AI 도입 안 하면 &#x27;종속&#x27; 경고! 🚨</h3>
+            <p>한국 화학계가 AI와 자동화를 도입하지 않으면 국제 경쟁에서 영원히 뒤처질 수 있다는 강력한 경고가 나왔어요. 이는 비단 화학계뿐만 아니라 모든 산업 분야에 AI 도입이 선택이 아닌 필수가 되었음을 보여주는 메시지입니다.</p>
+            <a href="https://news.google.com/rss/articles/CBMiVEFVX3lxTE9vRlJJZzh4V3hYNzlWWG1hY3h3M1Nqc3lRR0NZZXBseVZocS1EdnBmOW1ld01CSmdCZGhaZmh5Uzh5dUZ4ZFltSVRHYjlYNm5OdTVTTA?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">4</div>
           <div class="news-content">
-            <h3>직방, AI로 집 주변 범죄 이력까지 분석하는 &#x27;지킴 진단&#x27; 서비스 출시!</h3>
-            <p>직방이 계약 전 AI가 집 주변 범죄 이력까지 분석해주는 &#x27;지킴 진단&#x27; 서비스를 출시했어요. 이 혁신적인 서비스는 사용자의 안전을 강화하고 부동산 거래 시 중요한 정보를 제공하여 더욱 현명한 결정을 돕는답니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMimAFBVV95cUxPdEhEOTZBbW5VOXBPdm1xYjNXWmpNakl4Q3o0LWJVdVMyRmpBM0JCM0c3cXdZdWlpM01CR3FZOUwxTE56UkJBSk1vS0hHLVlwTDlUSU1LUnFCS2tmazNGSGtvVnZqaFFPRnJPQXpMeG1WX0NibFFoRFo5bHZVb1djMUtDT3NzSTV4TmZBdWxlT3hoUTY5TUJwNQ?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>누리호에 AI 탑재? 우주청, &#x27;우주 데이터센터&#x27; 논의!</h3>
+            <p>우주청이 우주 데이터센터 구축을 논의하며, 누리호에 AI 핵심 기술을 탑재해 실증하겠다고 밝혔어요. AI가 이제 지구를 넘어 우주 탐사와 활용의 효율성을 극대화하는 데까지 활용될 거라니, 정말 미래가 눈앞에 다가온 것 같지 않나요?</p>
+            <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE1aMktIeFFSWlo5Y2FLNDFScUo0SzFtVEJpbHhUbTJfaDl2bGtZDY2UtNnpUZnNhX1o2bEZQRTFJYWhoM3NCMDhBaUFYRWxpa2phV3JtNVUybFRubGVZMHdqdm4tSHBJVmVxSVE?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">5</div>
           <div class="news-content">
-            <h3>美, &#x27;미국산 AI 수출&#x27;에 외국 기업 참여 허용…삼성·SK에 희소식!</h3>
-            <p>미국이 &#x27;미국산 AI 수출&#x27;에 외국 기업의 참여를 허용하기로 했어요. 이는 삼성과 SK 등 한국 기업들의 의견을 수용한 것으로, 글로벌 AI 공급망에 큰 영향을 미치고 국제적인 AI 개발 협력을 촉진할 수 있는 중요한 정책 변화로 평가돼요.</p>
-            <a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE4wVzBVQ28yenVFdFJ3MnUwRG5IVjJ5R0hpYUxKdUdlZkxlaDRjdGNUbmJEM1hPMEJOM2ZrdFhod3pVazdyVlhPUzZBb2Nnakk?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>이글루코퍼레이션, AI 특허 4건으로 &#x27;자율형 SOC&#x27; 고도화!</h3>
+            <p>이글루코퍼레이션이 AI 관련 특허 4건을 취득하며 &#x27;자율형 SOC&#x27; 고도화에 박차를 가하고 있어요. 이는 AI 기반 보안 기술이 더욱 중요해지는 시대에, 기업들이 스스로 위협을 감지하고 대응하는 스마트한 인프라를 구축하려는 노력을 보여줍니다.</p>
+            <a href="https://news.google.com/rss/articles/CBMickFVX3lxTE9VVnVnRnJacC1BOVE4RE1wUVo5U0oxTlNjMDBJcF9KM0Q2TGF3WlF5WTl0TFN0SlRzeVpwNWVkcng4UjBEQWRQVkhrc1R5aTJrWWpLNks3YVFKaTJDUml0RHJQT3RaV3RIUU1zZDFMT0xJZw?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div></div>
       </section>
@@ -201,18 +210,28 @@
         <div class="deep-dives-list">
         <article class="headline-card" style="margin-bottom: 2rem;">
           <div class="headline-tag">🔥 [HOT ISSUE]</div>
-          <h3 class="headline-title">원/달러 환율 1480원대 돌파, 심상치 않은 고공행진</h3>
-          <div class="headline-body"><p>원/달러 환율이 심상치 않은 움직임을 보이며 1480원대를 돌파했어요. 오늘 개장과 동시에 6.8원 오른 1481.4원을 기록하며, 연일 고공행진을 이어가고 있답니다. 이는 국내외 경제 상황에 대한 불안감을 반영하는 것으로 보여요.</p><p>특히 유가 반등 등의 요인이 환율 상승 압력을 더하고 있어, 당분간 1480원 초반대에서 등락을 거듭할 것이라는 전망도 나오고 있어요. 기업들의 수출입 비용 증가와 물가 상승 압력 등 우리 경제 전반에 미칠 파급 효과에 대한 우려가 커지고 있답니다.</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxQQnRBWE5jTHItWkRaaVpFYVBiaTkteHFoeWdxaXBlRFNxLVpGblQ4alRndDVEVmJpYjhTM2xEMWtwSXNkX2FyYU92V1BnaG9WTHFpM2xqTEVld1VmaHIxWXdfeDFSb3RrLVNuSWxkQ1dXSzVtQ0FNdUZET0FrT1VxV0RpVlVld9IBmgFBVV95cUxPSlpWVjBwN1R2QXFiX0ZMbzBOR0VzUUk2UkhqaVVJMUx0YXVObngyVDZvRU9fSWhKTDRlT2ExZHNrV2YzeTZLeFRzMjdWVDdrZjcyQmhlUS1rci10aWlDMk5HTnNodHM0aWE4SHpITWFNclU0c19ySGV0UVpNTXNNc2NVWThqWktZbnBjbk4yU0czY3IxZEt5R2Zn?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+          <h3 class="headline-title">중동 리스크, 글로벌 경제를 뒤흔들다! 끝나지 않는 전쟁의 그림자</h3>
+          <div class="headline-body"><p>중동 전쟁이 장기화될 조짐을 보이면서 전 세계 경제에 비상이 걸렸어요! 우리 정부도 &#x27;경제 하방 위험이 커졌다&#x27;며 강력한 경고 메시지를 날렸답니다. 이스라엘과 하마스 간의 2차 종전 협상 소식이 들리면서 잠시 안도감이 퍼지기도 했지만, 언제든 다시 불확실성이 고조될 수 있는 아슬아슬한 상황이 계속되고 있어요.</p><p>이게 왜 중요하냐면, 중동 지역의 불안정은 곧 글로벌 유가 상승 압력으로 직결되기 때문이에요. 유가가 치솟으면 물류비가 오르고, 이건 고스란히 우리 장바구니 물가 상승으로 이어지게 되죠. 게다가 전쟁이 길어지면 글로벌 공급망이 또 흔들릴 수 있고, 이는 전 세계적인 투자 심리 위축으로 이어져 경제 전반에 먹구름을 드리울 수 있어요. 실제로 중동 우려 약화로 미국 주택담보대출 금리가 4주 만에 최저치를 찍었다는 소식은, 이 지역 정세가 얼마나 금융 시장에 큰 영향을 미치는지 보여주는 반증이기도 해요.</p><p>그렇다면 우리에게 어떤 영향을 줄까요? 가장 먼저 체감하게 될 건 바로 물가 상승이에요. 기름값이 오르면 모든 제품 가격에 영향을 미치고, 이는 곧 우리의 생활비 부담 증가로 연결된답니다. 또한, 주식이나 채권 같은 투자 시장의 변동성이 커질 수 있으니, 당분간은 보수적인 투자 전략을 유지하는 게 현명할 것 같아요. 이 갈등이 장기화되면 글로벌 경기 침체 가능성까지 점쳐지고 있으니, 계속해서 국제 정세에 촉각을 곤두세워야 할 시점이에요!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1MV3VwTVA3aUxFVFFzZjBLUy1MUmpEZms0c2ZqX1V2ZjhIcTBlUHFxNktJWmpNN05ua1V3NW1SMGJZc2hLWnlsdDdsV3hjUTZ4dXhLV25sWmJfZ9IBX0FVX3lxTE9JVUxMZDd0TzZmRElxTlNaanc3YzEta1JrTnppTHdHVDl0MlpsaEx6UVlHQ1RrUkVZMlp6bGM1OFhfVzNSeFcybmFGeFFtcTU4S3RKM1RrTng4RDJSMkxn?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
         </article>
         <article class="headline-card" style="margin-bottom: 2rem;">
           <div class="headline-tag">🔥 [DEEP DIVE]</div>
-          <h3 class="headline-title">&#x27;경상흑자=원화 강세&#x27; 공식 깨졌다? 한은의 경고</h3>
-          <div class="headline-body"><p>놀랍게도, 우리나라의 경상수지 흑자에도 불구하고 원화 가치가 약세를 보이는 현상이 지속되고 있어요. 과거에는 경상흑자가 원화 강세로 이어지는 것이 일반적이었지만, 이제는 그 공식이 깨졌다는 분석이 나오고 있답니다. 한국은행은 이에 대해 &quot;해외자산 선호 현상으로 환율 민감도가 높아졌다&quot;고 진단했어요.</p><p>이는 국내 개인 및 기관 투자자들이 해외 주식, 채권 등 해외자산 투자를 크게 늘리면서 달러 수요가 증가했기 때문으로 풀이돼요. 즉, 국내로 유입된 달러가 다시 해외로 빠져나가면서 원화 강세 요인을 상쇄하고 있는 거죠. 이러한 &#x27;환율 뉴노멀&#x27; 시대에 대한 심층적인 이해가 필요해 보여요.</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMicEFVV3lxTE4yZl9Jc0ZjaURJRXZRN0RGMGlTSEdmVGJXTDhjbERWazJ0MTNNdV8tTXlMTFZjdm56bEtGVFc2d0t0ei1Md0JIWmZHNVVyYWRfT2pBZ2lxaXo3VWlSVmhRMkN4LS1XV1NocmhOTUxQdms?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+          <h3 class="headline-title">&quot;흑자인데 왜 환율이 이래?&quot; K-환율 미스터리, 그 숨겨진 진실은?</h3>
+          <div class="headline-body"><p>지금 한국 경제, 뭔가 이상해요! 경상수지는 흑자를 기록했는데도 원/달러 환율은 고공행진을 멈추지 않고 있거든요. 한국은행이 그 이유를 발표했는데, 정말 놀랍죠? 보통 경상수지 흑자는 외화가 국내로 많이 들어왔다는 뜻이라 환율 하락 요인인데, 이번엔 달랐어요. 대체 무슨 일이 있었던 걸까요?</p><p>그 비밀은 바로 &#x27;외국인 돈잔치&#x27;와 &#x27;민간의 해외투자&#x27;에 숨어 있었답니다. 한국 기업들이 벌어들인 돈으로 외국인 투자자들에게 배당금을 지급했는데, 이 외국인들이 받은 배당금을 다시 달러로 바꿔 본국으로 송금하면서 달러 수요가 폭발적으로 늘어난 거예요! 게다가 국내 기업과 개인들이 해외 주식, 부동산 등 해외 자산에 대한 투자를 엄청나게 늘리면서 달러가 해외로 빠져나가는 속도가 빨라졌다고 해요. 결국, 달러가 들어오는 것보다 나가는 속도가 더 빨랐다는 거죠.</p><p>이런 고환율 상황은 우리 삶에 어떤 영향을 미칠까요? 일단, 해외여행을 계획하고 있다면 환전 비용이 부담될 수밖에 없겠죠? ✈️ 또, 해외에서 수입하는 물품이나 원자재 가격이 오르면서 물가 상승 압력이 더 커질 수 있어요. 우리의 장바구니가 점점 더 무거워진다는 뜻이죠. 물론, 수출 기업들에게는 유리한 환경이 될 수 있지만, 전체적인 경제 활력에는 부정적인 영향을 미칠 수 있답니다. 환율 변동성에 대비해 똑똑한 재테크 전략을 세우는 것이 그 어느 때보다 중요해졌어요!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTE9xUDVoX09neW9jNWJYeHk0c2xwZUNBeS0tTS15ZGpkTFZnaTBLdkdiMzVPQUcyVXA3bm4yZ3d1UHZQMVdZR2pKV2xXZllKVXFmSjB0Yi1iZDNlc1JqdERtcVBzSEl1RTRWd0dIUlJWekZqaDFXT3fSAWZBVV95cUxQUDhYdmxMWmJnR2kzNHFxRC1uSklNNW50UDdoNnNicWY4LU1EbzNVOGNGZkNlZWpnM1Y0NTFiNHFxaE91YmFneUxtQkR3bF9VTVdOQ2ZfOXNreUpPX25nWHozTlE?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+        </article>
+        <article class="headline-card" style="margin-bottom: 2rem;">
+          <div class="headline-tag">🔥 DEEP DIVE</div>
+          <h3 class="headline-title"></h3>
+          <div class="headline-body"><p>글로벌 금리 시장이 롤러코스터를 타고 있어요! 🎢 미국에서는 주택담보대출 금리가 4주 만에 최저치를 기록하며 한숨 돌리는 분위기인데, 바다 건너 일본에서는 중앙은행 총재가</p></div>
+        </article>
+        <article class="headline-card" style="margin-bottom: 2rem;">
+          <div class="headline-tag">🔥 DEEP DIVE</div>
+          <h3 class="headline-title"></h3>
+          <div class="headline-body"><p>실질 금리가 아직 낮다</p></div>
         </article>
         <article class="headline-card" style="margin-bottom: 2rem;">
           <div class="headline-tag">🔥 [TREND]</div>
-          <h3 class="headline-title">美 사모신용펀드 발 위기설, 금리 인상으로 불 끄나?</h3>
-          <div class="headline-body"><p>미국 금융시장에서 1,800억 달러 규모의 사모신용펀드 부실 우려가 제기되면서 긴장감이 고조되고 있어요. 이는 고금리 환경 속에서 기업 대출 부실이 현실화될 수 있다는 경고음으로 해석된답니다. 이에 대응하여 일부 미국 은행들은 금리를 인상하며 리스크 관리에 나서는 모습이에요.</p><p>사모신용펀드는 비상장 기업이나 신용도가 낮은 기업에 자금을 빌려주는 역할을 하는데, 금리가 오르면 이자 부담이 커져 채무 불이행 위험이 높아질 수 있어요. 만약 이 문제가 확산된다면 글로벌 금융시장에 큰 파장을 일으킬 수 있어, 국제 경제 전문가들의 이목이 집중되고 있답니다.</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFAzaGUyYTlvbVNicWdrcHJzcHZRYnJpbU96U1Vhbnpya0liNWZYTEJhcDVBcHZsU3dIZi1mMTRuU05jZFp5bC1DeDVSQUE1S0E?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+          <h3 class="headline-title">글로벌 금리, 롤러코스터 탑승! 미국은 내리고 일본은 꿈틀?</h3>
+          <div class="headline-body"><p>고 언급하며 추가 금리 인상 가능성을 시사했거든요. 이처럼 각국이 서로 다른 금리 행보를 보이면서 전 세계가 촉각을 곤두세우고 있답니다.</p><p>미국 금리 하락은 중동 지역의 긴장 완화 기대감이 반영된 것으로 보여요. 지정학적 리스크가 다소 줄어들면서 안전자산 선호 심리가 약화되고, 채권 금리가 안정되면서 대출 금리에도 긍정적인 영향을 미친 거죠. 반면, 일본은 수십 년간의 디플레이션에서 벗어나 물가 상승 압력을 겪고 있어요. 그래서 마이너스 금리 정책을 해제한 데 이어, 앞으로도 추가적인 긴축 정책을 펼칠 수 있다는 시그널을 보내고 있는 거예요. 한국은 어떠냐고요? 국내 국고채 금리도 상승세를 보이며 외국인 투자자들의 매도세가 나타나는 등 불안한 모습을 보이고 있답니다.</p><p>이런 글로벌 금리의 &#x27;탈동조화&#x27; 현상은 우리에게 어떤 의미일까요? 미국 금리가 안정되면 글로벌 금융 시장에는 긍정적인 신호가 될 수 있지만, 마냥 안심할 수는 없어요. 일본의 추가 금리 인상은 엔화 강세로 이어져 일본 여행이나 일본 제품 구매에 부담을 줄 수 있겠죠. 💸 우리나라는 미국 금리 정책의 영향을 크게 받기 때문에, 미국 연준의 다음 행보를 주시하면서 우리 대출 금리나 투자 전략을 꼼꼼히 점검해야 해요. 각국 상황에 따라 환율 변동성도 커질 수 있으니, 현명한 재테크와 자산 관리가 그 어느 때보다 중요하답니다!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiW1FVX3lxTFBiVEZMNmc2c0czRW90aFZyWEMxUW9OdTF4WTRuVUxoNzhoYWFwcFI0Z2NHOUlJNWc2OWh5YmxWcE5nb1FfcXlRSU8zQzUzQzlRd29tLXBMb081UDTSAWBBVV95cUxNUWdXcVVBTkY0cXFPbWdJVFF1Q3kwRVJjQTNJZ0ktbDFDNTBtRXBuWkJFT1BUZmtNeGR6Q0Rsb1haWTRMZzhfbUlBTG80aEZaWkZNMnpJLVBSWUNvdW5VYW8?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
         </article></div>
       </section>
       <section class="section">
@@ -223,41 +242,41 @@
         <div class="news-item">
           <div class="news-bullet">1</div>
           <div class="news-content">
-            <h3>경북지역경제교육센터, 교육청과 MOU 체결</h3>
-            <p>경북지역경제교육센터가 경상북도교육청 중등교육과와 MOU를 맺었어요. 이는 지역 경제 교육 활성화에 기여할 것으로 기대된답니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBtZzdvRlU5TkhDZVp2cndwM1NHbm9YOHVadHJ5ODRBMmN4cXZqWTlnMWZMbUtMN3djTEJ5a0hWT0t1RUhZZlU3VUtZcm4xclY3STM0QU9wOUpMLWdNWkNVejIxRXNmTGs?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>G20, 공급망 안정화에 머리 맞댄다!</h3>
+            <p>구윤철 전 대외경제정책연구원장이 G20 차원의 공급망 안정화와 경제 회복 방안 모색을 강조했어요. 불안정한 국제 정세 속에서 글로벌 경제의 기초를 다지는 중요한 논의가 될 전망이에요!</p>
+            <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5yWUhpcUE1NW8yVHdYNVR5SHd3dEpTTXozUnVfMFBqVGFGdExKM0JwWUQxTTFPbjV2WWpiLThEbjIzbEFYcDAyd3ByUjZOWDlJeFJXSU1kUFFoclltZTNqRGwzcF96SmI2Z2FUY25rYk0?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">2</div>
           <div class="news-content">
-            <h3>오늘 주목할 글로벌 경제지표와 일정은?</h3>
-            <p>오늘 발표될 주요 글로벌 경제지표와 일정이 공개되었어요. 투자자들은 이를 참고하여 시장의 흐름을 예측하고 전략을 세울 수 있답니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMicEFVV3lxTE9xck05dU9JYnBOT3F2THFjSmltWXV5WmVwNkpQZzBZN25mRWxRbmlPNVVaT1ZVM0pYRmZNLVR4dmcwbkxJM3Z2dVZ3VGxXNnc5NVVjVWRjLTNsUG5YN0tRb1B0b3E5TFl0SDZza0VVaWPSAXRBVV95cUxNd1ZVRVYyX0oxS3kzZ1QyVGNEMFZPa2NySGo4Y05HRF9nQXJRZi1WV01jVkNRZ25xNkttWG1nSjh1ZmFGXzNIelp0dmozOVl4UWw3UXk1aFlYVkhlU3NIZlF2MmwtbGI3TXUtYzBKQUQ4YXJ4Vw?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>부천시, 축구로 지역 경제 살리기 나섰다!</h3>
+            <p>부천시가 부천FC1995 홈경기와 연계해 관광객 유치 및 지역 경제 활성화를 추진해요. 스포츠와 지역 상권이 시너지를 내는 흥미로운 시도가 기대되네요!</p>
+            <a href="https://news.google.com/rss/articles/CBMi3wFBVV95cUxPR0VnQk9DclpvQ1NCM1NXMEhDNXlIY2F6MFdUTm1jTWJKSzhwTTJVVWM3Y2JnMzg5ZHdQWDM3Y2hoOVZ3YnhuVkVjTEhkelNqc2xkNFd1UU1tSnlyZF9EQ2Zhb2dqUVNCWXE3QmtPWV9TekRCcFFyLXJQcHMzek9oWElqV0FRX2JEVmZoQmRobGxBb09BMVB2cUdOdnZ1Vk5CYlF5MXBzeTlOcjF3MUlhNFlTRG4yUUVjeGpCekdRMlg2eEtKU1dQQ0NjVlVKdGtoVktzdXJrNFRjbm5jUXJn?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">3</div>
           <div class="news-content">
-            <h3>유가 반등에 원/달러 환율 1480원대 등락 전망</h3>
-            <p>최근 유가 반등의 영향으로 원/달러 환율이 1480원 초반대에서 등락할 것으로 전망되었어요. 국제 유가 흐름이 환율 변동에 중요한 변수가 되고 있답니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMibEFVV3lxTE5RYURHVlRIdWswZ214ZkZzRlVNVktoY292SERsbzBSaDJkMWhNS1k4bnhPY0O1TkdhbHp0b3drcmJZc1RRTkFSUUhqVnhqQ0tUdllFdXo1eTFlSXo3clRib0hfNENSczZtZkkxcg?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>외교부, &#x27;경제통&#x27; 김흥종 전 원장 주영국대사로 임명!</h3>
+            <p>외교부가 대외경제정책연구원장을 지낸 경제 전문가 김흥종 박사를 주영국대사에 임명했어요. 글로벌 경제 외교가 더욱 중요해지는 시점에 적절한 인선이라는 평가가 나오고 있어요!</p>
+            <a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBubGgtM2dsc0tkamNFbms5Z3BwLUxacFRhcy1fa0lsZW44SVZOWXJmb2EwOThjemMwM3JYVzV1MUNyOURZdkZuWm5CS0pHSGs?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">4</div>
           <div class="news-content">
-            <h3>환율 뉴노멀 시대, WGBI 편입이 해답 될까?</h3>
-            <p>고환율이 지속되는 &#x27;환율 뉴노멀&#x27; 시대에 한국 국채의 세계국채지수(WGBI) 편입이 환율 안정에 도움이 될지 관심이 쏠리고 있어요. 이는 외국인 투자 유치를 통해 달러 공급을 늘리려는 시도랍니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE5xT1lHTE9oUUhnUUFwOWNrOGJZVGl4bkE4STRjMkJaaHNZWUdqeDAwMmtrVXVpQ0lfNTlzbGRmQ2JvVGU2RVJJeURVQjVxY2hsR3Q0VldWcjdzQjJmRWkydTd0cEE5N0g4clFv?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>국내 국고채 금리 &#x27;들썩&#x27;, 외국인 매도세가 심상치 않아!</h3>
+            <p>국내 국고채 금리가 일제히 상승하며 불안한 모습을 보였어요. 외국인 투자자들의 선물 매도세와 입찰 경계 심리가 맞물리면서 시장 변동성이 커지고 있답니다.</p>
+            <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTFBSVGRyd0hNMU1pQlE3QVRkTnBfS0pfMk1NWnRuVmpxc1k0eU1KZ0pZSF9ndzE5X1g1VjQ2MGkxXzIxVnFqbGZNdEprT2FITmp1azlEbFVobXk3ckI5Ulk2cUhlQzAyTVEtMU9vcTVpeHfSAXRBVV95cUxQbUVJcWJQMlg4U3hLVmhlcTJwOFVGZENJYl9aZnRQZ0ctWGtNN0l1OXhmdHA4dkxDUHVWQk5zTHpXRzdCcm9TUHhxbGlVaHF1c3BFamtXNk8tRXNwZkgzbG1pc1RGTmFtNjhhaW5uSHFUNTZNaw?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">5</div>
           <div class="news-content">
-            <h3>직종별 차별 폐지 촉구 등 사회경제 주요일정</h3>
-            <p>오늘 사회경제 주요 일정으로는 직종별 차별 폐지를 촉구하는 목소리가 있었어요. 이 외에도 다양한 사회경제 이슈들이 논의될 예정이랍니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTFBrS08yLVVfcjN3OHowOE82aHJTYXZSc1Y1YnFiLTNSejg4QzJkMXN2VkpSOU9XMWZmcGRIR1V6ZFUxclJWYkpGcUx1ejNWVHoyUnh1cHNLNENyZmxjbTliNFpvaTFpV3pYTm81VzBkVGxzYkHSAXdBVV95cUxPUUlKZHNVNHRmR3VGQWhkYTF6M2hpUlctSnRRWUY1dGpxQV9KX1hGc3ZuY0RNcGo4dHgzRjFSQXV6TkNXcnkzTXM0d0NhQVJmUG9UQmZTZ0U5QnJzY3RwVVhXaFJ0NV90NUdKbHFXOE8zZWtEcjlSSQ?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>일본 중앙은행 총재, &quot;아직 금리 더 올려야 할지도?&quot; 시그널!</h3>
+            <p>이달 금리 결정을 앞두고 일본 중앙은행 총재가 &quot;실질 금리가 낮다&quot;고 언급하며 추가적인 긴축 가능성을 시사했어요. 수십 년 만에 찾아온 일본의 금리 인상 사이클이 어디까지 갈지 전 세계가 주목하고 있어요!</p>
+            <a href="https://news.google.com/rss/articles/CBMiW1FVX3lxTFBiVEZMNmc2c0czRW90aFZyWEMxUW9OdTF4WTRuVUxoNzhoYWFwcFI0Z2NHOUlJNWc2OWh5YmxWcE5nb1FfcXlRSU8zQzUzQzlRd29tLXBMb081UDTSAWBBVV95cUxNUWdXcVVBTkY0cXFPbWdJVFF1Q3kwRVJjQTNJZ0ktbDFDNTBtRXBuWkJFT1BUZmtNeGR6Q0Rsb1haWTRMZzhfbUlBTG80aEZaWkZNMnpJLVBSWUNvdW5VYW8?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div></div>
       </section>
@@ -271,18 +290,18 @@
         <div class="deep-dives-list">
         <article class="headline-card" style="margin-bottom: 2rem;">
           <div class="headline-tag">🔥 [HOT ISSUE]</div>
-          <h3 class="headline-title">비트코인, 기관 투자자 복귀는 아직? 7만 8천 달러 저항선 돌파가 관건!</h3>
-          <div class="headline-body"><p>최근 비트코인이 반등세를 보이고 있지만, 기관 투자자들의 본격적인 복귀는 아직 미지수라는 분석이 나오고 있어요. 7만 8천 달러 선이 강력한 저항선으로 작용하고 있으며, 이를 돌파해야만 추가 상승 동력을 얻을 수 있다는 전망입니다. 골드만삭스나 블랙록 같은 거대 금융기관들이 비트코인 시장에 &#x27;참전&#x27;하거나 대규모 매집에 나서는 움직임도 있지만, 전반적인 기관 자금 유입은 아직 제한적인 상황이에요.</p><p>특히 미국 연방준비제도(Fed)의 통화 정책 방향이 비트코인 향방을 가를 핵심 변수로 지목되고 있어요. 금리 인상 기조나 긴축 정책이 지속될 경우 위험 자산인 비트코인에는 부담으로 작용할 수 있기 때문이죠. 투자자들은 연준의 움직임과 함께 주요 저항선 돌파 여부를 예의주시하며 신중한 접근이 필요할 것 같습니다.</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE1aY3UyTnljUGFtaGxxOWRsWm14LV9hbzlvbktPOWpNWUZqVTJ3QmxMVGgxN0FxdU0xSGxqRTNRVnNhTElQa25ZdzJTNC1jOUlRUU5kd3VRU3hmS1F4dU9xbFpCQ1Job09VZFRiQWtsTFdDSk0?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
-        </article>
-        <article class="headline-card" style="margin-bottom: 2rem;">
-          <div class="headline-tag">🔥 [DEEP DIVE]</div>
-          <h3 class="headline-title">금융권 VC 새 역사! 신한·미래에셋, 첫 합작 펀드로 투자 혈맹 구축</h3>
-          <div class="headline-body"><p>국내 금융권에 새로운 투자 혈맹이 탄생했어요! 신한과 미래에셋이 손을 잡고 금융권 벤처캐피탈(VC) 최초의 합작 펀드를 출범시킨 건데요. 이는 양사의 투자 역량과 네트워크를 결합해 유망 스타트업 발굴 및 육성에 시너지를 내겠다는 전략으로 풀이됩니다.</p><p>이번 합작 펀드는 단순한 자금 조달을 넘어, 대형 금융그룹 간의 협력을 통해 국내 VC 시장에 새로운 활력을 불어넣을 것으로 기대돼요. 혁신 기업에 대한 투자를 확대하고, 나아가 국내 산업 생태계 전반에 긍정적인 영향을 미칠지 관심이 집중되고 있습니다.</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE5kazJ2R1lfUmJZZ0JYS1dBeWtHTEV2QUdLbHcxSkp4Z1lNenk2a0hXMUtvTkhqLWpucHF4aWJBYXkyUVBhWENnQzhXR3BnQmV0VExUTXBKaXFxdkxpYzltYmRvR0JFQng4VGRiSTl3NUQ?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+          <h3 class="headline-title">비트코인, 12만 5천 달러 간다고? 🚀 현물 ETF가 불 지폈다!</h3>
+          <div class="headline-body"><p>최근 비트코인이 심상치 않은 움직임을 보이고 있어요! 무려 두 달 안에 12만 5천 달러까지 도달할 수 있다는 전망이 나오면서 투자자들의 기대감이 폭발하고 있죠. 이 뜨거운 상승세의 중심에는 비트코인 현물 ETF로의 엄청난 순유입이 자리 잡고 있답니다. 기관 투자자들의 자금이 계속해서 유입되면서 비트코인 시장에 활력을 불어넣고 있어요. &#x27;숏스퀴즈&#x27; 현상까지 더해지면서 가격 상승에 가속도가 붙는 모습입니다.</p><p>현물 ETF의 순유입은 단순히 돈이 들어오는 것을 넘어, 비트코인이 주류 금융 시장에 편입되고 있다는 강력한 신호예요. 과거에는 접근하기 어려웠던 기관과 일반 투자자들이 이제는 손쉽게 비트코인에 투자할 수 있게 된 거죠. 이는 비트코인의 유동성을 크게 늘리고, 시장의 안정성을 높이는 데 기여하고 있어요. 수요는 늘어나는데 공급은 제한적인 비트코인의 특성과 맞물려, 가격 상승 압력은 더욱 커질 수밖에 없답니다. 마치 기름을 부은 불길처럼요!</p><p>이러한 흐름이 계속된다면 비트코인은 단순한 투기 자산을 넘어선 새로운 자산 클래스로서의 입지를 더욱 공고히 할 거예요. 앞으로 기관의 포트폴리오에 비트코인이 필수적으로 포함되는 시대가 올지도 모른다는 거죠. 다만, 급격한 상승 뒤에는 언제나 조정의 위험이 따르니, 너무 흥분해서 무리한 투자는 금물! 신중한 접근과 함께 시장의 변화를 예의주시하는 지혜가 필요합니다. 이 흐름을 놓치지 말고 스마트하게 투자 기회를 잡아가세요!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE5Gdjl6R1NaRk1RZmNIR3JJSkpaRHBnRDA5SHQxdll0Vzl6ZzI5YnZnNW9KSVJrMjg0Qkp6YS01c1duVGpNc2YzR3B0Mjc0VWtzNVRGWkZRUUVSWERkaUFUMnpUYnNuUQ?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
         </article>
         <article class="headline-card" style="margin-bottom: 2rem;">
           <div class="headline-tag">🔥 [TREND]</div>
-          <h3 class="headline-title">해외 주식 투자 열풍과 400조 ETF 시대, &#x27;수출 호조=원화 강세&#x27; 공식 깨졌다?</h3>
-          <div class="headline-body"><p>최근 한국은행 발표에 따르면, 국내 투자자들의 해외 주식 투자가 드라마틱하게 늘어나고 있다고 해요. 과거에는 수출 호조가 원화 강세로 이어지는 경향이 있었지만, 이제는 해외 주식 투자 증가로 인해 &#x27;수출 호조=원화 강세&#x27;라는 공식이 옛말이 되고 있다는 분석입니다. 이는 국내 투자자들이 더 넓은 투자처를 찾아 해외로 눈을 돌리고 있음을 보여주는 중요한 변화예요.</p><p>이러한 해외 투자 열풍과 함께 ETF(상장지수펀드) 시장도 400조 원 시대를 맞이하며 폭발적인 성장을 기록하고 있어요. ETF는 분산 투자와 낮은 수수료 등의 장점으로 개인 투자자들에게 큰 인기를 얻고 있지만, 한편으로는 극심한 변동성으로 인해 &#x27;개미굴&#x27;이 될 수 있다는 경고도 나오고 있습니다. 해외 투자와 ETF는 매력적인 기회인 동시에 신중한 접근이 필요한 분야임을 잊지 마세요!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTFBEQThxSkZkakl5clpfVVNCNzRnZ0tIallmcTY3N3RHNGJGenpRQjRZdDhIU0dVM1pGQnlnZWxUemxQeERfenNSQjBMYndZeG5MeWVURUp1NlFDdXFGU0ZxNmlXaDgyWVk?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+          <h3 class="headline-title">글로벌 바이오 투자, &#x27;비만·당뇨&#x27;에 올인! 💰 220억 달러가 쏟아진 이유?</h3>
+          <div class="headline-body"><p>글로벌 바이오 투자 시장이 지금 &#x27;비만&#x27;과 &#x27;당뇨&#x27; 치료제 개발에 뜨겁게 달아오르고 있어요! 올해 1분기에만 무려 220억 달러(한화 약 30조 원)에 달하는 막대한 자금이 이 분야에 집중적으로 쏟아졌다는 소식입니다. 이는 전 세계적으로 비만과 당뇨 환자가 폭증하고 있는 현실과 맞물려, 관련 치료제 시장의 폭발적인 성장 가능성을 보여주는 명확한 시그널이죠. 돈이 되는 곳에 자본이 몰리는 건 당연한 이치 아니겠어요?</p><p>이러한 투자 쏠림 현상은 단순히 환자 수 증가 때문만은 아니에요. 최근 GLP-1 계열 약물과 같은 혁신적인 비만·당뇨 치료제들이 등장하면서, 이 분야의 치료 패러다임 자체가 바뀌고 있기 때문입니다. 과거에는 관리하기 어려웠던 질병들이 효과적인 약물로 인해 &#x27;치료 가능한&#x27; 영역으로 들어오면서 제약 바이오 기업들의 개발 의지가 활활 타오르고 있는 거죠. 게다가 고령화 사회로 접어들면서 만성 질환 관리의 중요성이 더욱 커지고 있다는 점도 투자를 부추기는 요인입니다.</p><p>이 트렌드는 국내 바이오 기업들에게도 엄청난 기회가 될 수 있어요. 글로벌 시장에서 비만·당뇨 치료제 개발 경쟁이 치열해질수록, 관련 기술을 보유한 국내 기업들의 가치가 재평가될 수 있거든요. 하지만 동시에 치열한 경쟁 속에서 차별화된 기술력과 임상 성과를 보여주지 못하면 도태될 수도 있답니다. 앞으로 비만·당뇨 치료제 시장의 주도권을 누가 잡을지, 그리고 그 과정에서 어떤 혁신이 일어날지 정말 기대되지 않나요? 투자자라면 이 흐름을 절대 놓쳐선 안 될 거예요!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE1sMW9BdWlsNFhpNEpXWjNXSUtUcXV6U0hQdU1QYktCREFOc29tR0dCMHBDNkpMZ3RsYTdMR1JZVTNHTWUtdkFaMF9ZRXVDMk9md2tITC1lWjJDNnpMNVI0aEJwdWlod0x0M3NFOQ?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+        </article>
+        <article class="headline-card" style="margin-bottom: 2rem;">
+          <div class="headline-tag">🔥 [DEEP DIVE]</div>
+          <h3 class="headline-title">월가, 유가 충격에 &#x27;덜덜&#x27;… 📉 주식 시장에 드리운 검은 그림자?</h3>
+          <div class="headline-body"><p>지금 월가에서는 유가 상승세에 대한 우려가 커지면서 주식 시장에 긴장감이 감돌고 있어요. &quot;유가 충격이 여전히 주식 시장에 큰 문제&quot;라는 경고음이 울리고 있다니, 심상치 않죠? 특히 중동 지역의 지정학적 리스크가 해소되지 않고, &#x27;호르무즈 해협&#x27; 같은 주요 해상 운송로가 불안정하다는 점이 유가를 계속 자극하고 있답니다. 기름값이 오르면 물가도 오르고, 기업 이익도 줄어들 수 있으니 투자자들은 촉각을 곤두세울 수밖에 없어요.</p><p>유가 상승은 단순히 주유소 기름값만 올리는 게 아니에요. 전 산업 분야에 걸쳐 생산 비용을 증가시키고, 이는 고스란히 제품 가격 인상으로 이어져 인플레이션을 부추기죠. 중앙은행들이 금리를 내리려고 해도 유가가 발목을 잡는 상황이 벌어질 수 있어요. 고금리가 장기화되면 기업의 투자와 소비자의 지출이 위축되고, 결국 경제 성장률에도 부정적인 영향을 미 미치게 됩니다. 복잡하게 얽힌 실타래 같죠?</p><p>이러한 유가발 리스크는 당분간 주식 시장의 변동성을 키우는 주요 요인이 될 거예요. 특히 에너지 의존도가 높은 산업이나 운송 관련 기업들은 직접적인 영향을 받을 수 있으니 투자에 유의해야 합니다. 한편으로는 에너지 효율 기술이나 신재생에너지 관련 기업들에게는 새로운 기회가 될 수도 있겠죠. 유가 흐름과 글로벌 정세를 면밀히 주시하며 현명하게 포트폴리오를 조정하는 전략이 지금 가장 중요할 때입니다. 과연 월가의 우려가 현실이 될까요, 아니면 새로운 돌파구가 마련될까요? 우리 함께 지켜보자고요!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMicEFVX3lxTE9XTGE1VzJXeTI3TXJvczNqUEc1cTViQTdGdGxPQlkyOTV1UjFzb1pwNGpNcHp3REktUXV3aEU0Ul84ejZrSVBJeDBzQmsxOE01ZHU3TGdVNlZ6RldhMjNWVG1EQ3dsdzZkaWdkNU1lSHfSAXRBVV95cUxNLTZDRWZJLUhuNDRyQUJFODYxVHhXTnF0VWpiOUNNQWRNOFZqeEkxVDJMaWltRW1QLU53WDZFLXBOeVJtZ09DNURWRnVmaGxNUGc5UzIxN2VPbWVyUTV6Sm9kMi1xNjBJY3hzNWw5cTA0a0lsNw?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
         </article></div>
       </section>
       <section class="section">
@@ -293,41 +312,41 @@
         <div class="news-item">
           <div class="news-bullet">1</div>
           <div class="news-content">
-            <h3>부동산 계약, AI가 위험 미리 체크해줘요!</h3>
-            <p>이제 부동산 계약서에 도장 찍기 전, 인공지능(AI)이 잠재적 위험을 분석해주는 시대가 왔어요. 복잡한 계약 내용을 AI가 꼼꼼히 검토해줘서 투자자들의 불안감을 덜어줄 것으로 기대됩니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE5qd0RMcElxR3o2WXpOVEk2YVBlaVdyTEpMeGd1eEllX2pYdldTTXAwZkJVOFVRZTViNER0OVBpZnktajBtSmdBRFFmRnJHdGVIWlNrMElZdGdCd9IBVEFVX3lxTE1salBqeTBHcnEzUmZIU0JqYUl4eVpydmlHc2tJdVhkWFJsbFNiWHNETG1DQlNvckdNMi04ekRTeUxPQTVRelAwX0xXRnRUMHFhdXlpRA?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>금양, 부동산 강제 경매 개시 결정! 무슨 일이야?</h3>
+            <p>금양에 부동산 강제 경매 개시 결정이 내려졌다는 소식이 전해졌어요. 이는 기업의 재정 건전성에 대한 우려를 키울 수 있어 투자자들의 주의가 필요해요.</p>
+            <a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE5CLVBzMlJvZ2Nkc2wxdm0yQnY1RXBGSVl5dmxEZlBQa18xVXBvWE43QWRjVjBicFdCMWJ2eERDemJUVXRLTlR3NjRNWGZyX2tOZmNWSEZsVGJWb0tsOThxOQ?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">2</div>
           <div class="news-content">
-            <h3>수도권 편중 부동산 정책, 지방은 소외되나요?</h3>
-            <p>정부의 부동산 정책이 수도권에만 집중되어 지방 부동산 시장이 상대적으로 소외되고 있다는 비판이 제기됐어요. 지역 균형 발전을 위한 정책적 배려가 필요하다는 목소리가 커지고 있습니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMiY0FVX3lxTE1zaTctTkhkQzdwRGVlMlJfc3pPTUdWRWNWOTQwekxsdU04TzFHQXQ5N2xpbHVyYUtEaVBKNjg4T0JmWjNpRU1vYlcwdEpDelZaVm5UaXBHVy1Obm1acnk3UmRJZw?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>비상장 &#x27;스페이스X&#x27; ETF, 과장광고 논란 터졌다!</h3>
+            <p>비상장 스페이스X를 기초자산으로 하는 ETF가 과장광고 논란에 휩싸였어요. 금투협 심사 사각지대에 놓인 상품들이 투자자들에게 불확실성을 안겨줄 수 있으니 꼼꼼한 확인이 필수입니다.</p>
+            <a href="https://news.google.com/rss/articles/CBMigwFBVV95cUxQZ1ZwbkppNEpJQlU2SkxQQkt6YW9ER2w4T1lRMDZqMjdncjZPclpMdlBrd2pRV21WVVRSY08ySHIwMHo2OGtUdXlmS1o3TUlBS1lnVUt4cm54MERUamtCS21iVjNsbU4xWW9PUldPUjFnVHN5UmRsVS1rYU8tTzg0Z2xPbw?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">3</div>
           <div class="news-content">
-            <h3>월가 최고 전략가, &#x27;혁신 기업&#x27;에 주목하라 조언!</h3>
-            <p>월가의 최고 투자전략가가 &#x27;없던 것을 가능케 하는 혁신 기업&#x27;에 주목해야 한다고 강조했어요. 빠르게 변화하는 시장에서 미래를 이끌어갈 혁신 기술 기업들이 새로운 투자 기회가 될 수 있다는 분석입니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMihgFBVV95cUxQUk9OZVhqRjFyOXN0aHVUNjM5QUFoMGJlUnlMeDBEY08wejFZLXZkYVNJRVJOYU1QakY2T2NQTUNJVnVGLS1WOWI0ZWFzLUYwVEphNEV1VTRVeXgzbVJaTmw2dE1ZSlp6UktOM3Q0dENROEJMaWUtdUhZQTJrTHUyTWlXZ3l6QQ?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>국민의힘, 부동산 장특공제 관련 기자회견!</h3>
+            <p>국민의힘 재경위원들이 부동산 장기보유특별공제 관련 기자회견을 열었어요. 이는 부동산 세금 정책 변화 가능성을 시사하며, 관련 투자자들에게 직접적인 영향을 줄 수 있는 중요한 움직임이에요.</p>
+            <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTFBPUWlfS3BLX2ZydjZ3S21UcFY4eE90bWNiVGlXbU1Id1g1dWNkMWNNNklydnVCSUlrcExaTzVzellRUVo0NUp4RUEyTGdfbHZkMURxeER4U1RTRHF2OU1TM1NiNHRGaTFuTl9F0gFgQVVfeXFMTTVWYkFUT3VHanVEc2NIT3V6Tl9RcHQtNHJzc2VJRl9HZVZ5cEJHbXRsMmI5U1h6V0sta282ZTJwRlZteFZRMUphVV8xYS12QUktRE1lQWxXUERqMDZnRmdY?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">4</div>
           <div class="news-content">
-            <h3>서학개미, 반도체 레버리지 ETF로 랠리 즐겨요!</h3>
-            <p>최근 반도체주 랠리에 힘입어 서학개미들이 반도체 레버리지 ETF를 대거 매수하며 수익을 올리고 있어요. 높은 변동성에도 불구하고 강력한 상승장에 베팅하는 투자자들이 늘고 있습니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE14Nzh1ZTNCb3JLWXpGbUtwV1JXRERPU09CT3RCYUNlSEhLUmdGYTRzdU5xU2ltbXN2eVZYUTN1YzhzQ05CRHJYVVo2UXNkaGc?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>2026 바이오 사외이사, 재편 포인트는?</h3>
+            <p>2026년 바이오 기업들의 사외이사 재편이 주요 관심사로 떠올랐어요. 이는 기업 지배구조와 투명성에 영향을 미치며, 투자 심리에도 중요한 요소로 작용할 수 있습니다.</p>
+            <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE9JS2c3aEVZcVZRZU5RSmk5YzRSeFJSSEgzQUo0OTdncFFvUGkwVDhWWGF4dW5oODlHWWVhTTNZWEhEYTZ5clQxNV9ZVWZUbGNXcWFNdkc3YzBPNmozeWFWdTBzMTZKc3FRQ21r?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">5</div>
           <div class="news-content">
-            <h3>비트코인 흔들려도 XRP는 &#x27;나 홀로 질주&#x27;, 기관 자금 덕분?</h3>
-            <p>비트코인과 이더리움이 주춤하는 사이, XRP가 기관 자금 유입에 힘입어 독자적인 상승세를 보이고 있어요. 이는 특정 알트코인에 대한 기관 투자자들의 관심이 커지고 있음을 시사합니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxQQ0J4N3ZnNVIyaGtMdXJSME1NQ2tDZGEyZkxkWTVIOGZWVloxTkNsUmdOb1VuR25SNll3MENoZFNHdXRyM2xyRURiUXdnNjZKajYzZzNBdllCTjNkdXd1ZHZYYU1Mek83ZGlRRlI4dkJMNnlZRnFnZ3R0dHpLajV6ZGM2Rkp2TFZH?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>미래에셋, VIP 고객 초청 투자 세미나 개최!</h3>
+            <p>미래에셋증권 투자센터평촌WM에서 VIP 고객들을 위한 투자 세미나를 개최했어요. 이는 자산가들의 투자 트렌드와 관심사를 엿볼 수 있는 기회이며, 시장의 주요 흐름을 파악하는 데 도움이 될 수 있어요.</p>
+            <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE9ZbHNlZnAyc1ZhZzl5TC1CdEJBeFBVQlZCN3JFeW9SN3gwMFlIR3FDaElRVUJ5NmIxLU1wbDVTekJBS01pcXBsYjBpcDZRRnR1NWdxYVJZbjBGYmJtM2tR?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div></div>
       </section>
@@ -340,19 +359,19 @@
         </div>
         <div class="deep-dives-list">
         <article class="headline-card" style="margin-bottom: 2rem;">
-          <div class="headline-tag">🔥 [HOT ISSUE]</div>
-          <h3 class="headline-title">이란 핵합의 &#x27;초읽기&#x27;? 트럼프의 파키스탄 방문 카드</h3>
-          <div class="headline-body"><p>도널드 트럼프 전 대통령이 이란과의 핵합의가 &quot;매우 근접했다&quot;고 밝히며 글로벌 외교 무대에 다시 한번 파장을 일으키고 있어요. 이르면 이번 주말에 2차 대면 협상이 열릴 수 있다고 시사하며, 합의가 성사될 경우 자신이 직접 파키스탄에 갈 수도 있다는 파격적인 제안까지 내놓았답니다. 이는 중동 정세의 핵심 축인 이란 핵 문제를 해결하려는 강한 의지를 보여주는 동시에, 과거 트럼프 행정부 시절의 &#x27;톱다운&#x27; 외교를 연상케 해요.</p><p>트럼프는 이란이 &quot;거의 모든 것에 동의했다&quot;고 주장하며 합의에 대한 강한 자신감을 내비쳤어요. 만약 이란과의 핵합의가 실제로 성사된다면, 이는 중동 지역의 안정에 큰 영향을 미칠 뿐만 아니라, 트럼프의 대외 정책 기조와 향후 국제 관계에도 중요한 변곡점이 될 전망이에요. 하지만 구체적인 합의 내용이나 이란 측의 공식 입장은 아직 불확실해, 실제 결과는 좀 더 지켜봐야 할 것 같아요.</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiWkFVX3lxTE1LU0s5cUdIalVRMmdRc2JRUG1RZE9vSjJzVzRVbl9NaGNHWGY3a043OWFiNWdZSVExUGVXQjQ4MEtsTlJvLW1FazI5XzI2UW11X09nNlp1bjE0UdIBX0FVX3lxTE5pV3hqeVgwTEpPRk1fSmlKQ0hJREhXYm54ZUU0VW0xcnJZWGRtOXhMRWVfcEpYaEc1aWJTQTBNbDZTMEotWUpMLVYxd1RPcG83VGpwd0FRN0JTWTYzaWo0?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+          <div class="headline-tag">🔥 DEEP DIVE</div>
+          <h3 class="headline-title"></h3>
+          <div class="headline-body"><p>여러분, 깜짝 놀랄 소식이에요! 트럼프 전 대통령이 이스라엘과 레바논 간의 &#x27;10일 휴전&#x27;을 전격 발표했거든요. 게다가</p></div>
         </article>
         <article class="headline-card" style="margin-bottom: 2rem;">
-          <div class="headline-tag">🔥 [DEEP DIVE]</div>
-          <h3 class="headline-title">이스라엘-레바논, 트럼프 중재로 &#x27;열흘 휴전&#x27; 합의!</h3>
-          <div class="headline-body"><p>중동의 또 다른 화약고, 이스라엘과 레바논 간에 극적인 휴전 소식이 전해졌어요! 트럼프 전 대통령이 직접 나서서 양국 간 &quot;열흘 휴전 합의&quot;가 이루어졌다고 발표했답니다. 이는 최근 긴장이 고조되던 양국 관계에 잠시나마 숨통을 트이게 할 중요한 진전으로 평가돼요. 중동 지역의 복잡한 갈등 속에서 이러한 휴전 소식은 평화를 향한 작은 발걸음이 될 수 있을지 주목됩니다.</p><p>이번 휴전 합의는 트럼프의 중재 역할이 다시 한번 부각된 사례인데요. 이스라엘과 레바논 간의 무력 충돌이 확전될 수 있다는 우려가 커지는 상황에서, 열흘간의 휴전은 대화의 물꼬를 트고 추가적인 외교적 노력을 위한 시간을 벌어줄 것으로 기대돼요. 하지만 단기 휴전인 만큼, 이 기간 동안 영구적인 평화 정착을 위한 실질적인 논의가 이루어질 수 있을지가 관건이랍니다.</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE5sZGlWZXlBLTdMZ0V2WUhiRjByNTlSZEhCZWphcTVNMm1DbzN6a05VTVNMQTNJOV9OdHUtZ3c1RUN0S2d6eXprX2FRd01XZw?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+          <div class="headline-tag">🔥 DEEP DIVE</div>
+          <h3 class="headline-title"></h3>
+          <div class="headline-body"><p>이게 왜 중요하냐면, 트럼프의 &#x27;중동 패키지 외교&#x27; 시도의 핵심이기 때문이에요. 그는 단순히 휴전을 넘어 이란과의 협상을 통해 중동 전체의 평화를 꾀하려는 야심 찬 계획을 가지고 있답니다. 헤즈볼라에게도 &#x27;현명하게 행동하라&#x27;고 경고하며, 중동 내 복잡한 이해관계를 조율하려는 모습이죠. 이 모든 움직임이 트럼프의 대선 캠페인과도 무관하지 않다는 분석도 나오고 있어요. 그의 외교적 수완이 다시 한번 시험대에 오르는 순간입니다.</p></div>
         </article>
         <article class="headline-card" style="margin-bottom: 2rem;">
-          <div class="headline-tag">🔥 [TREND]</div>
-          <h3 class="headline-title">교황 발언 왜곡 논란? 트럼프의 &#x27;진짜 세상&#x27; 발언</h3>
-          <div class="headline-body"><p>트럼프 전 대통령이 교황의 발언을 두고 논란의 중심에 섰어요. 트럼프는 교황이 &#x27;이란의 핵보유가 가능하다&#x27;고 말했다고 주장했지만, 이는 교황의 실제 발언과 다르다는 지적이 나오면서 &#x27;발언 왜곡&#x27; 논란이 불거졌답니다. 트럼프는 이어서 &quot;교황은 &#x27;진짜 세상&#x27;을 이해해야 한다&quot;며, 만약 교황이 이란의 핵보유를 허용한다면 자신은 의견이 다르다고 강하게 비판했어요.</p><p>이러한 발언은 이란 핵 문제에 대한 트럼프의 강경한 입장을 다시 한번 보여주는 동시에, 종교 지도자와의 외교적 마찰 가능성까지 제기하고 있어요. 교황의 발언을 인용하며 자신의 주장을 강화하려 했으나, 오히려 논란을 키운 셈이죠. 국제 사회에서 종교 지도자의 발언은 큰 영향력을 가지는 만큼, 이번 논란이 향후 외교 관계에 어떤 영향을 미칠지 관심이 쏠리고 있어요.</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFB3eFVQVTRUcUQycGZlOXZqSHZLRklzbmhPQ1FxcXRLVExmOXNwdzVDeWo0MXJBOEtxajc3UjF3U0E4ZFQ2dWU3cU1MY1c4a1M1dlpjcC13?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+          <div class="headline-tag">🔥 DEEP DIVE</div>
+          <h3 class="headline-title"></h3>
+          <div class="headline-body"><p>그렇다면 앞으로 어떻게 될까요? 이 10일 휴전이 과연 지속적인 평화로 이어질지, 아니면 일시적인 숨 고르기에 그칠지 전 세계가 주목하고 있어요. 이란과의 협상 가능성 또한 중동 정세의 판도를 뒤흔들 빅 이벤트가 될 수 있습니다. 이 흐름이 계속된다면, 중동 지역의 긴장 완화는 물론, 글로벌 에너지 시장에도 긍정적인 영향을 미칠 수 있겠죠? 하지만 한편으로는 너무 성급한 낙관은 금물! 중동은 언제나 예상치 못한 변수가 가득한 곳이니까요. 우리 모두 촉각을 곤두세우고 지켜봐야 합니다!</p></div>
         </article></div>
       </section>
       <section class="section">
@@ -363,41 +382,41 @@
         <div class="news-item">
           <div class="news-bullet">1</div>
           <div class="news-content">
-            <h3>트럼프, &quot;이란과 합의 근접&quot; 선언</h3>
-            <p>트럼프 전 대통령이 이란과의 핵합의가 &quot;매우 근접했다&quot;고 공식적으로 밝혔어요. 이스라엘과 레바논 간의 휴전 발효 소식도 함께 전해져 중동 정세에 긍정적인 신호로 해석됩니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMidEFVX3lxTFAyWTVlMVpWaFVHMGFQMmNvSVF0N3VodjRrVnZJamJ6TGlQejlmRWpsRUEyWFNZWFl3QmtfeUlPZmhvQjB0aGhyTEFzX01CY2hoazFHai1zc0RpQ2JPMVFkdzRBX1QwMkVIYkFka0p5NEpLbEVU?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>트럼프, 이란과 주말 2차 종전협상 시사!</h3>
+            <p>트럼프 대통령이 이란과의 2차 종전협상을 이르면 주말에 진행할 수 있다고 밝혔어요. 이는 중동 평화 프로세스에 속도를 내기 위한 중요한 움직임으로 해석됩니다!</p>
+            <a href="https://news.google.com/rss/articles/CBMiW0FVX3lxTFBxdFNjUnJ5aWF3RDh5MTBraU1HLUM5ZXRLbDN3UXlvMWdjcG51NlNwWWEtd2Z5cmYtRkdwR0dFT0R4WThLeFJGbFFWYVhSWkxWdjVaRktvRm5oeUnSAWBBVV95cUxNV3hIcldMcnFQcUxBRnBvQ1k1S0x4US1jUkJOOElwTlNmbkFKb0dDRmswWWg4RTdUU19HNjdkbm5qN0hTaTlZcHdwVEt1Xy1GaGw3S3Y0WlJmbk40M2lmWGY?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">2</div>
           <div class="news-content">
-            <h3>트럼프, &quot;합의 시 파키스탄 직접 갈 수도&quot;</h3>
-            <p>이란과의 핵합의가 성사될 경우, 트럼프 전 대통령이 직접 파키스탄을 방문할 수 있다고 언급했어요. 이는 합의에 대한 강력한 의지와 함께, 그의 외교적 행보에 대한 기대를 높이고 있습니다.</p>
+            <h3>파키스탄 직접 방문? 트럼프의 깜짝 외교!</h3>
+            <p>트럼프 대통령이 2차 종전협상이 합의되면 직접 파키스탄을 방문할 수도 있다고 언급했어요. 이는 중동 문제 해결을 위한 그의 적극적인 의지를 보여주는 대목입니다.</p>
             <a href="https://news.google.com/rss/articles/CBMib0FVX3lxTFBRUFoyMWFPUFM4Mmt0OXJjSV9WT3I5dXAzQkxic25ISzFSdWNHUVh2cERiZTJfYU9wanQxSW1vZ2JMOE9zUFM4MVJZdzVZZnZWR2JEZ0JjSklhaUZuejAtX1phdkpISFNmWEdrdXNIdw?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">3</div>
           <div class="news-content">
-            <h3>이스라엘-레바논, 열흘 휴전 발효</h3>
-            <p>트럼프 전 대통령의 중재로 이스라엘과 레바논 간의 열흘 휴전이 발효되었어요. 이는 중동 지역의 긴장 완화에 기여할 것으로 보이며, 향후 평화 협상의 가능성을 열어줍니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMidEFVX3lxTE1WbHdNY29RR2QzRDVZRFhMZlhWU0RxTnFVbDZhbzZwclVGb2xFSG1pRTRMc0pJVjl2OHdSamhDRllVSTNpQnVJSHlWcDZnSGZpVlZLMjd0UFotVkdDcng5c1FsRlJmQ08xMXJDS0wxVm82VlU0?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>헤즈볼라, &#x27;현명하게 행동하길&#x27; 트럼프 경고!</h3>
+            <p>트럼프 대통령이 레바논의 헤즈볼라에게 &#x27;이 중요한 시기에 현명하게 행동하라&#x27;고 경고했어요. 이는 중동 휴전의 안정성을 위한 핵심 변수로 작용할 수 있습니다.</p>
+            <a href="https://news.google.com/rss/articles/CBMicEFVX3lxTFBIMFBXZ2xiOHYtWG12SldFcUpTelhrYVNjdW9BUnZnNmhCR1pna0oteUxpZ3ByUXZMVkM4NkFlSGRPS0paRkRZQ0FoV1FuX0NaV0pDWWNkaTJ2a3VqM3ZlWTkzaVRuU1FXNUM0eWRtVG_SAXRBVV95cUxNaGtKM1lQT0NVay11cG5udFZEVTBkV2NnUFc3Wnk3VWg5dVRXeVM3Q3BNaGMwRllQeGRUSlgwb1F6TzRCdl81WDJUc1lVYWNlNnhoUHJfdUljYTh0SnktM1JYc1lEYm1pYmNFZ1pxc1hFZmRENQ?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">4</div>
           <div class="news-content">
-            <h3>트럼프 &quot;이란, 거의 모든 것 동의&quot;</h3>
-            <p>트럼프 전 대통령이 이란이 핵합의와 관련하여 &quot;거의 모든 것에 동의했다&quot;고 밝혔어요. 이는 협상 진전에 대한 긍정적인 신호로 해석되며, 주말 협상 가능성도 시사했습니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMiUEFVX3lxTE1qbjdFRjJPNzJMcENvdV9NcTNXb2dNRFN5Tlp4VToyZ3VFYy1NQzhxTzNXZldjYmJ6TXhJaXRVS3BHNnE4QWM2Q28tck9WNEx3?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>이스라엘-레바논, 드디어 10일 휴전 돌입!</h3>
+            <p>이스라엘과 레바논이 오늘부터 10일간 휴전에 들어갔습니다. 백악관은 이를 계기로 양측 간 회담을 추진하며 중동 평화의 실마리를 찾으려 노력하고 있어요.</p>
+            <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE9CTmM2MFRTMEMzWmRDM0tSZElvNFRMZjg4QVkxbm9odUZIZTdkRGlOa3NKY20xem9hdTlBRUtmMWlLT0JMbzN5SjV3UEJEYmRfb2ZQS1hYMXlKYk5vd2l6YWdHVm1JcHptX3RmZmdEUVpoRTQ?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">5</div>
           <div class="news-content">
-            <h3>트럼프, 교황에 &quot;진짜 세상 이해해야&quot; 직격탄</h3>
-            <p>트럼프 전 대통령이 교황의 이란 핵보유 관련 발언을 왜곡했다는 논란에 휩싸였어요. 그는 교황에게 &quot;진짜 세상을 이해해야 한다&quot;고 직격탄을 날리며 자신의 강경한 입장을 고수했습니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBHVXA2enhpWWFfeTYyMEtyWHpyeFBtSC00bHlxZDVjUEtjSkhPS0YwY1VHVnJiQzdyYXNxUFlhTmxvTnRsNHo4YU5DcXRxbTg?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>교황, &#x27;소수의 폭군이 세상 파괴&#x27; 트럼프 또 저격?</h3>
+            <p>교황이 &#x27;소수의 폭군이 세상을 유린한다&#x27;며 강도 높은 비판을 쏟아냈습니다. 이는 최근 트럼프 대통령과의 갈등을 암시하는 발언으로, 둘 사이의 신경전이 계속될 전망이에요.</p>
+            <a href="https://news.google.com/rss/articles/CBMingFBVV95cUxOcmZQdWp6ZU1xS3RBTFVQazBMcHNfYk1lLVFRakY3WFgxUjRidTRXdU5FTm1hVUNFOHcwUDYtako1cHo4eTJrT3ZnZmtSel8xSGNtaTlHTDV5d2N4UE4xdE80aEVSMmwycHdrZlZrYW1ITFM4cGZENUJiTDhndVNrWDlVWm1xRjNsMGNoUTd2UXZfS3poWTF0ZVJueVk3dw?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div></div>
       </section>
@@ -411,18 +430,18 @@
         <div class="deep-dives-list">
         <article class="headline-card" style="margin-bottom: 2rem;">
           <div class="headline-tag">🔥 [HOT ISSUE]</div>
-          <h3 class="headline-title">테슬라 로보택시, &#x27;완전 자율주행&#x27;은 아직? 美 규제당국 제동!</h3>
-          <div class="headline-body"><p>일론 머스크가 야심 차게 추진하는 테슬라 로보택시가 미국 규제당국으로부터 제동이 걸렸어요. 규제당국은 테슬라의 로보택시가 &#x27;완전한 자율주행&#x27;으로 보기 어렵다는 입장을 밝혔는데요, 이는 자율주행 기술의 상용화가 아직 갈 길이 멀다는 현실을 보여주는 중요한 신호탄으로 해석됩니다.</p><p>테슬라는 완전 자율주행(FSD) 기술을 통해 로보택시 서비스를 선보이겠다고 공언해왔지만, 실제 도로에서는 여전히 운전자의 개입이 필요한 상황이 많다는 지적이 꾸준히 제기되어 왔어요. 이번 규제당국의 제동은 기술적 완성도뿐만 아니라 법적, 윤리적 문제까지 복합적으로 고려해야 하는 자율주행 상용화의 복잡성을 다시 한번 일깨워주고 있습니다.</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMidkFVX3lxTFBWbjRqOTBEdVBKTHdkellSWmtVSUx0bnZLb21qQzRubmRJaDdXejR3VFhQUjllaVJvbzJXeUlicXNZblhYUm5TN0J3SExGOHdxenFncGRZRzkzSjdNbUlxMjlrYWl6bkwtaEVjQklSLWQ0SmpISmc?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
-        </article>
-        <article class="headline-card" style="margin-bottom: 2rem;">
-          <div class="headline-tag">🔥 [DEEP DIVE]</div>
-          <h3 class="headline-title">일론 머스크, 인류 최초 &#x27;조만장자&#x27; 눈앞? 스페이스X 기업가치 2조 달러 전망!</h3>
-          <div class="headline-body"><p>일론 머스크가 스페이스X의 폭발적인 성장에 힘입어 인류 최초의 &#x27;조만장자&#x27; 타이틀을 거머쥘 수 있다는 전망이 나왔어요. 스페이스X의 기업가치가 무려 2조 달러에 달할 것이라는 분석이 제기되면서, 우주 산업이 단순한 기술 개발을 넘어 막대한 경제적 가치를 창출하는 핵심 분야로 자리매김하고 있음을 보여줍니다.</p><p>스페이스X는 재사용 로켓 기술을 통해 발사 비용을 혁신적으로 낮추고, 위성 인터넷 서비스 스타링크를 전 세계로 확장하며 우주 경제의 판도를 바꾸고 있어요. 이러한 성공은 우주 탐사 및 개발이 더 이상 국가 주도의 영역이 아닌 민간 기업이 주도하는 거대한 비즈니스 기회임을 증명하며, 미래 산업의 핵심 동력으로 주목받고 있습니다.</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiYEFVX3lxTE1pN0t4cHlSOVdQTWtMTVA2Vm94SWpTSnVpSWhSN1ZGYU10NEhBekprWEpibnJaQ2pFNnBXcDRfOXJjQ3hmMUNSNkoyclhsb0NmMnc4UnUwa3Q3WEd4WHRXVNIBeEFVX3lxTFBkdU42bkRzb0EyTVhIaUFfNkFMMHBPRE1Ra2VweFI2dUpYa1BhS3VUczlKOEt3aXcxT2pHakEyX3M2ZWVKRWVRZFhDVVFQYW0xeXdoVV9mR3ROSXZBd1lqcGNjQWtZYVQwdUE1SHZxMnFXZS1yN1p5Yg?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+          <h3 class="headline-title">머스크, 인류 최초 &#x27;조만장자&#x27; 등극 임박?! 스페이스X 상장 초읽기! 🚀</h3>
+          <div class="headline-body"><p>일론 머스크가 인류 역사상 첫 &#x27;조만장자(trillionaire)&#x27; 타이틀을 거머쥘 날이 머지않았다는 소식이에요! 그의 우주 탐사 기업 스페이스X가 상장하면 기업 가치가 무려 1조 달러를 돌파할 것으로 전망되고 있거든요. 이미 스페이스X 관련주들이 들썩이는 걸 보면 심상치 않죠?</p><p>스페이스X는 재사용 로켓 기술로 우주 발사 비용을 혁신적으로 낮추고, 위성 인터넷 &#x27;스타링크&#x27;로 전 세계 통신 시장을 뒤흔들고 있어요. 이런 독보적인 기술력과 미래 성장 가능성 덕분에 투자자들의 기대가 하늘을 찌르고 있는 상황! 하지만 금융 당국은 미래에셋의 스페이스X 마케팅에 우려를 표하기도 하는 등, 과열 양상에 대한 경고음도 나오고 있답니다.</p><p>만약 스페이스X가 성공적으로 상장하고 머스크가 조만장자 클럽에 가입한다면, 이는 단순히 한 개인의 부를 넘어 우주 산업 전체에 엄청난 파급 효과를 가져올 거예요. 민간 우주 개발 경쟁이 더욱 뜨거워지고, 우주를 활용한 새로운 비즈니스 모델이 쏟아져 나올 수 있죠. 우리 삶에도 우주 여행이나 위성 통신이 훨씬 가까워지는 계기가 될 테니, 이 스페이스X발 &#x27;우주 경제 혁명&#x27;을 놓치지 마세요!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTFBoOWd5U3ZjNEVHZkUtNmtOb1htem9zQ1BtLUl6RHNLZlJxbWs4ajg2OThhcjhhMUVDOG1HLU9UNUdPSlg0WFBfem5TVzlwWUZoZ1M3RXlzSDRRcHc4NWfSAWNBVV95cUxPZk5ROTFGR3AtekZrUFBid1p5TElMWTFtampGUWh4UmotYVNyVXVDU1BGN2ZCUGw2YlRmc3VZWnhvMDFfakxDVzdLbzlJZ2c3eDdsUU42dzYzUXlqWHVzMkpKb00?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
         </article>
         <article class="headline-card" style="margin-bottom: 2rem;">
           <div class="headline-tag">🔥 [TREND]</div>
-          <h3 class="headline-title">지커·샤오펑 등 中 전기차 맹공! 국내 완성차 &#x27;내수 사수&#x27; 비상!</h3>
-          <div class="headline-body"><p>중국의 전기차 브랜드 지커와 샤오펑 등이 공격적으로 글로벌 시장에 진출하며 전기차 시장의 경쟁이 더욱 뜨거워지고 있어요. 특히 국내 시장에서도 중국산 전기차의 공세가 거세지면서, 국내 완성차 업체들이 내수 시장을 지키기 위해 사활을 걸어야 하는 상황에 직면했습니다.</p><p>중국 전기차 업체들은 가격 경쟁력과 빠른 기술 혁신을 앞세워 시장 점유율을 빠르게 확대하고 있어요. 이에 맞서 국내 완성차 업체들은 고성능 모델 출시와 충전 인프라 확충, 그리고 차별화된 서비스 제공을 통해 소비자들을 사로잡기 위한 전략 마련에 고심하고 있습니다. 글로벌 전기차 시장의 지각변동이 예상되는 중요한 시점이에요.</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiaEFVX3lxTE5Rc2hFSnVIdzA3bE9nYVJMcjFGOHdQdXd0MVhnMktDV20zWkZhMkFraEtrdUVfbHNNalBGRmNvY3kzaEp1QjBMRW44eVdRV0RxaVRfYllKazdfaU15TUVVMmRVM3hSUmp3?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+          <h3 class="headline-title">자율주행, 이제는 &#x27;직접 제작&#x27;까지! K-모빌리티의 야심찬 질주 💨</h3>
+          <div class="headline-body"><p>국내 자율주행 기술이 한 단계 더 진화하고 있어요! 자율주행 전문 기업 오토노머스에이투지가 단순히 소프트웨어 개발을 넘어, 자율주행 차량을 직접 제작하며 상용화에 박차를 가하고 있다는 소식입니다. 이제는 차량 플랫폼까지 자체적으로 만들겠다는 강력한 의지를 보여주고 있는 거죠.</p><p>그동안 자율주행 기술은 소프트웨어와 센서 개발에 집중되어 왔지만, 이제는 차량 하드웨어와의 통합이 더욱 중요해지고 있어요. 오토노머스에이투지처럼 직접 차량을 만들면, 자율주행 시스템에 최적화된 설계와 성능을 구현할 수 있어 기술 완성도를 극대화할 수 있답니다. 광주나 제주도에서 도시 전체를 자율주행 실증 무대로 삼거나, 순찰 로봇에 AI 자율주행 기술을 적용하는 등, 실생활 적용 사례도 빠르게 늘고 있는 게 바로 이런 노력의 결과겠죠?</p><p>이런 흐름은 국내 자율주행 기술이 단순한 연구 단계를 넘어, 실제 상용화와 시장 선점을 목표로 빠르게 나아가고 있다는 방증이에요. 앞으로는 물류, 대중교통, 심지어 공공 안전 분야까지 자율주행 기술이 스며들면서 우리 일상에 큰 변화를 가져올 겁니다. &#x27;한국형 자율주행&#x27;이 세계 시장에서 어떤 존재감을 보여줄지 정말 기대되지 않나요?</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiZkFVX3lxTE5JRkxOcDNxSWNIaVVBSUk0YUYxT3ZsZk51Wk0tY0M0QXRCWlBiV2E3Q0gwdEZyXzJSdF94UmNwU0FvYWJycG1DTUItWndPUko2T0JpQXI1dFRZRkNGelR6TFk2T251dw?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+        </article>
+        <article class="headline-card" style="margin-bottom: 2rem;">
+          <div class="headline-tag">🔥 [DEEP DIVE]</div>
+          <h3 class="headline-title">테슬라 사이버트럭, 스페이스X에 &#x27;강매&#x27; 논란?! 머스크의 빅픽쳐인가, 아니면… 🤔</h3>
+          <div class="headline-body"><p>테슬라의 야심작 &#x27;사이버트럭&#x27;이 출시된 지 얼마 되지 않아 흥미로운 논란에 휩싸였어요. 스페이스X를 비롯한 머스크 소유의 다른 회사들이 사이버트럭을 대량으로 구입했다는 소식인데요, 이를 두고 일각에서는 &#x27;강매&#x27; 의혹까지 제기되고 있답니다. 이게 대체 무슨 일일까요?</p><p>사이버트럭은 독특한 디자인과 강력한 성능으로 출시 전부터 뜨거운 관심을 받았지만, 생산 지연과 가격 논란 등 우여곡절도 많았죠. 내부 계열사들이 대량 구매를 한 것이 초기 판매량을 끌어올리고 시장에 긍정적인 신호를 주기 위한 전략일 수 있다는 분석이 나와요. 마치 스타트업이 초기 자금을 조달하듯, 머스크 제국 안에서 시너지를 내려는 시도일 수도 있고요. 하지만 동시에, 외부 수요가 예상보다 저조한 것 아니냐는 의구심을 품게 만들기도 합니다.</p><p>만약 이것이 &#x27;강매&#x27;에 가까운 내부 거래였다면, 시장 투명성 논란과 함께 사이버트럭의 실제 경쟁력에 대한 의문이 제기될 수 있어요. 반대로, 머스크가 자신의 모든 기업을 &#x27;테슬라 생태계&#x27; 안으로 끌어들이는 장기적인 비전을 가지고 있다면, 이는 단순한 판매 촉진을 넘어선 전략적 움직임으로 볼 수도 있습니다. 과연 사이버트럭이 머스크의 &#x27;빅픽쳐&#x27; 속에서 어떤 역할을 하게 될지, 그리고 이 내부 거래가 시장에 어떤 메시지를 던질지 앞으로가 더 궁금해지네요!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMickFVX3lxTE9iNDRqLTJFTVBxS1N5XzZXb0JDdXUyTzBtMDFrNjZhRF9NSWZnQVNCMDdCMkt1Y3BWaXRoOS1YS0xweGpHZkY5Z0xtcFA4anNnUWNHX1NqTG5HMDhFTTRlSXhoeTViQ0YzYV9id3NnVnNnZw?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
         </article></div>
       </section>
       <section class="section">
@@ -433,41 +452,41 @@
         <div class="news-item">
           <div class="news-bullet">1</div>
           <div class="news-content">
-            <h3>韓 월드클래스 기업들, 中 선전서 AI·전기차·로봇 &#x27;미래&#x27; 찾다!</h3>
-            <p>AI, 전기차, 로봇 산업의 최전선인 중국 선전을 한국의 월드클래스 기업들이 방문했어요. 이는 빠르게 변화하는 글로벌 기술 트렌드를 파악하고 새로운 비즈니스 기회를 모색하려는 움직임으로 보입니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE5FVkZFY3hhVFc5Qnd5UjR2RlhmSmxVemg1dFNPU29CbnVmSHYycUh1YzBtb1lFbVJBRGE3eDBsck85SFhPcW00RUU4MzBEV1RLcFVrVFI5TGlNM3pSdm1Z?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>BYD 코리아, 강동 전시장 오픈! ⚡️</h3>
+            <p>중국 전기차 강자 BYD 코리아가 강동 전시장을 열고 국내 시장 공략에 속도를 내고 있어요. 이제 출퇴근길에도 BYD 전기차를 직접 체험해보고 구매 상담까지 받을 수 있다니, 국내 전기차 시장 경쟁이 더욱 뜨거워지겠네요!</p>
+            <a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE5IUmFaQjdNUmFlRk85di12WWFMUXRreVJoQ21ybmJxbnBrSDJJZTJ0aVFFSTY4cUE5Q3gtcFVwaEFwNUpDWjBqRjNZeldnelU?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">2</div>
           <div class="news-content">
-            <h3>미래 도심 교통, &#x27;수요 중심 자율주행 대중교통&#x27;이 바꾼다!</h3>
-            <p>수요에 따라 움직이는 자율주행 대중교통 서비스가 미래 도심 교통의 새로운 패러다임을 제시하고 있어요. 이는 교통 효율성을 높이고 시민들에게 더욱 편리한 이동 경험을 제공할 것으로 기대됩니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMibEFVX3lxTE1aTXRqR0FRQWI0NUY5MTZGQmNlNnFDbW9xTWdKalc1c3NwZWxNQTA3elBfbnduYVhxWUszbGpyM3VqREpIQ19mOGdMSFFYdFBueWE3ZGF3UGlsanJJYkE0R3k2WkNNMnlMRmV5VQ?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>광주, 도시 전체가 자율주행 테스트베드! 🤖</h3>
+            <p>광주광역시가 도시 전체를 AI 모빌리티 자율주행 실증 무대로 만들겠다고 선언했어요. 이는 실제 도시 환경에서 자율주행 기술을 검증하고 데이터를 축적해 상용화를 앞당기겠다는 강력한 의지! 미래 도시의 모습이 광주에서 먼저 펼쳐질지도 모르겠어요.</p>
+            <a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTE5aR1NUVGc3My1KZ1l5M3BmMmxxUXRZdUdrYlh4T2hKMVNOcm15SjQY1cGSK7fWSWOoVjE0YjZsZU5ocUk?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">3</div>
           <div class="news-content">
-            <h3>스페이스X에 뭉칫돈! 관련 ETF, 첫날부터 700억 원 투자 유치!</h3>
-            <p>화성에 가지 못해도 스페이스X에 투자하고 싶은 열기가 뜨거워요. 스페이스X 관련 ETF가 출시 첫날에만 700억 원에 달하는 자금을 끌어모으며 우주 산업에 대한 높은 투자 관심을 증명했습니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMiT0FVX3lxTFBTS2xrV3dTZ0NqeE1iZ2xPRHMtWmk2NzZwcWk0OS16SUFVSldLLVVLTmpKSGtDNjJSdlZZZVQ4Q3hEdk5uN2NTSmpNUFNLRFk?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>순찰 로봇이 지키는 우리 동네! 👮‍♀️</h3>
+            <p>이제 AI 자율주행 기반의 순찰 로봇이 국민 안전을 지키는 시대가 왔어요! 조달청이 나라장터를 통해 순찰 로봇 임대 서비스를 공급한다니, 복잡한 곳이나 위험한 구역에서 로봇이 든든하게 우리의 안전을 책임질 날이 머지않았네요.</p>
+            <a href="https://news.google.com/rss/articles/CBMiZ0FVX3lxTE5WM2ZHNXNvajJfMkRrOUs0cm15YnQtcFNGdlFYbnV0R3ExRkFfZ200VU9IRXprNkFRd0NTZTN5TFBoSTRFYW81Snk0MEVvNWNBNk8zOWJCSmFObDlmNUxCLUtIcDJCYVU?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">4</div>
           <div class="news-content">
-            <h3>인천-제주, 항공우주·AI 인재 양성 위해 손잡았다!</h3>
-            <p>인천시와 제주도가 항공우주 및 AI 분야의 초광역 인재 양성을 위해 협력하기로 했어요. 이는 미래 핵심 산업의 경쟁력을 강화하고 지역 균형 발전을 도모하는 중요한 발걸음입니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMiakFVX3lxTE5YTnAtOGZkOEhoaDJRU1c5QU5Yb0dlNG1zTzRCLTE2WkhSUW5Ba1l2T2xLMEp3NjJOLVpTZmpUSmdTVThjTld4Zy1JV2lnUzc3aS0zNUVHdFRNTnV6b3VfaVlreGFNUkNPaXc?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>전기차 충전 요금 50% 할인, 알뜰살뜰 충전하세요! 💰</h3>
+            <p>내일부터 봄·가을 낮 시간 동안 전기차 충전 전력 요금이 무려 50% 할인된다는 반가운 소식이에요. 전기차 유지 비용 부담을 덜어주고 충전 편의성을 높여 전기차 보급 확산에 큰 도움이 될 것으로 기대됩니다!</p>
+            <a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTE1GY2pPN051bklFS1hlOVd3dUd2eFhRN1dQUmc4QkFtc0doM1cwY2c4Sk43dmJURjlIaDFWV1I5TE9oSnd0bS04amFGZEJSNDhlN0tGSHhB?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">5</div>
           <div class="news-content">
-            <h3>포드, 전기차 조직 재정비 단행! 핵심 임원 더그 필드 퇴사!</h3>
-            <p>포드 자동차가 전기차 조직을 통합하며 대대적인 재정비에 나섰고, 이 과정에서 핵심 임원인 더그 필드가 퇴사했어요. 이는 포드가 전기차 전환 전략을 더욱 효율적으로 추진하기 위한 내부 변화로 풀이됩니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMiiAFBVV95cUxORnI4WHl6N3cxNW0yYVNzazMwdG1FUlBaNXNCY1VsMFNVcHVDc0tVS19udVRGTjhzSU15SDFETWkzZm4wRW44dTgxVC0zMkhQVHFZM2VYQWZ0YTRfd0YtSlFHOTNUOE5jaXNObmxuOHdmTmkzSmdQXzFqNnNGSVMtNnBhQnUwdVcx?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>전기차 보조금, K-차는 괜찮을까? 🤔</h3>
+            <p>중국발 전기차 보조금 딜레마가 심화되고 있어요. 자국산 전기차를 밀어주려는 움직임이 강해지면서, 현지 생산하는 현대차 같은 국산 브랜드들도 영향을 받을 수 있다는 분석이 나옵니다. 글로벌 전기차 시장이 점점 더 복잡해지고 있네요!</p>
+            <a href="https://news.google.com/rss/articles/CBMickFVX3lxTE55aEVZLUhGaFUxN3NEN0RROU9GX3B4eFVSN2JweVAtdFF4Q2RSV2xVMTVnNTB0cV84VjNqZWxVM3ZidHpEMGlkaEUzZE9NUGpFUDlvX1gyd1JWWWU3MU9sUVMya0JhUkdLZXB1UXdkVVN5UdIBdkFVX3lxTFB6RDVxdXpRVUxfWm1lcHBfVm1Pc3NKV29UOVRldVpwcGgxZS05QUZ4dXEyaXdtdk9kYVM5M1phTGVicDU1UkRXN1FGczJwbGhoRFFfSGNWQ1ZqODY3V2w3RjdNV0p0em12akZYcS1FS0NubEFubkE?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div></div>
       </section>
@@ -481,18 +500,18 @@
         <div class="deep-dives-list">
         <article class="headline-card" style="margin-bottom: 2rem;">
           <div class="headline-tag">🔥 [HOT ISSUE]</div>
-          <h3 class="headline-title">AI 에이전트 스타트업 &#x27;포크&#x27;, 1000만 달러 투자 유치! 미래를 움직일 AI의 힘</h3>
-          <div class="headline-body"><p>AI 에이전트 스타트업 &#x27;포크&#x27;가 무려 1000만 달러(약 137억 원) 규모의 투자를 유치하며 업계의 뜨거운 관심을 받고 있어요. 이번 투자는 포크의 혁신적인 AI 에이전트 기술력과 성장 잠재력을 높이 평가한 결과로, AI 기술이 우리 삶의 다양한 영역에 깊숙이 침투하고 있음을 다시 한번 보여주는 사례죠.</p><p>특히 AI 에이전트는 단순한 자동화를 넘어, 사용자의 의도를 파악하고 능동적으로 작업을 수행하는 차세대 기술로 주목받고 있어요. 포크의 이번 대규모 투자 유치는 AI 에이전트 시장의 폭발적인 성장 가능성을 입증하며, 앞으로 어떤 혁신적인 서비스들을 선보일지 기대감을 한껏 높이고 있답니다.</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiV0FVX3lxTFBfY3hjemI0VGRTUjA5cDdRelBPQWVSaTRvMHl0M0hKeG5ZR1ItQzRSUUFjRTJud1lRUXQ5QlRjZFFUaU1hSFc0YUlhbHJyc0wtR2NDT3JEbw?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
-        </article>
-        <article class="headline-card" style="margin-bottom: 2rem;">
-          <div class="headline-tag">🔥 [DEEP DIVE]</div>
-          <h3 class="headline-title">한국에 실리콘밸리가 없는 이유? 벤처기업 주식 전자등록률 0.65%의 불편한 진실</h3>
-          <div class="headline-body"><p>한국 벤처기업의 주식 전자등록률이 고작 0.65%에 불과하다는 충격적인 소식이에요. 이는 스타트업 투자와 회수 시장의 투명성과 유동성을 저해하는 심각한 문제로 지적되고 있답니다. 주식 전자등록은 투자자들이 주식 소유권을 쉽고 안전하게 확인하고 거래할 수 있게 해주어, 활발한 투자 생태계를 조성하는 데 필수적인 요소예요.</p><p>전문가들은 낮은 전자등록률이 한국에 &#x27;실리콘밸리&#x27;와 같은 역동적인 스타트업 생태계가 자리 잡기 어려운 근본적인 이유 중 하나라고 분석해요. 투명하고 효율적인 주식 거래 시스템 없이는 투자 유치와 엑시트(투자금 회수)가 어려워지고, 이는 결국 혁신적인 스타트업의 성장을 가로막는 장벽이 될 수 있기 때문이죠. 정부와 관련 기관의 적극적인 개선 노력이 시급해 보여요.</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiVkFVX3lxTFBMdEpvUTk3Q1RhaHhrTXlnQjdFblJ5cW93dkM2OVVhUWJ4U0dMaGVCeC1jaHNoa2lCMTY2a3Q3TEhjaUZWN3lLdUdXMnI1Wk5OcG9YT1J3?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+          <h3 class="headline-title">지역 스타트업 투자, 불붙었다!🔥 &#x27;좋은 팀 + 증명된 숫자&#x27;가 핵심이라니까요?</h3>
+          <div class="headline-body"><p>대경권(대구·경북)에서 스타트업 투자 열기가 후끈 달아올랐어요! &#x27;2026 대경권 엔젤투자포럼&#x27;이 성황리에 개최되면서, 이 지역 스타트업 생태계에 활력을 불어넣고 있죠. 심지어 신용보증기금도 &#x27;스타트업 네스트&#x27; 19기 140개사를 모집하며 유망 스타트업 발굴에 적극 나서고 있어요. 지역 투자 시장이 그야말로 들썩이고 있는 겁니다!</p><p>이런 지역 투자 활성화는 수도권에 집중되었던 자본과 기회가 전국으로 확산되는 긍정적인 신호탄이에요. 지방 소멸 위기 속에서 지역 경제 활성화와 청년 일자리 창출을 위한 핵심 전략으로 스타트업 육성이 부상하고 있다는 증거죠. 투자자들은 이제 단순히 아이디어만 보는 게 아니라, “좋은 팀과 증명된 숫자”를 갖춘 스타트업에 더 주목하고 있답니다. 단순히 잘 포장된 사업 계획보다, 실질적인 성과와 팀의 실행력을 중요하게 본다는 뜻이죠.</p><p>앞으로는 지역 특성을 살린 스타트업들이 더 큰 주목을 받을 거예요. 예를 들어, 대경권은 제조업 기반이 강하니 스마트 팩토리나 로봇 관련 스타트업이, 제주도는 관광이나 청정 기술 스타트업이 유망하겠죠? 투자 유치를 꿈꾸는 스타트업이라면, 우리 팀의 역량과 시장에서 검증된 성과를 명확하게 보여주는 게 필수 중의 필수! 지역을 넘어 글로벌 시장까지 노려볼 수 있는 기회가 될 겁니다. 지금이 바로 지역 스타트업들이 날개를 달 때예요!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiXkFVX3lxTE4xZUZwbVNoMjFxZXd5QzlEYnJSeTg1RGxQbDY2bjVWRzl0RUEzRlpoenJNSzFZTUlyZ2RTUHJfZDJxemtwRVk2c2dmYVlVRXlLXzYxQWpONFZ0dFB1TkE?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
         </article>
         <article class="headline-card" style="margin-bottom: 2rem;">
           <div class="headline-tag">🔥 [TREND]</div>
-          <h3 class="headline-title">웨어러블AI, 중기부 &#x27;초격차 스타트업&#x27; 선정! 모빌리티 혁신 이끌 기대주</h3>
-          <div class="headline-body"><p>웨어러블에이아이가 중소벤처기업부의 &#x27;초격차 스타트업 1000+ 프로젝트&#x27; 모빌리티 분야에 당당히 선정되었어요. 이 프로젝트는 미래 신산업을 이끌 딥테크 스타트업을 집중 육성하는 정부 지원 사업으로, 웨어러블에이아이가 가진 독보적인 기술력과 성장 잠재력을 인정받았다는 의미랍니다.</p><p>모빌리티 분야는 자율주행, UAM(도심항공교통) 등 미래 기술의 집약체로, 웨어러블에이아이의 선정은 이 분야에서 한국 스타트업의 경쟁력을 한 단계 끌어올릴 중요한 계기가 될 거예요. 정부의 전폭적인 지원을 등에 업고 웨어러블에이아이가 어떤 혁신적인 모빌리티 솔루션을 선보일지 귀추가 주목됩니다!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiSEFVX3lxTE9pVk1QOWMzTVBvc2RiVjltWWlVR3NjUWwzRHBISjVYVEc0MGxxaTZsY2VaWEs2YlJnRDBNN2tpb1NhOWw0cWh4TA?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+          <h3 class="headline-title">제주, &#x27;한국의 실리콘밸리&#x27; 꿈꾼다?🌴 스타트업파크로 도약 준비 완료!</h3>
+          <div class="headline-body"><p>제주도가 &#x27;도남 스타트업파크&#x27;를 중심으로 &#x27;제주형 실리콘밸리&#x27;를 조성하겠다는 야심찬 계획을 발표했어요! 한동수 예비후보가 도남·이도동을 제주의 실리콘밸리로 만들겠다고 공약하며, 지역 경제에 새로운 활력을 불어넣을 준비를 하고 있답니다. 와우, 제주가 단순히 휴양지가 아니라 혁신의 허브로 거듭나려는 움직임이라니, 정말 기대되지 않나요?</p><p>왜 제주도가 실리콘밸리를 꿈꿀까요? 아름다운 자연환경과 독특한 문화는 물론, 스마트시티, 블록체인 특구 등 혁신적인 시도들이 끊이지 않았기 때문이에요. 여기에 스타트업파크가 조성되면, 아이디어만 있다면 누구든 도전할 수 있는 인프라와 지원 시스템이 갖춰져서, 제주만의 특색 있는 스타트업 생태계가 빠르게 성장할 수 있는 발판이 마련될 겁니다. 수도권에 집중된 스타트업 생태계의 대안을 제시하려는 강력한 의지가 엿보여요!</p><p>만약 제주형 실리콘밸리가 성공적으로 구축된다면, 지역 경제 활성화는 물론, 수도권 집중 현상을 완화하고 전국적인 균형 발전을 이끄는 데 큰 역할을 할 거예요. 특히 IT, 관광, 친환경 에너지 등 제주의 강점을 살린 스타트업들이 대거 유입되면서 새로운 비즈니스 모델이 탄생하고, 청년들에게는 &#x27;워케이션&#x27;과 &#x27;창업&#x27;이라는 두 마리 토끼를 잡을 수 있는 매력적인 기회가 될 수도 있겠죠? 제주에서 일하고 싶은 분들, 지금부터 주목하세요!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiX0FVX3lxTE9NR0ZoS2ZKc192SWZUX2dqZjVFUVJwdkctV1V5RkRqejB2OF9WV1BuZ09FM1NXdGpMVjBJQk8wbjhiTENHREhBUnNGTnB6TzlUZkQ1OEJfTTFUdmJObUdF?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
+        </article>
+        <article class="headline-card" style="margin-bottom: 2rem;">
+          <div class="headline-tag">🔥 [DEEP DIVE]</div>
+          <h3 class="headline-title">글로벌 AI 스타트업 &#x27;라이너&#x27;, PPT 제작까지 넘본다?! 🚀 업무 효율 끝판왕 등극 예고!</h3>
+          <div class="headline-body"><p>와우, 글로벌 AI 에이전트 스타트업 &#x27;라이너&#x27;가 또 한 건 했어요! 클릭 한 번으로 PPT를 뚝딱 만들어주는 &#x27;슬라이드 생성 기능&#x27;을 도입했다고 해요. 이제 비즈니스 생산성을 극대화하는 것을 넘어, 우리의 업무 방식 자체를 혁신하겠다는 포부를 보여주고 있네요. 이쯤 되면 &#x27;라이너&#x27;는 단순한 AI 도구가 아니라, 우리의 업무 파트너라고 불러야 할 것 같아요!</p><p>라이너는 원래 웹 서핑 중에 중요한 정보를 하이라이트하고 저장하는 서비스로 유명했죠. 그런데 이제는 단순히 정보 수집을 넘어, 수집된 정보를 바탕으로 보고서나 프레젠테이션 같은 결과물을 자동으로 만들어주는 단계까지 진화하고 있는 거예요. 이는 AI가 단순 보조 도구를 넘어, 실제 업무의 핵심적인 부분을 담당하는 &#x27;에이전트&#x27; 역할을 얼마나 더 확장할 수 있는지 보여주는 중요한 사례랍니다. AI가 이제 정말 &#x27;생각&#x27;하는 단계로 가고 있다는 증거죠!</p><p>이런 AI 기반 생산성 도구의 발전은 우리 모두의 업무 환경에 엄청난 변화를 가져올 거예요. 반복적이고 시간이 많이 들던 작업들이 AI 덕분에 획기적으로 줄어들면서, 우리는 더 창의적이고 전략적인 일에 집중할 수 있게 될 겁니다. 미래에는 AI가 우리의 개인 비서이자 팀원이 되어, 업무의 질을 높이고 워라밸까지 찾아주는 시대가 올지도 몰라요. 지금부터 AI 활용법을 익혀두지 않으면, 뒤처질 수도 있다는 사실! 잊지 마세요!</p><p class="news-source"><a href="https://news.google.com/rss/articles/CBMiRkFVX3lxTFBOdGsyMmVkV2R1cUZoN1ZucFhaeEdGc2gzdHhJQTBEQ0NOWmFxRmxmT0Jsa1lEOG1GTVRxLWhVVGdzcVVUVGc?oc=5" target="_blank" rel="noopener noreferrer">원문 보기 →</a></p></div>
         </article></div>
       </section>
       <section class="section">
@@ -503,41 +522,41 @@
         <div class="news-item">
           <div class="news-bullet">1</div>
           <div class="news-content">
-            <h3>신보, &#x27;스타트업 네스트&#x27; 19기 모집 시작!</h3>
-            <p>신용보증기금이 혁신 스타트업 육성 플랫폼 &#x27;스타트업 네스트&#x27; 19기 참여 기업을 다음 달 6일까지 모집해요. 성장 가능성 있는 스타트업이라면 이번 기회를 놓치지 마세요!</p>
-            <a href="https://news.google.com/rss/articles/CBMia0FVX3lxTE9SRXBNb2g1QkcwZm1Nb2wtZ01EakJvVm80a3dkUVRya0RjNWh0LXNvZW5mZEhQQV90czVvc2R1T2o0dG00OTVtMlUyRzdPS041N2dnSE1BR3ZSTHBWODhMc2xENVBsS2JhWWZR?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>씨엔티테크, 농식품 패스트트랙으로 유망 스타트업 15개사 선발!</h3>
+            <p>씨엔티테크가 &#x27;2026 농식품 패스트트랙&#x27;에 참여할 유망 스타트업 15개사를 선발했어요. 농식품 분야의 혁신적인 아이디어를 가진 스타트업들이 빠르게 성장할 수 있도록 지원하는 프로그램이라니, 미래 식량 산업에 관심 있다면 주목해야 할 소식이죠!</p>
+            <a href="https://news.google.com/rss/articles/CBMiRkFVX3lxTE8wS0ZieHdRQTNnWGxnbmZlMWw1Q1A5RUktM3pYcjVMWS14d1VDWk9neDZOTW8wTDNjeFA0SjduZm5iMFFtaWc?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">2</div>
           <div class="news-content">
-            <h3>경산, &#x27;스타트업 월드컵&#x27; 유치로 글로벌 진출 발판 마련!</h3>
-            <p>경상북도가 &#x27;스타트업 월드컵&#x27;을 유치하며 지역 스타트업의 글로벌 진출을 위한 중요한 관문을 열었어요. 이는 지역 스타트업들이 세계 무대로 나아갈 수 있는 좋은 기회가 될 거예요.</p>
-            <a href="https://news.google.com/rss/articles/CBMib0FVX3lxTE11SkNhbURFU1hFTUNZQU5DSzRmZ2puUFdrZVktTy0xUXM3MGhtWUFoRUlGSFJqMlVsWXFWNWI2TnZJLXVhNlJxQVA0TW5jLUFVX05wVlFRbXFlS3d2R0Z2U2FLY0stampDYnRMMVBPYw?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>여행 테크 스타트업 &#x27;링코베이션&#x27;, 프라이머에서 시드 투자 유치! ✈️</h3>
+            <p>여행 테크 스타트업 &#x27;링코베이션&#x27;이 프라이머로부터 시드 투자를 유치하며 가족 맞춤 여행 서비스 &#x27;오아세스&#x27; 고도화에 박차를 가하고 있어요. 팬데믹 이후 폭발적으로 늘어난 여행 수요에 맞춰, 개인화된 여행 경험을 제공하는 서비스들이 더욱 각광받을 거라니까요!</p>
+            <a href="https://news.google.com/rss/articles/CBMiS0FVX3lxTE5EemxZTGtoTDNxaF9KeFRvcm5EdHU4aHlTMGdWTnB0dGlqU19IUW13bDczMXhmOF9EZ0o4cm9FdEtSUTgtdXlScTRVYw?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">3</div>
           <div class="news-content">
-            <h3>&#x27;K-스타트업센터&#x27;가 해외 시장 문을 활짝 열어드려요!</h3>
-            <p>중소벤처기업진흥공단이 &#x27;K-스타트업센터&#x27; 참여 기업을 모집하며 해외 진출을 꿈꾸는 스타트업을 지원해요. 글로벌 시장으로 도약할 기회를 잡으세요!</p>
-            <a href="https://news.google.com/rss/articles/CBMibkFVX3lxTFBMb0RrNVp4dnlzRnoyODNNeXVyeUl6Z0Q4Z0RXem1XdVU5cFE0ZWxZZWtzMkh3MFYta0JPRDJZQ0FBV0JBT2xqWDdpT3M3TzNGRHJYQU9ac1hzempEQkVZTWhqa2dNMTdVOHNsVzhB?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>아이티센글로벌, AI·웹3 스타트업 투자 지속! 미래 기술에 올인?</h3>
+            <p>아이티센글로벌이 AI와 웹3 스타트업에 대한 투자를 꾸준히 이어가고 있어요. 이는 미래 기술 트렌드의 핵심인 AI와 탈중앙화 웹 생태계의 성장 가능성을 높이 평가하고 있다는 증거이며, 관련 기술 스타트업들에게는 든든한 지원군이 될 겁니다.</p>
+            <a href="https://news.google.com/rss/articles/CBMiZEFVX3lxTE1DNm0zRTZoLS1XdVg5dXVzYXBJa3hBOUdzUi12UXg4UVhuN2lGNDNtd1ZQUnRfSzRqbHRlSzNnZXJMcW1hYmNpcm4tMXVwb1I1dElSdkx5SmZHSXNBUXJXQ0plM2Y?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">4</div>
           <div class="news-content">
-            <h3>인천경제청, 스타트업파크펀드 활성화로 투자 선순환 구축!</h3>
-            <p>인천경제자유구역청이 스타트업파크펀드의 선순환 투자 구조를 구축하기 위해 적극적으로 나서고 있어요. 지역 스타트업 생태계에 활력을 불어넣을 것으로 기대됩니다.</p>
-            <a href="https://news.google.com/rss/articles/CBMiiwFBVV95cUxNbW5DQktJSmQtT0t2aHd3ejJQUmhfNldiajdVMnh5OWhHWnpZYkFheWtyTzV0ZGxreVBlYXZyWkRtNDVBdDA4Q1VzTVRlRWZoak8wRFZqNUY1UkxRTmRSVnBZT3d2a0RHQnl6RnZGYy1rZlhqUkJIdGFkdm5xSVRfdGhUdnBwVEVmclZB?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>오피셜트럼프 밈코인 콘퍼런스, 한국 스타트업 &#x27;인베스팅101&#x27; 창업자 초청!</h3>
+            <p>&#x27;오피셜트럼프 밈코인 콘퍼런스&#x27;에 한국 스타트업 &#x27;인베스팅101&#x27; 창업자 2명이 초청받았어요. 밈코인이라는 독특한 분야에서 한국 스타트업의 글로벌 존재감이 드러나고 있다는 점이 흥미롭네요! K-스타트업의 저력이 여기까지 미치다니, 정말 대단하죠?</p>
+            <a href="https://news.google.com/rss/articles/CBMiTkFVX3lxTE9BYXMwbmUwRC01cTFUTzFtMEhIaFcySm1kUEJwV2t3SXliTUE0Q1ZKRFZiNkc2RFpGT1VZb19xRFVOQXBDOUNYaURXY3dPQQ?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div>
         <div class="news-item">
           <div class="news-bullet">5</div>
           <div class="news-content">
-            <h3>경기도경제과학진흥원, &#x27;스타트업 천국&#x27; 조성을 위한 전사적 노력!</h3>
-            <p>경기도경제과학진흥원이 스타트업 육성을 위한 전사적인 대응 체계를 구축하며 &#x27;스타트업 천국&#x27; 조성에 박차를 가하고 있어요. 경기도 내 스타트업들에게 희소식이네요.</p>
-            <a href="https://news.google.com/rss/articles/CBMiYkFVX3lxTE8taHBHNlg0T3VZM0dNQi15cTlfbG40RG0wN2ZwRUJ1ZkZ2Y1R6LW5YaXJIa1U2blh1YkR3Mjd3ZjhqWTNDaVZvWjNHS1c4LVgzQjVVZ2ExeV9HbWlpdlNGYmd3?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
+            <h3>미래에셋벤처투자 주가 15% 상승, 스페이스X 지분투자 기대감! 🚀</h3>
+            <p>미래에셋벤처투자 주가가 스페이스X 지분투자 기대감에 힘입어 15% 이상 급등했어요. 국내 벤처캐피탈이 글로벌 혁신 기업에 투자하며 얻는 시너지 효과는 물론, 우주 산업에 대한 투자자들의 뜨거운 관심을 보여주는 대목이죠. 우주 시대, 정말 눈앞으로 다가온 것 같아요!</p>
+            <a href="https://news.google.com/rss/articles/CBMic0FVX3lxTE1IREV1QmtzYjU0Tmx3VTl0RzZXcmxPYzJpX1o0cjRxYVR1NXNtVzhEN3puY096U3V0MENzdk4xaGgtdkJrQjViMzJjeF8ySWVxR0gzcWJBWDVMTFZwQTNvU2lWMXJ4TDNhaDVjeDk0eHNLalk?oc=5" target="_blank" rel="noopener noreferrer" class="tool-link">원문 보기 →</a>
           </div>
         </div></div>
       </section>
@@ -553,19 +572,19 @@
         <div class="tool-card" style="margin-bottom: 1.5rem;">
           <div class="tool-icon">✨</div>
           <div class="tool-info">
-            <div class="tool-category">비즈니스 인텔리전스</div>
-            <h3>Similarweb</h3>
-            <p>오늘 AI와 테크 기업들의 동향, 투자 유치 소식, 그리고 IPO 추진 소식까지 다양한 뉴스가 있었죠. Similarweb은 특정 산업의 시장 트렌드와 경쟁사 웹사이트, 앱 데이터를 분석하여 비즈니스 기회를 포착하고 투자 결정을 내리는 데 유용한 인사이트를 제공합니다. AI 시장의 흐름을 읽고 싶은 분들께 강력 추천해요.</p>
-            <a href="https://www.similarweb.com/" target="_blank" rel="noopener noreferrer" class="tool-link">사이트 방문하기 →</a>
+            <div class="tool-category">AI 생산성 도구</div>
+            <h3>ChatGPT</h3>
+            <p>오늘 챗GPT가 HWP 파일까지 직접 읽고 분석할 수 있게 되었다는 소식에 깜짝 놀라셨죠? 이제 복잡한 문서 작업도 챗GPT에게 맡겨보세요. 다양한 형식의 문서를 변환 없이 업로드하고, 필요한 정보를 빠르게 추출하거나 요약하는 등 업무 효율을 한층 높일 수 있을 거예요.</p>
+            <a href="https://chat.openai.com/" target="_blank" rel="noopener noreferrer" class="tool-link">사이트 방문하기 →</a>
           </div>
         </div>
         <div class="tool-card" style="margin-bottom: 1.5rem;">
           <div class="tool-icon">✨</div>
           <div class="tool-info">
-            <div class="tool-category">금융 &amp; 투자</div>
-            <h3>XE.com</h3>
-            <p>원·달러 환율이 급등했다는 소식에 다들 깜짝 놀라셨을 거예요. XE.com은 실시간 환율 정보를 제공하며, 다양한 통화 간의 환전 계산을 도와줍니다. 글로벌 경제 상황과 환율 변동에 민감한 투자자나 해외 비즈니스를 하는 분들께 필수적인 도구입니다.</p>
-            <a href="https://www.xe.com/" target="_blank" rel="noopener noreferrer" class="tool-link">사이트 방문하기 →</a>
+            <div class="tool-category">암호화폐 투자 플랫폼</div>
+            <h3>Upbit (업비트)</h3>
+            <p>비트코인이 두 달 내 12만 5천 달러까지 갈 수 있다는 전망과 현물 ETF 순유입 소식에 투자 심리가 뜨거운데요. 암호화폐 시장에 관심이 있다면, 국내 대표 암호화폐 거래소인 업비트를 통해 다양한 디지털 자산의 시세를 확인하고 안전하게 투자 기회를 탐색해 볼 수 있습니다.</p>
+            <a href="https://upbit.com/" target="_blank" rel="noopener noreferrer" class="tool-link">사이트 방문하기 →</a>
           </div>
         </div>
       </div>
@@ -593,7 +612,7 @@
         <img src="assets/hannip.png" alt="한입이" class="hannip-avatar">
         <div class="hannip-bubble">
           <div class="hannip-name">한입이 🐻</div>
-          <p class="hannip-text">"오늘도 한입이와 함께 복잡한 뉴스를 냠냠 맛있게 소화하셨나요? AI부터 환율, 국제정세까지 정말 다채로운 소식들이 가득했네요! 오늘 얻은 인사이트로 여러분의 내일을 더 스마트하게 만들어가시길 바라며, 다음 주에도 신선한 소식 한입 들고 찾아올게요!"</p>
+          <p class="hannip-text">"오늘도 AI가 HWP 파일을 읽고, 비트코인이 춤추고, 트럼프가 중동을 오가는 다이내믹한 하루였네요! 정보의 홍수 속에서 길 잃지 않도록 한입이가 쏙쏙 골라드린 소식들, 맛있게 소화하셨길 바라요. 다음 주에도 더 신선한 뉴스로 찾아올게요, 기대해주세요!"</p>
         </div>
       </div>
     </section>
