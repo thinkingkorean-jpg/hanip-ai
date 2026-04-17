@@ -181,6 +181,8 @@ def generate_newsletter():
     category_names = {
         "ai_tech": "AI & 테크",
         "economy": "경제 & 국제정세",
+        "money": "머니 & 투자",
+        "global": "글로벌 이슈",
         "mobility": "모빌리티 & 우주",
         "startup": "스타트업 & 혁신",
     }
@@ -194,7 +196,7 @@ def generate_newsletter():
         print(f"  - [{category_name}] 섹션 생성 중...")
         final_newsletter[category_id] = generate_category_content(category_name, articles, model)
 
-    extras = generate_global_extras(model, {category_names[key]: value for key, value in categories_data.items()})
+    extras = generate_global_extras(model, {category_names.get(key, key): value for key, value in categories_data.items()})
     final_newsletter["recommended_tools"] = extras["recommended_tools"]
     final_newsletter["hannip_comment"] = extras["hannip_comment"]
     final_newsletter["metadata"] = build_metadata(crawled_data)
