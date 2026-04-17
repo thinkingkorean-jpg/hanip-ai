@@ -39,7 +39,7 @@
       top: 0;
       bottom: 0;
       width: 40px;
-      background: linear-gradient(to right, transparent, var(--bg));
+      background: linear-gradient(to right, transparent, var(--bg-primary));
       pointer-events: none;
       z-index: 1;
       opacity: 1;
@@ -47,6 +47,15 @@
     }
     .tabs-nav-wrap.scrolled-end::after {
       opacity: 0;
+    }
+    /* PC에서는 그라데이션 숨기고 줄바꿈 허용 */
+    @media (min-width: 641px) {
+      .tabs-nav {
+        flex-wrap: wrap;
+      }
+      .tabs-nav-wrap::after {
+        display: none;
+      }
     }
     .tab-btn {
       background: none;
