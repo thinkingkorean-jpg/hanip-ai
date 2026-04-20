@@ -3,130 +3,49 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="한입 AI — 매일 한입, 4가지 필수 지식을 떠먹여드립니다.">
-  <meta name="keywords" content="AI, 경제, 글로벌 뉴스, 모빌리티, 스타트업, 뉴스레터">
-  <meta property="og:title" content="한입 AI — 매일 한입 크기의 지식 뉴스">
-  <meta property="og:description" content="AI, 경제부터 우주 테크까지 가장 중요한 이슈를 쉽고 위트있게 정리해드립니다.">
-  <meta property="og:type" content="website">
-  <meta property="og:image" content="assets/hannip.png">
-  <title>한입 AI — 매일 한입, 지식을 떠먹여드립니다</title>
-  <link rel="icon" type="image/png" href="assets/hannip.png">
-  <link rel="canonical" href="https://thinkingkorean-jpg.github.io/hanip-ai/">
-  <link rel="stylesheet" href="style.css">
-  <style>
-    .tabs-nav {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 2rem;
-      overflow-x: auto;
-      border-bottom: 2px solid var(--card-border);
-      padding-bottom: 0px;
-      scrollbar-width: none;
-      -webkit-overflow-scrolling: touch;
-      position: relative;
-    }
-    .tabs-nav::-webkit-scrollbar {
-      display: none;
-    }
-    /* 모바일 우측 스크롤 힌트 그라데이션 */
-    .tabs-nav-wrap {
-      position: relative;
-    }
-    .tabs-nav-wrap::after {
-      content: '';
-      position: absolute;
-      right: 0;
-      top: 0;
-      bottom: 0;
-      width: 40px;
-      background: linear-gradient(to right, transparent, var(--bg-primary));
-      pointer-events: none;
-      z-index: 1;
-      opacity: 1;
-      transition: opacity 0.3s;
-    }
-    .tabs-nav-wrap.scrolled-end::after {
-      opacity: 0;
-    }
-    /* PC에서는 그라데이션만 숨김 (한 줄 유지) */
-    @media (min-width: 641px) {
-      .tabs-nav-wrap::after {
-        display: none;
-      }
-    }
-    .tab-btn {
-      background: none;
-      border: none;
-      padding: 0.6rem 0.65rem;
-      font-size: 0.88rem;
-      font-weight: 600;
-      color: var(--text-secondary);
-      cursor: pointer;
-      white-space: nowrap;
-      border-bottom: 3px solid transparent;
-      transition: all 0.3s ease;
-      margin-bottom: -2px;
-      flex-shrink: 0;
-    }
-    .tab-btn:hover {
-      color: var(--primary-color);
-    }
-    .tab-btn.active {
-      color: var(--primary-color);
-      border-bottom: 3px solid var(--primary-color);
-    }
-    .tab-pane {
-      display: none;
-      animation: fadeIn 0.4s ease;
-    }
-    .tab-pane.active {
-      display: block;
-    }
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(10px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-  </style>
+  <meta name="description" content="한입 AI — AI 크롬 한국 상륙! 웹 서핑이 이렇게까지 똑똑해진다고?. 매일 한입 크기의 핵심 뉴스레터.">
+  <meta property="og:title" content="AI 크롬 한국 상륙! 웹 서핑이 이렇게까지 똑똑해진다고? — 한입 AI">
+  <meta property="og:type" content="article">
+  <meta property="og:image" content="../assets/hannip.png">
+  <title>AI 크롬 한국 상륙! 웹 서핑이 이렇게까지 똑똑해진다고? — 한입 AI</title>
+  <link rel="icon" type="image/png" href="../assets/hannip.png">
+  <link rel="stylesheet" href="../style.css">
 </head>
 <body>
   <div class="bg-gradient"></div>
-
-  <header class="header" id="header">
+  <header class="header">
     <div class="header-inner">
-      <a href="index.html" class="logo">
-        <img src="assets/hannip.png" alt="한입이" class="logo-icon">
+      <a href="../index.html" class="logo">
+        <img src="../assets/hannip.png" alt="한입이" class="logo-icon">
         <div>
           <div class="logo-text">한입 AI</div>
           <div class="logo-sub">매일 한입, 세상을 떠먹여드립니다</div>
         </div>
       </a>
       <div class="header-actions">
-        <a href="archive.html" style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">아카이브</a>
+        <a href="../archive.html" style="color: var(--text-secondary); font-size: 0.9rem; font-weight: 500;">아카이브</a>
         <button class="theme-toggle" id="themeToggle" aria-label="테마 전환">🌙</button>
       </div>
     </div>
   </header>
-
   <main class="main">
     <section class="hero animate-in">
       <div class="hero-date">
         <span>📅</span>
-        <span id="todayDate" data-static-date="true">2026년 4월 20일 월요일</span>
+        <span>2026년 4월 20일 월요일</span>
       </div>
-      <h1 class="hero-title">오늘의 한입 🍪</h1>
-      <p class="hero-subtitle">한입이가 오늘의 세상 이야기를 맛있게 정리했어요</p>
+      <h1 class="hero-title">AI 크롬 한국 상륙! 웹 서핑이 이렇게까지 똑똑해진다고?</h1>
+      <p class="hero-subtitle">하루치 핵심 뉴스를 카테고리별로 다시 읽어보세요.</p>
     </section>
 
-    <div class="tabs-nav-wrap animate-in animate-delay-1">
-      <nav class="tabs-nav" id="tabsNav">
-        <button class="tab-btn active" data-target="tab-ai">🤖 AI & 테크</button>
+    <nav class="tabs-nav animate-in animate-delay-1">
+      <button class="tab-btn active" data-target="tab-ai">🤖 AI & 테크</button>
 <button class="tab-btn" data-target="tab-economy">📰 경제</button>
 <button class="tab-btn" data-target="tab-money">💰 머니 & 투자</button>
 <button class="tab-btn" data-target="tab-global">🌍 글로벌 이슈</button>
 <button class="tab-btn" data-target="tab-mobility">🚀 우주 & 모빌리티</button>
 <button class="tab-btn" data-target="tab-startup">💡 스타트업 & 혁신</button>
-      </nav>
-    </div>
+    </nav>
 
     
     <div id="tab-ai" class="tab-pane active">
@@ -549,13 +468,12 @@
       </section>
     </div>
 
-    <section class="section animate-in animate-delay-3">
+    <section class="section animate-in">
       <div class="section-header">
         <span class="section-icon">🛠️</span>
         <h2 class="section-title">오늘의 추천 도구</h2>
       </div>
       <div class="tools-list">
-        
         <div class="tool-card" style="margin-bottom: 1.5rem;">
           <div class="tool-icon">✨</div>
           <div class="tool-info">
@@ -573,30 +491,27 @@
             <p>오늘 중소기업과 스타트업의 AI 전환 지원 소식, 그리고 혁신 파트너십 구축 뉴스를 보셨죠? 노션은 팀원들과 아이디어를 공유하고, 프로젝트를 체계적으로 관리하며, 모든 정보를 한곳에 모아둘 수 있는 올인원 워크스페이스입니다. 새로운 기술을 도입하고 빠르게 성장해야 하는 스타트업에게 효율적인 협업 환경을 제공하여 혁신을 가속화할 수 있도록 돕습니다.</p>
             <a href="https://www.notion.so/" target="_blank" rel="noopener noreferrer" class="tool-link">사이트 방문하기 →</a>
           </div>
-        </div>
-      </div>
+        </div></div>
     </section>
 
-    <section class="section animate-in animate-delay-4">
+    <section class="section animate-in">
       <div class="section-header">
         <span class="section-icon">⏭️</span>
         <h2 class="section-title">다음 발행 예고</h2>
       </div>
       <article class="headline-card">
-        <h3 class="headline-title">내일 아침 7시 발행 예정</h3>
-        <div class="headline-body">
-          <p>내일 아침 7시에는 AI &amp; 테크 12건, 경제 12건, 머니 &amp; 투자 12건, 글로벌 이슈 12건, 우주 &amp; 모빌리티 12건, 스타트업 &amp; 혁신 12건을 바탕으로 가장 중요한 흐름만 다시 한입 크기로 정리해드릴게요.</p>
-        </div>
+        <h3 class="headline-title">내일 아침 발행 준비 중</h3>
+        <div class="headline-body"><p>내일 아침 7시에는 AI &amp; 테크 12건, 경제 12건, 머니 &amp; 투자 12건, 글로벌 이슈 12건, 우주 &amp; 모빌리티 12건, 스타트업 &amp; 혁신 12건을 바탕으로 가장 중요한 흐름만 다시 한입 크기로 정리해드릴게요.</p></div>
       </article>
     </section>
 
-    <section class="section animate-in animate-delay-4">
+    <section class="section animate-in">
       <div class="section-header">
         <span class="section-icon">💬</span>
         <h2 class="section-title">한입이의 한마디</h2>
       </div>
       <div class="hannip-comment">
-        <img src="assets/hannip.png" alt="한입이" class="hannip-avatar">
+        <img src="../assets/hannip.png" alt="한입이" class="hannip-avatar">
         <div class="hannip-bubble">
           <div class="hannip-name">한입이 🐻</div>
           <p class="hannip-text">"오늘도 한입이와 함께 AI와 우주, 그리고 뜨거운 스타트업 혁신 소식까지! 미래를 엿보는 시간, 어떠셨나요? 변화의 물결 속에서 우리 모두 한 발짝 더 나아갈 수 있는 하루가 되기를 바라며, 다음 뉴스레터에서 또 만나요!"</p>
@@ -611,10 +526,10 @@
       <button class="share-btn" id="shareCopy" aria-label="링크 복사">🔗</button>
     </div>
 
-    <section class="section animate-in animate-delay-5">
+    <section class="section animate-in">
       <div class="subscribe" id="subscribe">
         <h2>📬 매일 아침, 메일로 받아보세요</h2>
-        <p>한입이가 4가지 탭의 지식 뉴스를 매일 보내드려요. 무료!</p>
+        <p>한입이가 매일 중요한 흐름만 골라 보내드려요. 무료!</p>
         <form class="subscribe-form" id="subscribeForm">
           <input type="email" class="subscribe-input" placeholder="이메일 주소를 입력하세요" required id="emailInput">
           <button type="submit" class="subscribe-btn">구독하기</button>
@@ -627,22 +542,16 @@
   <footer class="footer">
     <div class="footer-logo">한입 AI</div>
     <p class="footer-desc">매일 한입, 세상을 떠먹여드립니다 🐻</p>
-    <div style="margin: 10px 0; display:flex; gap:16px; justify-content:center; font-size:0.85rem;">
-      <a href="about.html" style="color:var(--primary); text-decoration:none;">소개</a>
-      <span style="color:var(--text-secondary);">|</span>
-      <a href="privacy.html" style="color:var(--primary); text-decoration:none;">개인정보처리방침</a>
-      <span style="color:var(--text-secondary);">|</span>
-      <a href="archive.html" style="color:var(--primary); text-decoration:none;">아카이브</a>
-    </div>
-    <div style="margin: 10px 0;">
-      <img src="https://visitor-badge.laobi.icu/badge?page_id=thinkingkorean-jpg.hanip-ai&left_color=%23555555&right_color=%2379C83D&left_text=VISITORS" alt="방문자 수">
-    </div>
+    <nav class="footer-links">
+      <a href="../index.html">오늘의 뉴스</a>
+      <a href="../archive.html">아카이브</a>
+      <a href="../index.html#subscribe">이메일 구독</a>
+    </nav>
     <p class="footer-copy">© 2026 한입 AI (Hannip). All rights reserved.</p>
   </footer>
 
-  <script src="app.js"></script>
+  <script src="../app.js"></script>
   <script>
-    // 탭 전환
     document.querySelectorAll('.tab-btn').forEach((button) => {
       button.addEventListener('click', () => {
         document.querySelectorAll('.tab-btn').forEach((btn) => btn.classList.remove('active'));
@@ -651,16 +560,6 @@
         document.getElementById(button.dataset.target).classList.add('active');
       });
     });
-
-    // 모바일 탭 스크롤 힌트 (끝까지 스크롤하면 그라데이션 숨김)
-    const tabsNav = document.getElementById('tabsNav');
-    const tabsWrap = document.querySelector('.tabs-nav-wrap');
-    if (tabsNav && tabsWrap) {
-      tabsNav.addEventListener('scroll', () => {
-        const atEnd = tabsNav.scrollLeft + tabsNav.clientWidth >= tabsNav.scrollWidth - 5;
-        tabsWrap.classList.toggle('scrolled-end', atEnd);
-      });
-    }
   </script>
 </body>
 </html>
