@@ -226,5 +226,17 @@
     },
     "error": null,
     "total_seconds": 240.67
+  },
+  {
+    "date": "2026-05-03",
+    "success": true,
+    "stages": {
+      "crawler": 3.41,
+      "save": 0.0,
+      "generate": 211.93,
+      "publish": 0.64
+    },
+    "error": null,
+    "total_seconds": 215.98
   }
 ]
